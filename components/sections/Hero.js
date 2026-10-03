@@ -147,14 +147,40 @@ export function Hero() {
               {currentHero.titleB}{" "}
               <span className="relative whitespace-nowrap text-brand-600">
                 {currentHero.titleC}
-                <svg
-                  viewBox="0 0 300 12"
-                  className="absolute -bottom-2 left-0 h-3 w-full text-amber-400"
-                  preserveAspectRatio="none"
-                  aria-hidden
-                >
+                {/* 
+                  ====================================================
+                  HIGHLIGHT OPTIONS (Comment / Uncomment to test)
+                  ====================================================
+                */}
+
+                {/* OPTION 1: Hand-drawn smile/underline (Amazon style) - Currently Active */}
+                {/* <svg viewBox="0 0 300 12" className="absolute -bottom-2 left-0 h-3 w-full text-amber-400" preserveAspectRatio="none" aria-hidden>
                   <path d="M2 9C80 3 220 3 298 9" stroke="currentColor" strokeWidth="4" fill="none" strokeLinecap="round" />
+                </svg> */}
+
+                {/* OPTION 2: Highlighter Marker (Thick yellow sweep behind text) */}
+                {/* 
+                <span className="absolute -inset-y-1 -inset-x-2 -z-10 block -rotate-1 rounded-sm bg-amber-200/60"></span> 
+                */}
+
+                {/* OPTION 3: Scribble / Zig-zag underline (Creative style) */}
+                {/* 
+                <svg viewBox="0 0 300 16" className="absolute -bottom-3 left-0 h-4 w-full text-emerald-400" preserveAspectRatio="none" aria-hidden>
+                  <path d="M5 8 L 50 14 L 100 4 L 150 12 L 200 6 L 250 14 L 295 8" stroke="currentColor" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
+                */}
+
+                {/* OPTION 4: Sleek Gradient Line (Modern / Tech style) */}
+                
+                <span className="absolute -bottom-1 left-0 h-1.5 w-full rounded-full bg-gradient-to-r from-brand-400 via-amber-400 to-transparent"></span>
+               
+                
+                {/* OPTION 5: Double Underline (Classic hand-drawn) */}
+                {/*
+                <svg viewBox="0 0 300 20" className="absolute -bottom-3 left-0 h-5 w-full text-amber-400" preserveAspectRatio="none" aria-hidden>
+                  <path d="M5 6 C 100 0, 200 12, 295 6 M10 16 C 100 20, 200 8, 290 16" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+                </svg>
+                */}
               </span>
             </h1>
 
