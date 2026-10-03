@@ -48,6 +48,7 @@ export function Header() {
   const { t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [hoverState, setHoverState] = useState({ id: null, left: 0, width: 0 });
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -69,17 +70,34 @@ export function Header() {
         scrolled || open ? "border-b border-slate-200/70 bg-canvas/85 backdrop-blur-lg" : "bg-transparent"
       }`}
     >
+
+      
+
       <div className="mx-auto flex h-18 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
         <Link href="/" aria-label="ScriptVillage home" onClick={() => setOpen(false)}>
           <Logo />
         </Link>
 
-        <nav className="hidden items-center gap-1 lg:flex" aria-label="Main">
+        <nav 
+          className="relative hidden items-center lg:flex" 
+          aria-label="Main"
+          onMouseLeave={() => setHoverState(prev => ({ ...prev, id: null }))}
+        >
+          {/* Magic Sliding Pill Background */}
+          <div 
+            className={`absolute left-0 h-[36px] rounded-full bg-white shadow-md shadow-brand-500/10 ring-1 ring-brand-200/50 transition-all duration-300 ease-out ${hoverState.id ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
+            style={{
+              width: hoverState.width || 0,
+              transform: `translateX(${hoverState.left || 0}px)`,
+            }}
+          />
+
           {sections.map((id) => (
             <Link
               key={id}
               href={`/#${id}`}
-              className="rounded-full border border-transparent px-4 py-2 text-[15px] font-medium text-slate-600 transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-200 hover:bg-white hover:text-brand-600 hover:shadow-[0_4px_12px_rgba(34,197,94,0.12)]"
+              onMouseEnter={(e) => setHoverState({ id, left: e.currentTarget.offsetLeft, width: e.currentTarget.offsetWidth })}
+              className={`relative z-10 px-4 py-2 text-[15px] font-medium transition-colors duration-300 ${hoverState.id === id ? 'text-brand-600' : 'text-slate-600'}`}
             >
               {t.nav[id]}
             </Link>
