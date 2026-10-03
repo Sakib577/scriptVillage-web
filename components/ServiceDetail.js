@@ -8,6 +8,7 @@ import { serviceAccents } from "./sections/Services";
 import { getService, services } from "@/lib/services";
 import { whatsappLink } from "@/lib/site.config";
 import { toBanglaDigits } from "@/lib/format";
+import { SpotlightCard } from "./SpotlightCard";
 
 function Eyebrow({ children, className = "text-brand-600" }) {
   return <p className={`eyebrow text-sm font-semibold uppercase tracking-[0.18em] ${className}`}>{children}</p>;
@@ -50,7 +51,7 @@ export function ServiceDetail({ slug }) {
               <p className="mt-6 max-w-2xl text-lg text-slate-600">{s.intro}</p>
             </div>
 
-            <aside className="rounded-3xl border border-slate-200 bg-white p-8 shadow-2xl shadow-slate-900/10 lg:sticky lg:top-28">
+            <SpotlightCard as="aside" className="p-8 shadow-2xl shadow-slate-900/10 lg:sticky lg:top-28">
               <p className="text-sm text-slate-500">{d.from}</p>
               <p className="font-display mt-1 text-4xl font-extrabold tracking-tight text-ink">{s.price}</p>
               <div className="mt-5 flex items-center gap-3 rounded-2xl bg-canvas px-4 py-3">
@@ -88,7 +89,7 @@ export function ServiceDetail({ slug }) {
               >
                 {d.ctaSecondary}
               </Link>
-            </aside>
+            </SpotlightCard>
           </div>
         </div>
       </section>
@@ -104,12 +105,14 @@ export function ServiceDetail({ slug }) {
 
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {s.features.map((f, i) => (
-              <Reveal key={f.title} delay={(i % 3) * 90} className="rounded-3xl border border-slate-200 bg-white p-7">
+              <Reveal key={f.title} delay={(i % 3) * 90}>
+                <SpotlightCard className="h-full p-7">
                 <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 text-brand-700 ring-1 ring-brand-100">
                   <Icon name="check" className="h-5 w-5" />
                 </span>
                 <h3 className="font-display mt-5 text-lg font-bold text-ink">{f.title}</h3>
                 <p className="mt-2 text-[15px] text-slate-600">{f.desc}</p>
+              </SpotlightCard>
               </Reveal>
             ))}
           </div>
@@ -147,12 +150,14 @@ export function ServiceDetail({ slug }) {
             {t.process.steps.map((step, i) => {
               const num = String(i + 1).padStart(2, "0");
               return (
-                <Reveal as="li" key={step.title} delay={i * 80} className="rounded-3xl border border-slate-200 bg-white p-6">
+                <Reveal as="li" key={step.title} delay={i * 80}>
+                  <SpotlightCard className="h-full p-6">
                   <span className="font-display text-sm font-extrabold text-brand-600">
                     {lang === "bn" ? toBanglaDigits(num) : num}
                   </span>
                   <h3 className="font-display mt-3 text-lg font-bold text-ink">{step.title}</h3>
                   <p className="mt-2 text-[15px] text-slate-600">{step.desc}</p>
+                </SpotlightCard>
                 </Reveal>
               );
             })}
@@ -209,18 +214,19 @@ export function ServiceDetail({ slug }) {
           <h2 className="font-display text-2xl font-extrabold tracking-tight text-ink">{d.others}</h2>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {others.map((o) => (
-              <Link
+              <SpotlightCard
+                as={Link}
                 key={o.slug}
                 href={`/services/${o.slug}`}
-                className="group flex items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 transition hover:border-ink"
+                className="group flex items-center gap-3 p-4"
               >
                 <span
                   className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ring-1 ${serviceAccents[services.indexOf(o)]}`}
                 >
                   <Icon name={o.icon} className="h-5 w-5" />
                 </span>
-                <span className="font-semibold text-ink">{o[lang].title}</span>
-              </Link>
+                <span className="font-semibold text-ink group-hover:text-brand-800 transition-colors">{o[lang].title}</span>
+              </SpotlightCard>
             ))}
           </div>
         </div>

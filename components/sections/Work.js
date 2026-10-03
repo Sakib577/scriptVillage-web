@@ -2,6 +2,7 @@
 
 import { useLanguage } from "../LanguageProvider";
 import { Reveal, SectionHeading } from "../Reveal";
+import { SpotlightCard } from "../SpotlightCard";
 
 // Each concept is drawn with CSS only, so there are no placeholder images to replace.
 // Swap these for real screenshots once you have client work.
@@ -90,7 +91,7 @@ export function Work() {
         <div className="mt-16 grid gap-8 md:grid-cols-2">
           {w.items.map((item, i) => (
             <Reveal key={item.title} delay={(i % 2) * 120}>
-              <article className="group overflow-hidden rounded-3xl border border-slate-200 bg-white transition hover:shadow-2xl hover:shadow-slate-900/10">
+              <SpotlightCard as="article" className="">
                 <Preview theme={item.theme} title={item.title} />
                 <div className="flex items-center justify-between gap-4 p-6">
                   <div>
@@ -101,7 +102,7 @@ export function Work() {
                     {w.label}
                   </span>
                 </div>
-              </article>
+              </SpotlightCard>
             </Reveal>
           ))}
         </div>

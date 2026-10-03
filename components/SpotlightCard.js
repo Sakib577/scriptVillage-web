@@ -2,34 +2,48 @@
 
 import { useRef, useState } from "react";
 
-export function SpotlightCard({ children, className = "", spotlightColor = "rgba(16, 185, 129, 0.15)" }) {
-  const divRef = useRef(null);
+export function SpotlightCard({ children, className = "", as: Component = "div", ...props }) {
+  const ref = useRef(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [opacity, setOpacity] = useState(0);
 
   const handleMouseMove = (e) => {
-    if (!divRef.current) return;
-    const rect = divRef.current.getBoundingClientRect();
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
     setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
   };
 
   return (
-    <div
-      ref={divRef}
+    <Component
+      ref={ref}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setOpacity(1)}
       onMouseLeave={() => setOpacity(0)}
-      className={`relative overflow-hidden ${className}`}
+      className={`group relative overflow-hidden rounded-3xl border border-brand-200/80 bg-[#edf6f0] transition duration-300 hover:-translate-y-1 hover:border-brand-400 hover:shadow-xl hover:shadow-brand-900/5 ${className}`}
+      {...props}
     >
       <div
-        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 ease-in-out"
+        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 ease-in-out"
         style={{
           opacity,
-          background: `radial-gradient(400px circle at ${position.x}px ${position.y}px, ${spotlightColor}, transparent 40%)`,
+          backgroundImage: `radial-gradient(rgb(5 150 105 / 0.5) 1.5px, transparent 1.5px)`,
+          backgroundSize: '22px 22px',
+          maskImage: `radial-gradient(260px circle at ${position.x}px ${position.y}px, black 30%, transparent 100%)`,
+          WebkitMaskImage: `radial-gradient(260px circle at ${position.x}px ${position.y}px, black 30%, transparent 100%)`,
         }}
         aria-hidden="true"
       />
-      {children}
-    </div>
+      <div
+        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 ease-in-out mix-blend-multiply"
+        style={{
+          opacity,
+          background: `radial-gradient(380px circle at ${position.x}px ${position.y}px, rgba(16, 185, 129, 0.22), transparent 65%)`,
+        }}
+        aria-hidden="true"
+      />
+      <div className="relative z-10 h-full">
+        {children}
+      </div>
+    </Component>
   );
 }
