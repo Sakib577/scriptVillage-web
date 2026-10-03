@@ -12,9 +12,11 @@ const SHADOW_ALPHA = 0.28;
 // hero and the next section join seamlessly, with no sign the strip was there.
 export function CoverSheet({ children }) {
   const ref = useRef(null);
+  const fadeRef = useRef(null);
 
   useEffect(() => {
     const el = ref.current;
+    const fadeEl = fadeRef.current;
     const desktop = window.matchMedia("(min-width: 1024px)");
     let frame = 0;
 
@@ -23,12 +25,14 @@ export function CoverSheet({ children }) {
       if (!desktop.matches) {
         el.style.borderRadius = "";
         el.style.boxShadow = "";
+        if (fadeEl) fadeEl.style.opacity = "0";
         return;
       }
       const covered = Math.min(1, Math.max(0, (window.innerHeight - el.getBoundingClientRect().top) / STRIP_HEIGHT));
       const left = 1 - covered;
       el.style.borderRadius = `${RADIUS * left}px ${RADIUS * left}px 0 0`;
       el.style.boxShadow = left > 0 ? `0 -24px 60px -12px rgb(11 18 32 / ${SHADOW_ALPHA * left})` : "none";
+      if (fadeEl) fadeEl.style.opacity = covered.toString();
     };
     const schedule = () => {
       if (!frame) frame = requestAnimationFrame(update);
@@ -48,6 +52,11 @@ export function CoverSheet({ children }) {
 
   return (
     <div ref={ref} className="relative z-10 bg-canvas">
+      <div 
+        ref={fadeRef}
+        aria-hidden="true"
+        className="pointer-events-none absolute top-0 left-0 right-0 h-40 -translate-y-full bg-gradient-to-b from-transparent to-canvas opacity-0"
+      />
       {children}
     </div>
   );
