@@ -468,7 +468,7 @@ export function BrowserMockup({ card, onSlideChange }) {
           >
             <p className="text-xs font-medium text-slate-500">{currentMockup.badgeLeft.label}</p>
             <div className="flex items-baseline gap-1 mt-0.5">
-              <span className={`font-display text-2xl font-extrabold ${currentMockup.badgeLeft.textColor}`}>
+              <span className={`font-display text-2xl font-light ${currentMockup.badgeLeft.textColor}`}>
                 {currentMockup.badgeLeft.value}
               </span>
               {currentMockup.badgeLeft.unit && (

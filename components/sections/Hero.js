@@ -133,7 +133,7 @@ export function Hero() {
       <div className="relative mx-auto grid w-full max-w-7xl items-center gap-16 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
         <div>
           <div className={animClass}>
-            <span className="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-4 py-1.5 text-sm font-semibold text-brand-800">
+            <span className="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-4 py-1.5 text-sm font-medium text-brand-800">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-400 opacity-75" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-brand-500" />
@@ -141,7 +141,7 @@ export function Hero() {
               {currentHero.badge}
             </span>
 
-            <h1 className="font-display mt-6 min-h-[140px] text-4xl font-extrabold tracking-tight text-ink sm:min-h-[160px] sm:text-5xl lg:min-h-[190px] lg:text-6xl">
+            <h1 className="font-display mt-6 min-h-[140px] text-4xl font-light tracking-tight text-ink sm:min-h-[160px] sm:text-5xl lg:min-h-[190px] lg:text-6xl">
               {currentHero.titleA}
               <br />
               {currentHero.titleB}{" "}
@@ -174,14 +174,14 @@ export function Hero() {
               href={whatsappLink(t.contact.form.intro)}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-600 px-7 py-4 font-semibold text-white shadow-lg shadow-brand-600/25 transition hover:-translate-y-0.5 hover:bg-brand-700"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-600 px-7 py-4 font-medium text-white shadow-lg shadow-brand-600/25 transition hover:-translate-y-0.5 hover:bg-brand-700"
             >
               <WhatsAppIcon />
               {h.primary}
             </a>
             <a
               href="#pricing"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-7 py-4 font-semibold text-ink transition hover:-translate-y-0.5 hover:border-ink"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-7 py-4 font-medium text-ink transition hover:-translate-y-0.5 hover:border-ink"
             >
               {h.secondary}
               <Icon name="arrow" className="h-4 w-4" />

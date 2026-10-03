@@ -34,8 +34,8 @@ export function WhyUs() {
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <p className="eyebrow text-sm font-semibold uppercase tracking-[0.18em] text-brand-400">{w.eyebrow}</p>
-          <h2 className="font-display mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">{w.title}</h2>
+          <p className="eyebrow text-sm font-medium uppercase tracking-[0.18em] text-brand-400">{w.eyebrow}</p>
+          <h2 className="font-display mt-3 text-3xl font-light tracking-tight sm:text-4xl">{w.title}</h2>
         </Reveal>
 
         <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">

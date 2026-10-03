@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* Latin glyphs come from Manrope; Bengali glyphs fall through to the Bangla fonts. */
-  --font-sans: var(--font-manrope), var(--font-hind), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-manrope), var(--font-anek), ui-sans-serif, system-ui, sans-serif;
+  /* Latin glyphs come from Lato; Bengali glyphs fall through to the Bangla fonts. */
+  --font-sans: var(--font-lato), var(--font-noto), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-lato), var(--font-noto), ui-sans-serif, system-ui, sans-serif;
 
   --color-ink: #0b1220;
   /* Soft sage off-white instead of pure white; -alt is for alternating sections. */
@@ -33,6 +33,28 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* =========================================================
+   MANROPE (BOLD) THEME OVERRIDES
+   When switching to Manrope, revert font families and restore the heavy weights
+   ========================================================= */
+html[data-font-theme="manrope"] {
+  --font-sans: var(--font-manrope), var(--font-hind), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-manrope), var(--font-anek), ui-sans-serif, system-ui, sans-serif;
+}
+html[data-font-theme="manrope"] .font-light {
+  font-weight: 800 !important;
+}
+html[data-font-theme="manrope"] .font-normal {
+  font-weight: 500 !important;
+}
+html[data-font-theme="manrope"] .font-medium {
+  font-weight: 600 !important;
+}
+html[data-font-theme="manrope"] .font-display {
+  font-weight: 800 !important;
+}
+
+
 /* Bengali script reads better slightly larger with more line height. */
 html[data-lang="bn"] body {
   line-height: 1.75;
@@ -40,7 +62,7 @@ html[data-lang="bn"] body {
 html[data-lang="bn"] .font-display {
   letter-spacing: 0;
   line-height: 1.3;
-  font-weight: 700;
+  font-weight: 400;
 }
 /* Letter-spacing breaks apart Bengali conjuncts. */
 html[data-lang="bn"] .eyebrow {
@@ -254,4 +276,20 @@ html.reveal-ready .reveal:not(.is-visible) {
   .animate-cloud-3 {
     animation: none;
   }
+}
+html[data-font-theme="manrope"][data-lang="bn"] .font-display {
+  font-weight: 700 !important;
+}
+
+/* =========================================================
+   NUNITO (ROUNDED) THEME OVERRIDES
+   When switching to Nunito, use playful rounded fonts.
+   ========================================================= */
+html[data-font-theme="nunito"] {
+  --font-sans: var(--font-nunito), var(--font-baloo), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-nunito), var(--font-baloo), ui-sans-serif, system-ui, sans-serif;
+}
+/* Baloo Da 2 doesn't have a 300 weight, so we force 400 for light text in Bengali */
+html[data-font-theme="nunito"] .font-light {
+  font-weight: 500 !important;
 }

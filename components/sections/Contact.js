@@ -38,8 +38,8 @@ export function Contact() {
 
         <div className="relative grid gap-12 lg:grid-cols-2 lg:gap-16">
           <Reveal className="text-white">
-            <p className="eyebrow text-sm font-semibold uppercase tracking-[0.18em] text-brand-300">{c.eyebrow}</p>
-            <h2 className="font-display mt-3 text-3xl font-extrabold tracking-tight sm:text-5xl">{c.title}</h2>
+            <p className="eyebrow text-sm font-medium uppercase tracking-[0.18em] text-brand-300">{c.eyebrow}</p>
+            <h2 className="font-display mt-3 text-3xl font-light tracking-tight sm:text-5xl">{c.title}</h2>
             <p className="mt-5 max-w-md text-lg text-brand-100/90">{c.subtitle}</p>
 
             <ul className="mt-10 space-y-4">
@@ -56,7 +56,7 @@ export function Contact() {
                     </span>
                     <span className="min-w-0">
                       <span className="block text-sm text-brand-200">{ch.label}</span>
-                      <span className="block truncate font-semibold">{ch.value}</span>
+                      <span className="block truncate font-medium">{ch.value}</span>
                     </span>
                     <Icon name="arrow" className="ml-auto h-5 w-5 shrink-0 text-white/50 transition group-hover:translate-x-1 group-hover:text-white" />
                   </a>
@@ -69,16 +69,16 @@ export function Contact() {
             <form onSubmit={handleSubmit} className="rounded-3xl bg-white p-6 shadow-2xl sm:p-8">
               <div className="grid gap-4 sm:grid-cols-2">
                 <label className="block">
-                  <span className="mb-1.5 block text-sm font-semibold text-slate-700">{f.name} *</span>
+                  <span className="mb-1.5 block text-sm font-medium text-slate-700">{f.name} *</span>
                   <input name="name" required autoComplete="name" className={inputClass} />
                 </label>
                 <label className="block">
-                  <span className="mb-1.5 block text-sm font-semibold text-slate-700">{f.business}</span>
+                  <span className="mb-1.5 block text-sm font-medium text-slate-700">{f.business}</span>
                   <input name="business" autoComplete="organization" className={inputClass} />
                 </label>
               </div>
               <label className="mt-4 block">
-                <span className="mb-1.5 block text-sm font-semibold text-slate-700">{f.service} *</span>
+                <span className="mb-1.5 block text-sm font-medium text-slate-700">{f.service} *</span>
                 <select name="service" required defaultValue="" className={inputClass}>
                   <option value="" disabled>
                     —
@@ -91,12 +91,12 @@ export function Contact() {
                 </select>
               </label>
               <label className="mt-4 block">
-                <span className="mb-1.5 block text-sm font-semibold text-slate-700">{f.message}</span>
+                <span className="mb-1.5 block text-sm font-medium text-slate-700">{f.message}</span>
                 <textarea name="message" rows={4} className={`${inputClass} resize-none`} />
               </label>
               <button
                 type="submit"
-                className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-4 font-semibold text-white shadow-lg shadow-green-600/20 transition hover:-translate-y-0.5 hover:bg-[#1fb857]"
+                className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-4 font-medium text-white shadow-lg shadow-green-600/20 transition hover:-translate-y-0.5 hover:bg-[#1fb857]"
               >
                 <WhatsAppIcon />
                 {f.submit}

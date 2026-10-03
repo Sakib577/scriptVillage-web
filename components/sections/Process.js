@@ -23,7 +23,7 @@ export function Process() {
             const num = String(i + 1).padStart(2, "0");
             return (
               <Reveal as="li" key={step.title} delay={i * 100} className="relative flex gap-5 md:flex-col md:items-center md:text-center">
-                <span className="font-display relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border-4 border-canvas-alt bg-ink text-lg font-extrabold text-white shadow-lg">
+                <span className="font-display relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border-4 border-canvas-alt bg-ink text-lg font-bold text-white shadow-lg">
                   {lang === "bn" ? toBanglaDigits(num) : num}
                 </span>
                 <div>

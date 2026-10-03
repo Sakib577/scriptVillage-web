@@ -65,7 +65,7 @@ function ServiceCard({ service, item, i, t }) {
         </span>
         <h3 className="font-display mt-6 text-xl font-bold text-ink group-hover:text-brand-800 transition-colors">{item.title}</h3>
         <p className="mt-3 flex-1 text-slate-600">{item.summary}</p>
-        <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 transition-colors group-hover:text-brand-900">
+        <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-brand-700 transition-colors group-hover:text-brand-900">
           {t.serviceDetail.viewDetails}
           <Icon name="arrow" className="h-4 w-4 transition group-hover:translate-x-1" />
         </span>

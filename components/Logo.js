@@ -23,7 +23,7 @@ export function Logo({ className = "", onDark = false }) {
   return (
     <span className={`inline-flex items-center gap-2.5 ${className}`}>
       <LogoMark onDark={onDark} />
-      <span className={`font-display text-lg font-extrabold tracking-tight ${onDark ? "text-white" : ""}`}>
+      <span className={`font-display text-lg font-bold tracking-tight ${onDark ? "text-white" : ""}`}>
         Script<span className={onDark ? "text-brand-400" : "text-brand-600"}>Village</span>
       </span>
     </span>

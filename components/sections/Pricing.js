@@ -111,7 +111,7 @@ function PricingCard({ plan, p, t }) {
         <div className="mt-6">
           <p className="text-sm text-slate-400">{p.from}</p>
           <div className="flex items-baseline gap-2">
-            <span className="font-display text-4xl font-extrabold tracking-tight text-white">{plan.price}</span>
+            <span className="font-display text-4xl font-bold tracking-tight text-white">{plan.price}</span>
             <span className="text-sm text-brand-300">· {plan.time}</span>
           </div>
         </div>
@@ -132,7 +132,7 @@ function PricingCard({ plan, p, t }) {
         href={whatsappLink(`${t.contact.form.intro}\n${t.contact.form.labels.service}: ${plan.name}`)}
         target="_blank"
         rel="noopener noreferrer"
-        className="relative z-20 mt-10 inline-flex items-center justify-center gap-2 rounded-full bg-white/10 px-6 py-3.5 font-semibold text-white ring-1 ring-white/15 transition hover:bg-white/20"
+        className="relative z-20 mt-10 inline-flex items-center justify-center gap-2 rounded-full bg-white/10 px-6 py-3.5 font-medium text-white ring-1 ring-white/15 transition hover:bg-white/20"
       >
         {p.cta}
         <Icon name="arrow" className="h-4 w-4" />

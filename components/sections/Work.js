@@ -19,7 +19,7 @@ function Preview({ theme, title }) {
     <div className={`aspect-[16/10] overflow-hidden ${th.soft} p-5 sm:p-6`}>
       <div className="flex h-full flex-col overflow-hidden rounded-xl bg-white shadow-xl shadow-slate-900/10 transition duration-500 group-hover:-translate-y-1 group-hover:scale-[1.02]">
         <div className="flex items-center justify-between border-b border-slate-100 px-4 py-2.5">
-          <span className="text-[11px] font-extrabold tracking-tight text-ink">{title}</span>
+          <span className="text-[11px] font-bold tracking-tight text-ink">{title}</span>
           <div className="flex gap-1.5">
             <span className="h-1.5 w-6 rounded-full bg-slate-200" />
             <span className="h-1.5 w-6 rounded-full bg-slate-200" />
@@ -98,7 +98,7 @@ export function Work() {
                     <h3 className="font-display text-lg font-bold text-ink">{item.title}</h3>
                     <p className="text-[15px] text-slate-600">{item.type}</p>
                   </div>
-                  <span className="shrink-0 rounded-full border border-slate-200 px-3 py-1 text-xs font-semibold text-slate-500">
+                  <span className="shrink-0 rounded-full border border-slate-200 px-3 py-1 text-xs font-medium text-slate-500">
                     {w.label}
                   </span>
                 </div>
