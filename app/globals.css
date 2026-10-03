@@ -120,6 +120,70 @@ html.reveal-ready .reveal:not(.is-visible) {
   opacity: 0;
 }
 
+@keyframes badge-pop-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-36px) scale(0.75);
+  }
+  65% {
+    opacity: 1;
+    transform: translateX(6px) scale(1.04);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+.animate-badge-left {
+  animation: badge-pop-left 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes badge-pop-right {
+  0% {
+    opacity: 0;
+    transform: translateX(36px) scale(0.75);
+  }
+  65% {
+    opacity: 1;
+    transform: translateX(-6px) scale(1.04);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+.animate-badge-right {
+  animation: badge-pop-right 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes badge-exit-left {
+  0% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-36px) scale(0.75);
+  }
+}
+.animate-badge-exit-left {
+  animation: badge-exit-left 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes badge-exit-right {
+  0% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(36px) scale(0.75);
+  }
+}
+.animate-badge-exit-right {
+  animation: badge-exit-right 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

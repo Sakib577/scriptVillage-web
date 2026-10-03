@@ -4,64 +4,118 @@ import { useState, useEffect } from "react";
 import { Icon } from "./Icons";
 
 export function BrowserMockup({ card }) {
+  const isBn = card?.speed === "পেজ স্পিড";
+
+  // ============================================================
+  // BADGE TOGGLES: true/false করে খুব সহজে অন বা অফ করতে পারেন
+  // ============================================================
+  const SHOW_LEFT_BADGE = true   // false করলে বাম পাশের ব্যাজ বন্ধ হবে
+  const SHOW_RIGHT_BADGE = true  // false করলে ডান পাশের ব্যাজ বন্ধ হবে
+
   const MOCKUPS = [
     {
       url: "yourportfolio.com",
+      badgeLeft: {
+        label: isBn ? "ক্লায়েন্ট রেটিং" : "Client rating",
+        value: "5.0",
+        unit: "★",
+        textColor: "text-indigo-600",
+        barColor: "bg-indigo-500",
+        barWidth: "w-full",
+      },
+      badgeRight: {
+        icon: "portfolio",
+        iconBg: "bg-indigo-100 text-indigo-700",
+        title: isBn ? "১৫+ লাইভ প্রজেক্ট" : "15+ Live projects",
+        subtitle: isBn ? "২ সপ্তাহে হায়ার্ড · রেডি" : "Hired in 2 wks · Ready",
+      },
       content: (
-        <div className="p-5 h-full flex flex-col justify-between bg-slate-50/70">
+        <div className="p-5 h-full flex flex-col justify-between bg-slate-50/80">
           {/* Portfolio Nav */}
           <div className="flex items-center justify-between animate-fade-in-up" style={{ animationDelay: "0ms" }}>
             <div className="flex items-center gap-2">
-              <div className="h-4 w-4 rounded-full bg-indigo-500" />
+              <div className="h-4 w-4 rounded-full bg-indigo-600" />
               <div className="h-2.5 w-16 rounded-full bg-slate-800" />
             </div>
             <div className="flex gap-2">
               <div className="h-2 w-8 rounded-full bg-slate-300" />
               <div className="h-2 w-8 rounded-full bg-slate-300" />
+              <div className="h-2 w-8 rounded-full bg-slate-300" />
             </div>
           </div>
 
-          {/* Portfolio Hero */}
-          <div className="flex flex-col items-center text-center space-y-2 pt-1">
-            {/* Person Portrait */}
-            <div className="relative animate-fade-in-up" style={{ animationDelay: "150ms" }}>
-              <div className="h-14 w-14 rounded-full bg-linear-to-br from-indigo-500 via-purple-500 to-pink-500 p-0.5 shadow-md">
-                <div className="h-full w-full rounded-full bg-white flex items-center justify-center overflow-hidden">
-                  <div className="h-10 w-10 rounded-full bg-linear-to-b from-indigo-200 to-indigo-400 mt-2" />
+          {/* Portfolio Hero (Split: Left info, Right portrait) */}
+          <div className="grid grid-cols-5 items-center gap-4 pt-1">
+            {/* Left Content */}
+            <div className="col-span-3 space-y-2">
+              {/* Status Badge */}
+              <div className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2 py-0.5 border border-emerald-200 animate-fade-in-up" style={{ animationDelay: "150ms" }}>
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="h-1.5 w-16 rounded-full bg-emerald-700/60" />
+              </div>
+
+              {/* Headline & Bio */}
+              <div className="space-y-1.5 animate-fade-in-up" style={{ animationDelay: "300ms" }}>
+                <div className="h-3.5 w-full rounded-full bg-slate-800" />
+                <div className="h-3.5 w-4/5 rounded-full bg-slate-800" />
+                <div className="h-2 w-3/4 rounded-full bg-slate-400 pt-0.5" />
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex gap-2 pt-1 animate-fade-in-up" style={{ animationDelay: "450ms" }}>
+                <div className="h-6 w-20 rounded-full bg-indigo-600 shadow-sm shadow-indigo-200" />
+                <div className="h-6 w-16 rounded-full border border-slate-300 bg-white" />
+              </div>
+            </div>
+
+            {/* Right Portrait */}
+            <div className="col-span-2 flex justify-center relative animate-fade-in-up" style={{ animationDelay: "600ms" }}>
+              <div className="relative">
+                <div className="h-24 w-24 rounded-2xl bg-linear-to-tr from-indigo-500 via-purple-500 to-pink-400 p-1 shadow-md shadow-indigo-100 rotate-2 hover:rotate-0 transition-transform">
+                  <div className="h-full w-full rounded-xl bg-white flex flex-col items-center justify-end overflow-hidden p-1">
+                    <div className="h-14 w-14 rounded-full bg-linear-to-b from-indigo-300 to-indigo-500" />
+                  </div>
+                </div>
+                {/* Floating mini badge on portrait */}
+                <div className="absolute -bottom-2 -left-2 bg-white rounded-lg shadow-sm border border-slate-100 px-2 py-1 flex items-center gap-1.5">
+                  <span className="h-2 w-2 rounded-full bg-amber-400" />
+                  <span className="h-1.5 w-8 rounded-full bg-slate-300" />
                 </div>
               </div>
-              <span className="absolute bottom-0 right-0 h-3.5 w-3.5 rounded-full border-2 border-white bg-emerald-500" />
-            </div>
-
-            {/* Person Info */}
-            <div className="space-y-1.5 flex flex-col items-center animate-fade-in-up" style={{ animationDelay: "300ms" }}>
-              <div className="h-3.5 w-28 rounded-full bg-slate-800" />
-              <div className="h-2 w-36 rounded-full bg-indigo-500" />
-              <div className="h-2 w-48 rounded-full bg-slate-400 mt-0.5" />
-            </div>
-
-            {/* Action buttons */}
-            <div className="flex gap-2 pt-1 animate-fade-in-up" style={{ animationDelay: "450ms" }}>
-              <div className="h-6 w-20 rounded-full bg-slate-800 shadow-sm" />
-              <div className="h-6 w-16 rounded-full border border-slate-300 bg-white" />
             </div>
           </div>
 
-          {/* Portfolio Works Grid */}
-          <div className="grid grid-cols-2 gap-3 pt-2">
-            <div 
-              className="group relative aspect-[16/8] rounded-xl overflow-hidden shadow-xs animate-fade-in-up" 
-              style={{ animationDelay: "600ms" }}
-            >
-              <div className="absolute inset-0 bg-linear-to-r from-indigo-500 to-sky-400 opacity-90" />
-              <div className="absolute bottom-1.5 left-2 right-2 h-1.5 w-2/3 rounded-full bg-white/80" />
+          {/* Bottom Section: Featured Works / Projects */}
+          <div className="space-y-1.5 pt-1">
+            <div className="flex items-center justify-between animate-fade-in-up" style={{ animationDelay: "750ms" }}>
+              <div className="h-2 w-16 rounded-full bg-slate-400" />
+              <div className="h-2 w-10 rounded-full bg-indigo-400/60" />
             </div>
-            <div 
-              className="group relative aspect-[16/8] rounded-xl overflow-hidden shadow-xs animate-fade-in-up" 
-              style={{ animationDelay: "750ms" }}
-            >
-              <div className="absolute inset-0 bg-linear-to-r from-purple-500 to-rose-400 opacity-90" />
-              <div className="absolute bottom-1.5 left-2 right-2 h-1.5 w-2/3 rounded-full bg-white/80" />
+
+            <div className="grid grid-cols-3 gap-2.5">
+              <div 
+                className="group relative h-14 rounded-xl overflow-hidden shadow-xs border border-indigo-100 animate-fade-in-up" 
+                style={{ animationDelay: "850ms" }}
+              >
+                <div className="absolute inset-0 bg-linear-to-br from-indigo-500 to-sky-400 opacity-85" />
+                <div className="absolute bottom-1.5 left-2 right-2 h-1.5 rounded-full bg-white/80" />
+              </div>
+
+              <div 
+                className="group relative h-14 rounded-xl overflow-hidden shadow-xs border border-purple-100 animate-fade-in-up" 
+                style={{ animationDelay: "950ms" }}
+              >
+                <div className="absolute inset-0 bg-linear-to-br from-purple-500 to-pink-500 opacity-85" />
+                <div className="absolute bottom-1.5 left-2 right-2 h-1.5 rounded-full bg-white/80" />
+              </div>
+
+              <div 
+                className="group relative h-14 rounded-xl overflow-hidden shadow-xs border border-emerald-100 animate-fade-in-up" 
+                style={{ animationDelay: "1050ms" }}
+              >
+                <div className="absolute inset-0 bg-linear-to-br from-emerald-400 to-teal-500 opacity-85" />
+                <div className="absolute bottom-1.5 left-2 right-2 h-1.5 rounded-full bg-white/80" />
+              </div>
             </div>
           </div>
         </div>
@@ -69,42 +123,97 @@ export function BrowserMockup({ card }) {
     },
     {
       url: "yourlandingpage.com",
+      badgeLeft: {
+        label: isBn ? "কনভার্সন রেট" : "Conversion rate",
+        value: "+38%",
+        unit: "",
+        textColor: "text-rose-600",
+        barColor: "bg-linear-to-r from-rose-500 to-orange-400",
+        barWidth: "w-[88%]",
+      },
+      badgeRight: {
+        icon: "bolt",
+        iconBg: "bg-rose-100 text-rose-600",
+        title: isBn ? "A/B টেস্টেড ও ফাস্ট" : "A/B tested & fast",
+        subtitle: isBn ? "হাই CTR · এসইও রেডি" : "High CTR · SEO ready",
+      },
       content: (
-        <div className="p-5 h-full flex flex-col justify-between bg-rose-50/20">
+        <div className="p-5 h-full flex flex-col justify-between bg-linear-to-b from-rose-50/40 via-white to-orange-50/20">
           {/* Landing Nav */}
           <div className="flex justify-between items-center animate-fade-in-up" style={{ animationDelay: "0ms" }}>
             <div className="flex items-center gap-1.5">
-              <div className="h-4 w-4 rounded-full bg-rose-500" />
-              <div className="h-2.5 w-14 rounded-full bg-slate-800" />
+              <div className="h-4 w-4 rounded-md bg-linear-to-tr from-rose-500 to-orange-400 shadow-xs" />
+              <div className="h-2.5 w-16 rounded-full bg-slate-800" />
             </div>
             <div className="flex items-center gap-2">
-              <div className="h-2 w-6 rounded-full bg-slate-300" />
-              <div className="h-2 w-6 rounded-full bg-slate-300" />
-              <div className="h-5 w-14 rounded-full bg-rose-500" />
+              <div className="h-2 w-7 rounded-full bg-slate-300" />
+              <div className="h-2 w-7 rounded-full bg-slate-300" />
+              <div className="h-5 w-16 rounded-full bg-linear-to-r from-rose-500 to-orange-400 shadow-xs" />
             </div>
           </div>
 
           {/* Landing Hero */}
           <div className="flex flex-col items-center text-center space-y-2 pt-1">
-            <div className="h-4 w-3/4 rounded-full bg-slate-800 animate-fade-in-up" style={{ animationDelay: "150ms" }} />
-            <div className="h-2 w-4/5 rounded-full bg-slate-400 animate-fade-in-up" style={{ animationDelay: "300ms" }} />
-            <div className="flex gap-2 pt-1 animate-fade-in-up" style={{ animationDelay: "450ms" }}>
-              <div className="h-6 w-20 rounded-full bg-rose-500 shadow-sm shadow-rose-200" />
-              <div className="h-6 w-16 rounded-full border border-slate-300 bg-white" />
+            {/* SaaS Badge */}
+            <div className="inline-flex items-center gap-1 rounded-full bg-rose-100/70 px-2 py-0.5 border border-rose-200 animate-fade-in-up" style={{ animationDelay: "150ms" }}>
+              <span className="h-1.5 w-1.5 rounded-full bg-rose-500" />
+              <span className="h-1.5 w-20 rounded-full bg-rose-700/70" />
+            </div>
+
+            {/* Headline */}
+            <div className="space-y-1.5 flex flex-col items-center animate-fade-in-up" style={{ animationDelay: "300ms" }}>
+              <div className="h-4 w-4/5 rounded-full bg-slate-800" />
+              <div className="h-2.5 w-3/5 rounded-full bg-slate-400" />
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="flex gap-2 pt-0.5 animate-fade-in-up" style={{ animationDelay: "450ms" }}>
+              <div className="h-6 w-24 rounded-full bg-linear-to-r from-rose-500 to-orange-500 shadow-sm shadow-rose-200" />
+              <div className="h-6 w-18 rounded-full border border-slate-300 bg-white flex items-center justify-center gap-1">
+                <span className="h-2 w-2 rounded-full bg-rose-400" />
+                <span className="h-1.5 w-8 rounded-full bg-slate-400" />
+              </div>
             </div>
           </div>
 
-          {/* Landing Graphic Banner */}
+          {/* SaaS App Dashboard Preview Card */}
           <div 
-            className="w-full h-24 rounded-xl bg-linear-to-tr from-rose-200 via-orange-100 to-amber-100 relative overflow-hidden shadow-xs border border-rose-100 animate-fade-in-up" 
+            className="w-full rounded-xl bg-white border border-slate-200/80 p-2.5 shadow-sm shadow-slate-200 relative overflow-hidden animate-fade-in-up" 
             style={{ animationDelay: "600ms" }}
           >
-            <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-white/70 rounded-full blur-lg" />
-            <div className="absolute top-3 left-3 h-2 w-1/3 bg-white/90 rounded-full" />
-            <div className="absolute top-7 left-3 h-1.5 w-1/4 bg-white/70 rounded-full" />
-            <div className="absolute bottom-2.5 right-3 h-10 w-20 bg-white/50 backdrop-blur-xs rounded-lg border border-white/60 p-1.5 space-y-1">
-              <div className="h-1.5 w-full bg-rose-400/60 rounded-full" />
-              <div className="h-1.5 w-2/3 bg-slate-300 rounded-full" />
+            {/* Mini Dashboard Header */}
+            <div className="flex items-center justify-between border-b border-slate-100 pb-2">
+              <div className="flex items-center gap-1.5">
+                <span className="h-2 w-2 rounded-full bg-rose-400" />
+                <span className="h-1.5 w-16 rounded-full bg-slate-400" />
+              </div>
+              <div className="flex gap-1.5">
+                <span className="h-3 w-8 rounded-sm bg-slate-100" />
+                <span className="h-3 w-8 rounded-sm bg-rose-50 border border-rose-100" />
+              </div>
+            </div>
+
+            {/* Mini Charts & Stats inside Dashboard */}
+            <div className="grid grid-cols-5 gap-2 pt-2 items-center">
+              {/* Stat metric */}
+              <div className="col-span-2 space-y-1">
+                <div className="h-1.5 w-12 rounded-full bg-slate-400" />
+                <div className="h-3.5 w-20 rounded-full bg-slate-800" />
+                <div className="inline-flex items-center gap-1 rounded-sm bg-emerald-50 px-1 py-0.5">
+                  <span className="h-1 w-1 rounded-full bg-emerald-500" />
+                  <span className="h-1 w-8 rounded-full bg-emerald-600" />
+                </div>
+              </div>
+
+              {/* Bar Chart Visualization */}
+              <div className="col-span-3 flex items-end justify-end gap-1.5 h-10 pt-1">
+                <div className="w-3 h-4 rounded-t-xs bg-rose-200" />
+                <div className="w-3 h-6 rounded-t-xs bg-rose-300" />
+                <div className="w-3 h-8 rounded-t-xs bg-orange-300" />
+                <div className="w-3 h-5 rounded-t-xs bg-rose-300" />
+                <div className="w-3 h-9 rounded-t-xs bg-linear-to-t from-rose-500 to-orange-400 shadow-xs" />
+                <div className="w-3 h-7 rounded-t-xs bg-orange-400" />
+              </div>
             </div>
           </div>
         </div>
@@ -112,74 +221,116 @@ export function BrowserMockup({ card }) {
     },
     {
       url: "yourbusiness.com",
+      badgeLeft: {
+        label: card.speed || (isBn ? "পেজ স্পিড" : "Page speed"),
+        value: isBn ? "৯৮" : "98",
+        unit: "",
+        textColor: "text-brand-600",
+        barColor: "bg-brand-500",
+        barWidth: "w-[98%]",
+      },
+      badgeRight: {
+        icon: "check",
+        iconBg: "bg-brand-100 text-brand-700",
+        title: card.delivered || (isBn ? "৫ দিনে ডেলিভারি" : "Delivered in 5 days"),
+        subtitle: `${card.mobile || (isBn ? "মোবাইল রেডি" : "Mobile ready")} · ${card.live || (isBn ? "লাইভ" : "Live")}`,
+      },
       content: (
-        <div className="space-y-4 p-5 h-full flex flex-col justify-between">
-          {/* Header */}
+        <div className="p-5 h-full flex flex-col justify-between bg-white">
+          {/* Business Header */}
           <div className="flex items-center justify-between animate-fade-in-up" style={{ animationDelay: "0ms" }}>
             <div className="flex items-center gap-2">
-              <div className="h-4 w-4 rounded-md bg-brand-500" />
+              <div className="h-4 w-4 rounded-md bg-linear-to-br from-emerald-500 to-teal-700 shadow-xs" />
               <div className="h-3 w-20 rounded-full bg-ink" />
             </div>
-            <div className="flex gap-2">
+            <div className="flex items-center gap-2">
               <div className="h-2 w-8 rounded-full bg-slate-200" />
               <div className="h-2 w-8 rounded-full bg-slate-200" />
-              <div className="h-2 w-8 rounded-full bg-slate-200" />
+              <div className="h-5 w-16 rounded-full bg-emerald-50 border border-emerald-200" />
             </div>
           </div>
 
-          {/* Hero split */}
+          {/* Hero Split */}
           <div className="grid grid-cols-5 items-center gap-4 pt-1">
-            <div className="col-span-3 space-y-2.5">
-              <div className="h-3.5 w-full rounded-full bg-slate-800 animate-fade-in-up" style={{ animationDelay: "180ms" }} />
-              <div className="h-3.5 w-4/5 rounded-full bg-slate-800 animate-fade-in-up" style={{ animationDelay: "180ms" }} />
-              <div className="h-2 w-full rounded-full bg-slate-300 animate-fade-in-up" style={{ animationDelay: "360ms" }} />
-              <div className="h-2 w-3/4 rounded-full bg-slate-300 animate-fade-in-up" style={{ animationDelay: "360ms" }} />
-              <div className="flex gap-2 pt-1 animate-fade-in-up" style={{ animationDelay: "540ms" }}>
-                <div className="h-7 w-20 rounded-full bg-brand-500 shadow-xs" />
-                <div className="h-7 w-16 rounded-full border border-slate-300" />
+            {/* Left Content */}
+            <div className="col-span-3 space-y-2">
+              <div className="inline-flex items-center gap-1.5 rounded-full bg-slate-100 px-2 py-0.5 animate-fade-in-up" style={{ animationDelay: "150ms" }}>
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                <span className="h-1.5 w-16 rounded-full bg-slate-500" />
+              </div>
+
+              <div className="space-y-1.5 animate-fade-in-up" style={{ animationDelay: "300ms" }}>
+                <div className="h-3.5 w-full rounded-full bg-slate-800" />
+                <div className="h-3.5 w-4/5 rounded-full bg-slate-800" />
+                <div className="h-2 w-3/4 rounded-full bg-slate-400" />
+              </div>
+
+              <div className="flex gap-2 pt-0.5 animate-fade-in-up" style={{ animationDelay: "450ms" }}>
+                <div className="h-6 w-20 rounded-full bg-brand-600 shadow-xs shadow-brand-200" />
+                <div className="h-6 w-16 rounded-full border border-slate-300 bg-white" />
               </div>
             </div>
-            <div 
-              className="col-span-2 aspect-square rounded-2xl bg-linear-to-br from-brand-400 via-brand-500 to-teal-600 p-3 shadow-md shadow-brand-100 animate-fade-in-up" 
-              style={{ animationDelay: "720ms" }}
-            >
-              <div className="h-full w-full rounded-xl border border-white/40 bg-white/10" />
+
+            {/* Right Card / Visual */}
+            <div className="col-span-2 relative animate-fade-in-up" style={{ animationDelay: "600ms" }}>
+              <div className="aspect-square rounded-2xl bg-linear-to-br from-slate-900 via-slate-800 to-teal-950 p-3 shadow-md shadow-slate-200 flex flex-col justify-between">
+                <div className="flex justify-between items-center">
+                  <div className="h-2 w-8 rounded-full bg-emerald-400" />
+                  <div className="h-2 w-2 rounded-full bg-white/40" />
+                </div>
+                {/* Visual curve/bar */}
+                <div className="space-y-1.5">
+                  <div className="flex items-end gap-1 h-8">
+                    <div className="flex-1 h-3 bg-emerald-500/30 rounded-t-xs" />
+                    <div className="flex-1 h-5 bg-emerald-500/50 rounded-t-xs" />
+                    <div className="flex-1 h-7 bg-emerald-400 rounded-t-xs" />
+                    <div className="flex-1 h-4 bg-emerald-500/40 rounded-t-xs" />
+                  </div>
+                  <div className="h-1.5 w-full bg-white/20 rounded-full" />
+                </div>
+              </div>
+
+              {/* Floating mini stat pill */}
+              <div className="absolute -bottom-2 -left-2 bg-white rounded-lg shadow-sm border border-slate-100 px-2 py-1 flex items-center gap-1.5">
+                <span className="h-2 w-2 rounded-full bg-emerald-500" />
+                <span className="h-1.5 w-10 rounded-full bg-slate-700" />
+              </div>
             </div>
           </div>
 
           {/* Features Grid */}
           <div className="grid grid-cols-3 gap-2.5 pt-1">
             <div 
-              className="rounded-xl border border-slate-100 p-2.5 bg-white shadow-xs animate-fade-in-up" 
+              className="rounded-xl border border-slate-100 p-2.5 bg-slate-50/70 shadow-2xs animate-fade-in-up" 
+              style={{ animationDelay: "750ms" }}
+            >
+              <div className="mb-1.5 h-4 w-4 rounded-md bg-emerald-100 flex items-center justify-center">
+                <div className="h-1.5 w-1.5 rounded-full bg-emerald-600" />
+              </div>
+              <div className="h-2 w-full rounded-full bg-slate-300" />
+              <div className="mt-1 h-1.5 w-2/3 rounded-full bg-slate-200" />
+            </div>
+
+            <div 
+              className="rounded-xl border border-slate-100 p-2.5 bg-slate-50/70 shadow-2xs animate-fade-in-up" 
               style={{ animationDelay: "900ms" }}
             >
-              <div className="mb-1.5 h-5 w-5 rounded-lg bg-amber-100 flex items-center justify-center">
-                <div className="h-1.5 w-1.5 rounded-full bg-amber-500" />
+              <div className="mb-1.5 h-4 w-4 rounded-md bg-sky-100 flex items-center justify-center">
+                <div className="h-1.5 w-1.5 rounded-full bg-sky-600" />
               </div>
-              <div className="h-2 w-full rounded-full bg-slate-200" />
-              <div className="mt-1 h-1.5 w-2/3 rounded-full bg-slate-100" />
+              <div className="h-2 w-full rounded-full bg-slate-300" />
+              <div className="mt-1 h-1.5 w-2/3 rounded-full bg-slate-200" />
             </div>
 
             <div 
-              className="rounded-xl border border-slate-100 p-2.5 bg-white shadow-xs animate-fade-in-up" 
+              className="rounded-xl border border-slate-100 p-2.5 bg-slate-50/70 shadow-2xs animate-fade-in-up" 
               style={{ animationDelay: "1050ms" }}
             >
-              <div className="mb-1.5 h-5 w-5 rounded-lg bg-sky-100 flex items-center justify-center">
-                <div className="h-1.5 w-1.5 rounded-full bg-sky-500" />
+              <div className="mb-1.5 h-4 w-4 rounded-md bg-amber-100 flex items-center justify-center">
+                <div className="h-1.5 w-1.5 rounded-full bg-amber-600" />
               </div>
-              <div className="h-2 w-full rounded-full bg-slate-200" />
-              <div className="mt-1 h-1.5 w-2/3 rounded-full bg-slate-100" />
-            </div>
-
-            <div 
-              className="rounded-xl border border-slate-100 p-2.5 bg-white shadow-xs animate-fade-in-up" 
-              style={{ animationDelay: "1200ms" }}
-            >
-              <div className="mb-1.5 h-5 w-5 rounded-lg bg-rose-100 flex items-center justify-center">
-                <div className="h-1.5 w-1.5 rounded-full bg-rose-500" />
-              </div>
-              <div className="h-2 w-full rounded-full bg-slate-200" />
-              <div className="mt-1 h-1.5 w-2/3 rounded-full bg-slate-100" />
+              <div className="h-2 w-full rounded-full bg-slate-300" />
+              <div className="mt-1 h-1.5 w-2/3 rounded-full bg-slate-200" />
             </div>
           </div>
         </div>
@@ -190,55 +341,78 @@ export function BrowserMockup({ card }) {
   const [currentIndex, setCurrentIndex] = useState(2); // Start with yourbusiness.com
   const [displayedText, setDisplayedText] = useState(MOCKUPS[2].url);
   const [isTyping, setIsTyping] = useState(false);
+  const [badgeVisible, setBadgeVisible] = useState(true);
 
   useEffect(() => {
-    let timeoutId;
-    
-    const startCycle = () => {
-      timeoutId = setTimeout(() => {
-        const nextIndex = (currentIndex + 1) % MOCKUPS.length;
-        const targetText = MOCKUPS[nextIndex].url;
-        
-        setIsTyping(true);
-        
-        let currentTextLength = MOCKUPS[currentIndex].url.length;
-        
-        // Phase 1: Backspace current text
-        const backspaceChar = () => {
-          if (currentTextLength > 0) {
-            setDisplayedText(MOCKUPS[currentIndex].url.slice(0, currentTextLength - 1));
-            currentTextLength--;
-            timeoutId = setTimeout(backspaceChar, Math.floor(Math.random() * 20) + 30); // Delete: 30-50ms
-          } else {
-            // Phase 2: Pause briefly after backspace
-            timeoutId = setTimeout(typeNextChar, 180);
-          }
-        };
+    let active = true;
+    let timer;
 
-        let charIndex = 0;
-        
-        // Phase 3: Type new text
-        const typeNextChar = () => {
-          if (charIndex < targetText.length) {
-            setDisplayedText(targetText.slice(0, charIndex + 1));
-            charIndex++;
-            timeoutId = setTimeout(typeNextChar, Math.floor(Math.random() * 40) + 40); // Type: 40-80ms
-          } else {
-            setIsTyping(false);
-            setCurrentIndex(nextIndex); // Switch page after URL typing finishes
-            startCycle(); // Queue next cycle
-          }
-        };
-        
-        backspaceChar();
-        
-      }, 4500); // 4.5 seconds per slide
+    const sleep = (ms) =>
+      new Promise((resolve) => {
+        timer = setTimeout(resolve, ms);
+      });
+
+    const runSequence = async () => {
+      let index = 2; // starts with yourbusiness.com
+
+      while (active) {
+        // Step 1: Wait 4.5s for user to view the slide with badges visible
+        await sleep(4500);
+        if (!active) break;
+
+        // Step 2: Smoothly slide badges away
+        setBadgeVisible(false);
+
+        // Step 3: Allow full 450ms for badges to visibly slide out
+        await sleep(450);
+        if (!active) break;
+
+        const nextIndex = (index + 1) % MOCKUPS.length;
+        const currentUrl = MOCKUPS[index].url;
+        const nextUrl = MOCKUPS[nextIndex].url;
+
+        // Step 4: Backspace old URL
+        setIsTyping(true);
+        for (let i = currentUrl.length - 1; i >= 0; i--) {
+          setDisplayedText(currentUrl.slice(0, i));
+          await sleep(35);
+          if (!active) break;
+        }
+        if (!active) break;
+
+        // Step 5: Brief pause at blank address bar
+        await sleep(200);
+        if (!active) break;
+
+        // Step 6: Type new URL
+        for (let i = 1; i <= nextUrl.length; i++) {
+          setDisplayedText(nextUrl.slice(0, i));
+          await sleep(55);
+          if (!active) break;
+        }
+        if (!active) break;
+
+        // Step 7: Typing finishes! Switch page content immediately
+        index = nextIndex;
+        setIsTyping(false);
+        setCurrentIndex(nextIndex);
+
+        // Step 8: Wait 1000ms for page layout elements to cascade into place
+        await sleep(1000);
+        if (!active) break;
+
+        // Step 9: Spring the new badges in from the sides
+        setBadgeVisible(true);
+      }
     };
 
-    startCycle();
+    runSequence();
 
-    return () => clearTimeout(timeoutId);
-  }, [currentIndex]);
+    return () => {
+      active = false;
+      clearTimeout(timer);
+    };
+  }, []);
 
   const currentMockup = MOCKUPS[currentIndex];
 
@@ -271,27 +445,70 @@ export function BrowserMockup({ card }) {
         </div>
       </div>
 
-      {/* FLOATING TRUST BADGES - OUTSIDE THE BROWSER, NEVER CUT OFF */}
-      <div className="animate-float absolute -left-4 top-24 hidden rounded-2xl border border-slate-200 bg-white p-4 shadow-xl sm:block z-20">
-        <p className="text-xs font-medium text-slate-500">{card.speed}</p>
-        <p className="font-display text-2xl font-extrabold text-brand-600">98</p>
-        <div className="mt-1 h-1.5 w-20 overflow-hidden rounded-full bg-slate-100">
-          <div className="h-full w-[98%] rounded-full bg-brand-500" />
+      {/* ============================================================ */}
+      {/* 1. LEFT BADGE (Page Speed / Client Rating / Conversion Rate) */}
+      {/* বন্ধ করতে SHOW_LEFT_BADGE = false করুন অথবা এই ব্লকটি কমেন্ট করুন */}
+      {/* ============================================================ */}
+      {SHOW_LEFT_BADGE && (
+        <div className="animate-float absolute -left-12 lg:-left-16 top-24 hidden sm:block z-20 pointer-events-none">
+          <div 
+            className="rounded-2xl border border-slate-200 bg-white p-4 shadow-xl min-w-[136px] pointer-events-auto"
+            style={{
+              transform: badgeVisible ? "translateX(0) scale(1)" : "translateX(-50px) scale(0.75)",
+              opacity: badgeVisible ? 1 : 0,
+              transition: badgeVisible
+                ? "transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease-out"
+                : "transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease-in",
+            }}
+          >
+            <p className="text-xs font-medium text-slate-500">{currentMockup.badgeLeft.label}</p>
+            <div className="flex items-baseline gap-1 mt-0.5">
+              <span className={`font-display text-2xl font-extrabold ${currentMockup.badgeLeft.textColor}`}>
+                {currentMockup.badgeLeft.value}
+              </span>
+              {currentMockup.badgeLeft.unit && (
+                <span className={`text-base font-bold ${currentMockup.badgeLeft.textColor}`}>
+                  {currentMockup.badgeLeft.unit}
+                </span>
+              )}
+            </div>
+            <div className="mt-1.5 h-1.5 w-24 overflow-hidden rounded-full bg-slate-100">
+              <div className={`h-full ${currentMockup.badgeLeft.barWidth} ${currentMockup.badgeLeft.barColor} transition-all duration-500`} />
+            </div>
+          </div>
         </div>
-      </div>
+      )}
 
-      <div
-        className="animate-float absolute -right-3 bottom-10 hidden items-center gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-xl sm:flex z-20"
-        style={{ animationDelay: "1.5s" }}
-      >
-        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-100 text-brand-700">
-          <Icon name="check" className="h-5 w-5" />
-        </span>
-        <div>
-          <p className="text-sm font-bold text-ink">{card.delivered}</p>
-          <p className="text-xs text-slate-500">{card.mobile} · {card.live}</p>
+      {/* ============================================================ */}
+      {/* 2. RIGHT BADGE (Delivered in 5 days / Live projects / Fast)  */}
+      {/* বন্ধ করতে SHOW_RIGHT_BADGE = false করুন অথবা এই ব্লকটি কমেন্ট করুন */}
+      {/* ============================================================ */}
+      {SHOW_RIGHT_BADGE && (
+        <div 
+          className="animate-float absolute -right-8 lg:-right-12 bottom-10 hidden sm:flex z-20 pointer-events-none"
+          style={{ animationDelay: "1.5s" }}
+        >
+          <div 
+            className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-xl pointer-events-auto"
+            style={{
+              transform: badgeVisible ? "translateX(0) scale(1)" : "translateX(50px) scale(0.75)",
+              opacity: badgeVisible ? 1 : 0,
+              transition: badgeVisible
+                ? "transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) 150ms, opacity 0.4s ease-out 150ms"
+                : "transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease-in",
+            }}
+          >
+            <span className={`flex h-9 w-9 items-center justify-center rounded-full ${currentMockup.badgeRight.iconBg} transition-colors duration-300`}>
+              <Icon name={currentMockup.badgeRight.icon} className="h-5 w-5" />
+            </span>
+            <div>
+              <p className="text-sm font-bold text-ink transition-colors duration-300">{currentMockup.badgeRight.title}</p>
+              <p className="text-xs text-slate-500">{currentMockup.badgeRight.subtitle}</p>
+            </div>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
+
