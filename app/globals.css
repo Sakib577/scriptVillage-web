@@ -120,6 +120,29 @@ html.reveal-ready .reveal:not(.is-visible) {
   opacity: 0;
 }
 
+.hero-text-enter {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease-out;
+}
+
+.hero-text-exit {
+  opacity: 0;
+  transform: translateY(-12px);
+  filter: blur(2px);
+  transition: opacity 0.28s ease-in, transform 0.28s ease-in, filter 0.28s ease-in;
+  pointer-events: none;
+}
+
+.hero-text-idle-bottom {
+  opacity: 0;
+  transform: translateY(16px);
+  filter: blur(2px);
+  transition: none !important;
+  pointer-events: none;
+}
+
 @keyframes badge-pop-left {
   0% {
     opacity: 0;

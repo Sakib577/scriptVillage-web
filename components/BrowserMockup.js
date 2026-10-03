@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { Icon } from "./Icons";
 
-export function BrowserMockup({ card }) {
+export function BrowserMockup({ card, onSlideChange }) {
   const isBn = card?.speed === "পেজ স্পিড";
 
   // ============================================================
@@ -392,16 +392,21 @@ export function BrowserMockup({ card }) {
         }
         if (!active) break;
 
-        // Step 7: Typing finishes! Switch page content immediately
-        index = nextIndex;
+        // Step 7: Brief natural pause as if pressing Enter / navigating
         setIsTyping(false);
-        setCurrentIndex(nextIndex);
+        await sleep(180);
+        if (!active) break;
 
-        // Step 8: Wait 1000ms for page layout elements to cascade into place
+        // Step 8: The link opens the website! Switch page content and notify simultaneously
+        index = nextIndex;
+        setCurrentIndex(nextIndex);
+        onSlideChange?.(nextIndex);
+
+        // Step 9: Wait 1000ms for page layout elements to cascade into place
         await sleep(1000);
         if (!active) break;
 
-        // Step 9: Spring the new badges in from the sides
+        // Step 10: Spring the new badges in from the sides
         setBadgeVisible(true);
       }
     };
