@@ -66,15 +66,24 @@ export function Header() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled || open ? "border-b border-slate-200/70 bg-canvas/85 backdrop-blur-lg" : "bg-transparent"
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 border-b ${
+        scrolled || open 
+          ? "border-[#0A1118]/8 bg-canvas/90 backdrop-blur-md shadow-sm shadow-black/5" 
+          : "border-transparent bg-transparent"
       }`}
     >
-
-      
-
       <div className="mx-auto flex h-18 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-        <Link href="/" aria-label="ScriptVillage home" onClick={() => setOpen(false)}>
+        <Link 
+          href="/" 
+          aria-label="ScriptVillage home" 
+          onClick={(e) => {
+            setOpen(false);
+            if (window.location.pathname === "/") {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+          }}
+        >
           <Logo />
         </Link>
 
