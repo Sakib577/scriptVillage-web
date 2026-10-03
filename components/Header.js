@@ -79,7 +79,7 @@ export function Header() {
             <Link
               key={id}
               href={`/#${id}`}
-              className="rounded-full px-4 py-2 text-[15px] font-normal text-slate-600 transition-colors hover:bg-slate-100 hover:text-ink"
+              className="rounded-full border border-transparent px-4 py-2 text-[15px] font-medium text-slate-600 transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-200 hover:bg-white hover:text-brand-600 hover:shadow-[0_4px_12px_rgba(34,197,94,0.12)]"
             >
               {t.nav[id]}
             </Link>
