@@ -184,6 +184,39 @@ html.reveal-ready .reveal:not(.is-visible) {
   animation: badge-exit-right 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
+@keyframes spin-beam {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-spin-beam {
+  animation: spin-beam 3.5s linear infinite;
+}
+
+@keyframes run-beam-100 {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -100;
+  }
+}
+.beam-halo {
+  stroke-dasharray: 22 78;
+  animation: run-beam-100 3.5s linear infinite;
+}
+.beam-body {
+  stroke-dasharray: 14 86;
+  animation: run-beam-100 3.5s linear infinite;
+}
+.beam-core {
+  stroke-dasharray: 6 94;
+  animation: run-beam-100 3.5s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
