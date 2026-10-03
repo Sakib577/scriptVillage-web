@@ -32,10 +32,13 @@ export const metadata = {
   },
 };
 
+import AnimatedBackground from "@/components/AnimatedBackground";
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${manrope.variable} ${hind.variable} ${anek.variable}`}>
       <body className="min-h-screen">
+        <AnimatedBackground />
         <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>
