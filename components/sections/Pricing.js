@@ -96,7 +96,7 @@ function PricingCard({ plan, p, t }) {
           opacity,
           background: `radial-gradient(${
             SPOTLIGHT_OPTION === 2 ? "450px" : "400px"
-          } circle at ${position.x}px ${position.y}px, rgba(16, 185, 129, ${
+          } circle at ${position.x}px ${position.y}px, rgba(34, 197, 94, ${
             SPOTLIGHT_OPTION === 2 ? "0.14" : "0.08"
           }), transparent 60%)`,
           mixBlendMode: "screen",

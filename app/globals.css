@@ -5,20 +5,20 @@
   --font-sans: var(--font-lato), var(--font-noto), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-lato), var(--font-noto), ui-sans-serif, system-ui, sans-serif;
 
-  --color-ink: #0b1220;
+  --color-ink: #0A1118;
   /* Soft sage off-white instead of pure white; -alt is for alternating sections. */
-  --color-canvas: #e9f1eb;
-  --color-canvas-alt: #dce8df;
-  --color-brand-50: #ecfdf5;
-  --color-brand-100: #d1fae5;
-  --color-brand-200: #a7f3d0;
-  --color-brand-300: #6ee7b7;
-  --color-brand-400: #34d399;
-  --color-brand-500: #10b981;
-  --color-brand-600: #059669;
-  --color-brand-700: #047857;
-  --color-brand-800: #065f46;
-  --color-brand-900: #064e3b;
+  --color-canvas: #F6F6F1;
+  --color-canvas-alt: #EBEBE4;
+    --color-brand-50: #F0FDF4;
+  --color-brand-100: #DCFCE7;
+  --color-brand-200: #BBF7D0;
+  --color-brand-300: #86EFAC;
+  --color-brand-400: #4ADE80;
+  --color-brand-500: #22C55E;
+  --color-brand-600: #16A34A;
+  --color-brand-700: #15803D;
+  --color-brand-800: #166534;
+  --color-brand-900: #14532D;
 }
 
 html {
