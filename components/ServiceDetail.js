@@ -8,9 +8,10 @@ import { serviceAccents } from "./sections/Services";
 import { getService, services } from "@/lib/services";
 import { whatsappLink } from "@/lib/site.config";
 import { toBanglaDigits } from "@/lib/format";
+import { SpotlightCard } from "./SpotlightCard";
 
 function Eyebrow({ children, className = "text-brand-600" }) {
-  return <p className={`eyebrow text-sm font-semibold uppercase tracking-[0.18em] ${className}`}>{children}</p>;
+  return <p className={`eyebrow text-sm font-medium uppercase tracking-[0.18em] ${className}`}>{children}</p>;
 }
 
 export function ServiceDetail({ slug }) {
@@ -32,7 +33,7 @@ export function ServiceDetail({ slug }) {
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Link
             href="/#services"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 transition hover:text-ink"
+            className="inline-flex items-center gap-2 text-sm font-medium text-slate-600 transition hover:text-ink"
           >
             <Icon name="arrow" className="h-4 w-4 rotate-180" />
             {d.back}
@@ -43,23 +44,23 @@ export function ServiceDetail({ slug }) {
               <span className={`inline-flex h-16 w-16 items-center justify-center rounded-2xl ring-1 ${serviceAccents[index]}`}>
                 <Icon name={service.icon} className="h-8 w-8" />
               </span>
-              <h1 className="font-display mt-6 text-4xl font-extrabold tracking-tight text-ink sm:text-5xl lg:text-6xl">
+              <h1 className="font-display mt-6 text-4xl font-light tracking-tight text-ink sm:text-5xl lg:text-6xl">
                 {s.title}
               </h1>
-              <p className="font-display mt-4 text-xl font-semibold text-brand-700 sm:text-2xl">{s.tagline}</p>
+              <p className="font-display mt-4 text-xl font-medium text-brand-700 sm:text-2xl">{s.tagline}</p>
               <p className="mt-6 max-w-2xl text-lg text-slate-600">{s.intro}</p>
             </div>
 
-            <aside className="rounded-3xl border border-slate-200 bg-white p-8 shadow-2xl shadow-slate-900/10 lg:sticky lg:top-28">
+            <SpotlightCard as="aside" className="p-8 shadow-2xl shadow-slate-900/10 lg:sticky lg:top-28">
               <p className="text-sm text-slate-500">{d.from}</p>
-              <p className="font-display mt-1 text-4xl font-extrabold tracking-tight text-ink">{s.price}</p>
+              <p className="font-display mt-1 text-4xl font-light tracking-tight text-ink">{s.price}</p>
               <div className="mt-5 flex items-center gap-3 rounded-2xl bg-canvas px-4 py-3">
                 <span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-100 text-brand-700">
                   <Icon name="bolt" className="h-5 w-5" />
                 </span>
                 <div>
                   <p className="text-xs text-slate-500">{d.timeline}</p>
-                  <p className="font-semibold text-ink">{s.time}</p>
+                  <p className="font-medium text-ink">{s.time}</p>
                 </div>
               </div>
               <ul className="mt-6 space-y-3">
@@ -77,18 +78,18 @@ export function ServiceDetail({ slug }) {
                 href={quoteLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-600 px-6 py-4 font-semibold text-white shadow-lg shadow-brand-600/25 transition hover:bg-brand-700"
+                className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-600 px-6 py-4 font-medium text-white shadow-lg shadow-brand-600/25 transition hover:bg-brand-700"
               >
                 <WhatsAppIcon />
                 {d.ctaPrimary}
               </a>
               <Link
                 href="/#pricing"
-                className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-300 px-6 py-3.5 font-semibold text-ink transition hover:border-ink"
+                className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-300 px-6 py-3.5 font-medium text-ink transition hover:border-ink"
               >
                 {d.ctaSecondary}
               </Link>
-            </aside>
+            </SpotlightCard>
           </div>
         </div>
       </section>
@@ -98,18 +99,20 @@ export function ServiceDetail({ slug }) {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal className="max-w-2xl">
             <Eyebrow>{s.title}</Eyebrow>
-            <h2 className="font-display mt-3 text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">{d.included}</h2>
+            <h2 className="font-display mt-3 text-3xl font-light tracking-tight text-ink sm:text-4xl">{d.included}</h2>
             <p className="mt-4 text-lg text-slate-600">{d.includedSub}</p>
           </Reveal>
 
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {s.features.map((f, i) => (
-              <Reveal key={f.title} delay={(i % 3) * 90} className="rounded-3xl border border-slate-200 bg-white p-7">
+              <Reveal key={f.title} delay={(i % 3) * 90}>
+                <SpotlightCard className="h-full p-7">
                 <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 text-brand-700 ring-1 ring-brand-100">
                   <Icon name="check" className="h-5 w-5" />
                 </span>
                 <h3 className="font-display mt-5 text-lg font-bold text-ink">{f.title}</h3>
                 <p className="mt-2 text-[15px] text-slate-600">{f.desc}</p>
+              </SpotlightCard>
               </Reveal>
             ))}
           </div>
@@ -121,7 +124,7 @@ export function ServiceDetail({ slug }) {
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_2fr] lg:px-8">
           <Reveal>
             <Eyebrow className="text-brand-400">{s.title}</Eyebrow>
-            <h2 className="font-display mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">{d.idealFor}</h2>
+            <h2 className="font-display mt-3 text-3xl font-light tracking-tight sm:text-4xl">{d.idealFor}</h2>
           </Reveal>
           <Reveal delay={100} as="ul" className="flex flex-wrap gap-3">
             {s.idealFor.map((x) => (
@@ -141,18 +144,20 @@ export function ServiceDetail({ slug }) {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal className="max-w-2xl">
             <Eyebrow>{t.process.eyebrow}</Eyebrow>
-            <h2 className="font-display mt-3 text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">{d.process}</h2>
+            <h2 className="font-display mt-3 text-3xl font-light tracking-tight text-ink sm:text-4xl">{d.process}</h2>
           </Reveal>
           <ol className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
             {t.process.steps.map((step, i) => {
               const num = String(i + 1).padStart(2, "0");
               return (
-                <Reveal as="li" key={step.title} delay={i * 80} className="rounded-3xl border border-slate-200 bg-white p-6">
-                  <span className="font-display text-sm font-extrabold text-brand-600">
+                <Reveal as="li" key={step.title} delay={i * 80}>
+                  <SpotlightCard className="h-full p-6">
+                  <span className="font-display text-sm font-light text-brand-600">
                     {lang === "bn" ? toBanglaDigits(num) : num}
                   </span>
                   <h3 className="font-display mt-3 text-lg font-bold text-ink">{step.title}</h3>
                   <p className="mt-2 text-[15px] text-slate-600">{step.desc}</p>
+                </SpotlightCard>
                 </Reveal>
               );
             })}
@@ -165,7 +170,7 @@ export function ServiceDetail({ slug }) {
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <Reveal className="text-center">
             <Eyebrow>{t.faq.eyebrow}</Eyebrow>
-            <h2 className="font-display mt-3 text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">{d.faq}</h2>
+            <h2 className="font-display mt-3 text-3xl font-light tracking-tight text-ink sm:text-4xl">{d.faq}</h2>
           </Reveal>
           <Reveal className="mt-10 divide-y divide-slate-200 border-y border-slate-200">
             {s.faq.map((item) => (
@@ -188,13 +193,13 @@ export function ServiceDetail({ slug }) {
         <Reveal className="relative mx-auto max-w-7xl overflow-hidden rounded-4xl bg-linear-to-br from-brand-700 via-brand-800 to-ink px-6 py-14 text-center text-white sm:px-12 sm:py-16">
           <div className="bg-grid absolute inset-0 opacity-20 invert" />
           <div className="relative">
-            <h2 className="font-display text-3xl font-extrabold tracking-tight sm:text-4xl">{d.ctaTitle}</h2>
+            <h2 className="font-display text-3xl font-light tracking-tight sm:text-4xl">{d.ctaTitle}</h2>
             <p className="mx-auto mt-4 max-w-xl text-lg text-brand-100/90">{d.ctaSub}</p>
             <a
               href={quoteLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-4 font-semibold text-ink transition hover:-translate-y-0.5"
+              className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-4 font-medium text-ink transition hover:-translate-y-0.5"
             >
               <WhatsAppIcon className="h-5 w-5 text-[#25D366]" />
               {d.ctaPrimary}
@@ -206,21 +211,22 @@ export function ServiceDetail({ slug }) {
       {/* Other services */}
       <section className="border-t border-slate-200 py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="font-display text-2xl font-extrabold tracking-tight text-ink">{d.others}</h2>
+          <h2 className="font-display text-2xl font-light tracking-tight text-ink">{d.others}</h2>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {others.map((o) => (
-              <Link
+              <SpotlightCard
+                as={Link}
                 key={o.slug}
                 href={`/services/${o.slug}`}
-                className="group flex items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 transition hover:border-ink"
+                className="group flex items-center gap-3 p-4"
               >
                 <span
                   className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ring-1 ${serviceAccents[services.indexOf(o)]}`}
                 >
                   <Icon name={o.icon} className="h-5 w-5" />
                 </span>
-                <span className="font-semibold text-ink">{o[lang].title}</span>
-              </Link>
+                <span className="font-medium text-ink group-hover:text-brand-800 transition-colors">{o[lang].title}</span>
+              </SpotlightCard>
             ))}
           </div>
         </div>

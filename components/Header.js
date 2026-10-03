@@ -19,7 +19,7 @@ function LanguageToggle({ className = "" }) {
     <div
       role="group"
       aria-label="Language"
-      className={`relative inline-flex items-center rounded-full border border-slate-200 bg-white p-1 text-sm font-semibold shadow-sm ${className}`}
+      className={`relative inline-flex items-center rounded-full border border-slate-200 bg-white p-1 text-sm font-medium shadow-sm ${className}`}
     >
       <span
         aria-hidden
@@ -48,6 +48,7 @@ export function Header() {
   const { t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [hoverState, setHoverState] = useState({ id: null, left: 0, width: 0 });
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -65,21 +66,47 @@ export function Header() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled || open ? "border-b border-slate-200/70 bg-canvas/85 backdrop-blur-lg" : "bg-transparent"
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 border-b ${
+        scrolled || open 
+          ? "border-[#0A1118]/8 bg-canvas/90 backdrop-blur-md shadow-sm shadow-black/5" 
+          : "border-transparent bg-transparent"
       }`}
     >
       <div className="mx-auto flex h-18 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-        <Link href="/" aria-label="ScriptVillage home" onClick={() => setOpen(false)}>
+        <Link 
+          href="/" 
+          aria-label="ScriptVillage home" 
+          onClick={(e) => {
+            setOpen(false);
+            if (window.location.pathname === "/") {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+          }}
+        >
           <Logo />
         </Link>
 
-        <nav className="hidden items-center gap-1 lg:flex" aria-label="Main">
+        <nav 
+          className="relative hidden items-center lg:flex" 
+          aria-label="Main"
+          onMouseLeave={() => setHoverState(prev => ({ ...prev, id: null }))}
+        >
+          {/* Magic Sliding Pill Background */}
+          <div 
+            className={`absolute left-0 h-[36px] rounded-full bg-white shadow-md shadow-brand-500/10 ring-1 ring-brand-200/50 transition-all duration-300 ease-out ${hoverState.id ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
+            style={{
+              width: hoverState.width || 0,
+              transform: `translateX(${hoverState.left || 0}px)`,
+            }}
+          />
+
           {sections.map((id) => (
             <Link
               key={id}
               href={`/#${id}`}
-              className="rounded-full px-4 py-2 text-[15px] font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-ink"
+              onMouseEnter={(e) => setHoverState({ id, left: e.currentTarget.offsetLeft, width: e.currentTarget.offsetWidth })}
+              className={`relative z-10 px-4 py-2 text-[15px] font-medium transition-colors duration-300 ${hoverState.id === id ? 'text-brand-600' : 'text-slate-600'}`}
             >
               {t.nav[id]}
             </Link>
@@ -90,7 +117,7 @@ export function Header() {
           <LanguageToggle className="hidden sm:inline-flex" />
           <Link
             href="/#contact"
-            className="hidden items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-slate-900/10 transition hover:bg-brand-700 md:inline-flex"
+            className="hidden items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-medium text-white shadow-lg shadow-slate-900/10 transition hover:bg-brand-700 md:inline-flex"
           >
             {t.nav.cta}
             <Icon name="arrow" className="h-4 w-4" />
@@ -127,7 +154,7 @@ export function Header() {
                 href={whatsappLink(t.contact.form.intro)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-600 px-6 py-3.5 font-semibold text-white"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-600 px-6 py-3.5 font-medium text-white"
               >
                 {t.hero.primary}
               </a>

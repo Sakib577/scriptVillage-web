@@ -37,8 +37,8 @@ export function Reveal({ as: Tag = "div", delay = 0, className = "", children, .
 export function SectionHeading({ eyebrow, title, subtitle, center = true, dark = false }) {
   return (
     <Reveal className={`max-w-2xl ${center ? "mx-auto text-center" : ""}`}>
-      <p className={`eyebrow text-sm font-semibold uppercase tracking-[0.18em] ${dark ? "text-brand-400" : "text-brand-600"}`}>{eyebrow}</p>
-      <h2 className={`font-display mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl ${dark ? "text-white" : "text-ink"}`}>{title}</h2>
+      <p className={`eyebrow text-sm font-medium uppercase tracking-[0.18em] ${dark ? "text-brand-400" : "text-brand-600"}`}>{eyebrow}</p>
+      <h2 className={`font-display mt-3 text-3xl font-light tracking-tight sm:text-4xl ${dark ? "text-white" : "text-ink"}`}>{title}</h2>
       {subtitle && <p className={`mt-4 text-lg ${dark ? "text-slate-300" : "text-slate-600"}`}>{subtitle}</p>}
     </Reveal>
   );

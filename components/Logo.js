@@ -1,30 +1,51 @@
-// Mark: a small village of houses whose roofs read as code brackets "< / >".
-export function LogoMark({ className = "h-9 w-9", onDark = false }) {
+export function LogoMark({ className = "h-9 w-9" }) {
   return (
     <svg viewBox="0 0 40 40" className={className} aria-hidden>
-      <rect width="40" height="40" rx="11" fill="#0b1220" />
-      {/* A faint outline keeps the dark tile visible on dark backgrounds. */}
-      {onDark && <rect x="0.5" y="0.5" width="39" height="39" rx="10.5" fill="none" stroke="#ffffff" strokeOpacity="0.2" />}
-      <path
-        d="M9 21.5 14 16.5 19 21.5M21 21.5 26 16.5 31 21.5"
-        stroke="#34d399"
-        strokeWidth="2.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="none"
+      {/* Dark Square Background (Dark version base) */}
+      <rect width="40" height="40" rx="10" fill="#0A1118" />
+      
+      {/* House Outline (White) */}
+      <path 
+        d="M 7 19 L 20 7 L 33 19 M 11 15 V 31 H 29 V 15" 
+        stroke="#F8FAFC" 
+        strokeWidth="3" 
+        strokeLinecap="round" 
+        strokeLinejoin="round" 
+        fill="none" 
       />
-      <path d="M11 22v7h6v-7M23 22v7h6v-7" stroke="#fff" strokeWidth="2.2" strokeLinejoin="round" fill="none" />
-      <path d="M21.6 11.5 18.4 30" stroke="#fbbf24" strokeWidth="2.2" strokeLinecap="round" />
+      
+      {/* Terminal Prompt > (Neon Green) */}
+      <path 
+        d="M 15 18 L 19 22 L 15 26" 
+        stroke="#22C55E" 
+        strokeWidth="3" 
+        strokeLinecap="round" 
+        strokeLinejoin="round" 
+        fill="none" 
+      />
+      
+      {/* Terminal Prompt _ (Neon Green) */}
+      <path 
+        d="M 22 26 H 26" 
+        stroke="#22C55E" 
+        strokeWidth="3" 
+        strokeLinecap="round" 
+        strokeLinejoin="round" 
+        fill="none" 
+      />
     </svg>
   );
 }
 
 export function Logo({ className = "", onDark = false }) {
   return (
-    <span className={`inline-flex items-center gap-2.5 ${className}`}>
-      <LogoMark onDark={onDark} />
-      <span className={`font-display text-lg font-extrabold tracking-tight ${onDark ? "text-white" : ""}`}>
-        Script<span className={onDark ? "text-brand-400" : "text-brand-600"}>Village</span>
+    <span className={`inline-flex items-center gap-3 ${className}`}>
+      {/* The square dark icon stays outside */}
+      <LogoMark className="h-10 w-10 shrink-0 shadow-sm" />
+      
+      {/* The text stays outside the icon in HTML */}
+      <span className={`font-display text-[22px] font-bold tracking-tight ${onDark ? "text-slate-100" : "text-ink"}`}>
+        scriptvillage.com
       </span>
     </span>
   );

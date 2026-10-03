@@ -1,24 +1,24 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* Latin glyphs come from Manrope; Bengali glyphs fall through to the Bangla fonts. */
-  --font-sans: var(--font-manrope), var(--font-hind), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-manrope), var(--font-anek), ui-sans-serif, system-ui, sans-serif;
+  /* Latin glyphs come from Lato; Bengali glyphs fall through to the Bangla fonts. */
+  --font-sans: var(--font-lato), var(--font-noto), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-lato), var(--font-noto), ui-sans-serif, system-ui, sans-serif;
 
-  --color-ink: #0b1220;
+  --color-ink: #0A1118;
   /* Soft sage off-white instead of pure white; -alt is for alternating sections. */
-  --color-canvas: #e9f1eb;
-  --color-canvas-alt: #dce8df;
-  --color-brand-50: #ecfdf5;
-  --color-brand-100: #d1fae5;
-  --color-brand-200: #a7f3d0;
-  --color-brand-300: #6ee7b7;
-  --color-brand-400: #34d399;
-  --color-brand-500: #10b981;
-  --color-brand-600: #059669;
-  --color-brand-700: #047857;
-  --color-brand-800: #065f46;
-  --color-brand-900: #064e3b;
+  --color-canvas: #F6F6F1;
+  --color-canvas-alt: #EBEBE4;
+    --color-brand-50: #F0FDF4;
+  --color-brand-100: #DCFCE7;
+  --color-brand-200: #BBF7D0;
+  --color-brand-300: #86EFAC;
+  --color-brand-400: #4ADE80;
+  --color-brand-500: #22C55E;
+  --color-brand-600: #16A34A;
+  --color-brand-700: #15803D;
+  --color-brand-800: #166534;
+  --color-brand-900: #14532D;
 }
 
 html {
@@ -33,6 +33,28 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* =========================================================
+   MANROPE (BOLD) THEME OVERRIDES
+   When switching to Manrope, revert font families and restore the heavy weights
+   ========================================================= */
+html[data-font-theme="manrope"] {
+  --font-sans: var(--font-manrope), var(--font-hind), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-manrope), var(--font-anek), ui-sans-serif, system-ui, sans-serif;
+}
+html[data-font-theme="manrope"] .font-light {
+  font-weight: 800 !important;
+}
+html[data-font-theme="manrope"] .font-normal {
+  font-weight: 500 !important;
+}
+html[data-font-theme="manrope"] .font-medium {
+  font-weight: 600 !important;
+}
+html[data-font-theme="manrope"] .font-display {
+  font-weight: 800 !important;
+}
+
+
 /* Bengali script reads better slightly larger with more line height. */
 html[data-lang="bn"] body {
   line-height: 1.75;
@@ -40,7 +62,7 @@ html[data-lang="bn"] body {
 html[data-lang="bn"] .font-display {
   letter-spacing: 0;
   line-height: 1.3;
-  font-weight: 700;
+  font-weight: 400;
 }
 /* Letter-spacing breaks apart Bengali conjuncts. */
 html[data-lang="bn"] .eyebrow {
@@ -78,6 +100,168 @@ html.reveal-ready .reveal:not(.is-visible) {
   animation: float 6s ease-in-out infinite;
 }
 
+@keyframes cloud-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(5%, -5%) scale(1.1); }
+  66% { transform: translate(-2%, 8%) scale(0.9); }
+}
+.animate-cloud-1 {
+  animation: cloud-1 20s ease-in-out infinite alternate;
+}
+
+@keyframes cloud-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-5%, 8%) scale(1.05); }
+  66% { transform: translate(5%, -5%) scale(0.95); }
+}
+.animate-cloud-2 {
+  animation: cloud-2 25s ease-in-out infinite alternate;
+}
+
+@keyframes cloud-3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(8%, 5%) scale(0.9); }
+  66% { transform: translate(-5%, -2%) scale(1.1); }
+}
+.animate-cloud-3 {
+  animation: cloud-3 22s ease-in-out infinite alternate;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-in-up {
+  animation: fade-in-up 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+.hero-text-enter {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease-out;
+}
+
+.hero-text-exit {
+  opacity: 0;
+  transform: translateY(-12px);
+  filter: blur(2px);
+  transition: opacity 0.28s ease-in, transform 0.28s ease-in, filter 0.28s ease-in;
+  pointer-events: none;
+}
+
+.hero-text-idle-bottom {
+  opacity: 0;
+  transform: translateY(16px);
+  filter: blur(2px);
+  transition: none !important;
+  pointer-events: none;
+}
+
+@keyframes badge-pop-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-36px) scale(0.75);
+  }
+  65% {
+    opacity: 1;
+    transform: translateX(6px) scale(1.04);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+.animate-badge-left {
+  animation: badge-pop-left 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes badge-pop-right {
+  0% {
+    opacity: 0;
+    transform: translateX(36px) scale(0.75);
+  }
+  65% {
+    opacity: 1;
+    transform: translateX(-6px) scale(1.04);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+.animate-badge-right {
+  animation: badge-pop-right 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes badge-exit-left {
+  0% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-36px) scale(0.75);
+  }
+}
+.animate-badge-exit-left {
+  animation: badge-exit-left 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes badge-exit-right {
+  0% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(36px) scale(0.75);
+  }
+}
+.animate-badge-exit-right {
+  animation: badge-exit-right 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes spin-beam {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-spin-beam {
+  animation: spin-beam 3.5s linear infinite;
+}
+
+@keyframes run-beam-100 {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -100;
+  }
+}
+.beam-halo {
+  stroke-dasharray: 22 78;
+  animation: run-beam-100 3.5s linear infinite;
+}
+.beam-body {
+  stroke-dasharray: 14 86;
+  animation: run-beam-100 3.5s linear infinite;
+}
+.beam-core {
+  stroke-dasharray: 6 94;
+  animation: run-beam-100 3.5s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -86,7 +270,26 @@ html.reveal-ready .reveal:not(.is-visible) {
     opacity: 1;
     transform: none;
   }
-  .animate-float {
+  .animate-float,
+  .animate-cloud-1,
+  .animate-cloud-2,
+  .animate-cloud-3 {
     animation: none;
   }
+}
+html[data-font-theme="manrope"][data-lang="bn"] .font-display {
+  font-weight: 700 !important;
+}
+
+/* =========================================================
+   NUNITO (ROUNDED) THEME OVERRIDES
+   When switching to Nunito, use playful rounded fonts.
+   ========================================================= */
+html[data-font-theme="nunito"] {
+  --font-sans: var(--font-nunito), var(--font-baloo), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-nunito), var(--font-baloo), ui-sans-serif, system-ui, sans-serif;
+}
+/* Baloo Da 2 doesn't have a 300 weight, so we force 400 for light text in Bengali */
+html[data-font-theme="nunito"] .font-light {
+  font-weight: 500 !important;
 }

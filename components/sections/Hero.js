@@ -1,139 +1,199 @@
 "use client";
 
+import { useState, useRef, useEffect, useCallback } from "react";
 import { useLanguage } from "../LanguageProvider";
 import { Icon, WhatsAppIcon } from "../Icons";
 import { whatsappLink } from "@/lib/site.config";
 
-function BrowserMockup({ card }) {
-  return (
-    <div className="relative mx-auto w-full max-w-lg">
-      <div className="absolute -inset-6 rounded-[2.5rem] bg-linear-to-tr from-brand-200/60 via-amber-100/60 to-sky-100/60 blur-2xl" />
+import { BrowserMockup } from "../BrowserMockup";
 
-      <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl shadow-slate-900/10">
-        <div className="flex items-center gap-2 border-b border-slate-100 bg-slate-50 px-4 py-3">
-          <span className="h-3 w-3 rounded-full bg-rose-400" />
-          <span className="h-3 w-3 rounded-full bg-amber-400" />
-          <span className="h-3 w-3 rounded-full bg-emerald-400" />
-          <div className="ml-3 flex flex-1 items-center gap-2 rounded-md bg-white px-3 py-1 text-xs text-slate-500 ring-1 ring-slate-200">
-            <svg viewBox="0 0 24 24" className="h-3 w-3 text-brand-600" fill="currentColor" aria-hidden>
-              <path d="M17 10V8A5 5 0 0 0 7 8v2H5v12h14V10h-2Zm-8 0V8a3 3 0 0 1 6 0v2H9Z" />
-            </svg>
-            {card.url}
-          </div>
-        </div>
+const HERO_VARIATIONS = {
+  en: [
+    // 0: yourportfolio.com
+    {
+      badge: "Personal Brands & Portfolios",
+      titleA: "Personal websites",
+      titleB: "built to establish",
+      titleC: "authority & trust",
+      subtitle:
+        "Whether you're an industry expert, consultant, founder, or professional — stand out with a custom, fast personal website that turns your work into lasting authority.",
+    },
+    // 1: yourlandingpage.com
+    {
+      badge: "High-Converting Sales Pages",
+      titleA: "High-impact pages",
+      titleB: "built to turn",
+      titleC: "clicks into sales",
+      subtitle:
+        "Laser-focused landing pages engineered for maximum conversions. Blazing fast speeds and compelling design that turn visitors into paying customers.",
+    },
+    // 2: yourbusiness.com
+    {
+      badge: "Now booking new projects",
+      titleA: "Beautiful websites",
+      titleB: "for your business",
+      titleC: "delivered in days",
+      subtitle:
+        "ScriptVillage designs and builds fast, modern landing pages, portfolios and business websites. Everything is agreed upfront — scope, price and timeline — so there are no surprises.",
+    },
+  ],
+  bn: [
+    // 0: yourportfolio.com
+    {
+      badge: "পার্সোনাল ব্র্যান্ড ও পোর্টফোলিও",
+      titleA: "আপনার কাজ ও অভিজ্ঞতায়",
+      titleB: "গড়ে তুলুন স্ট্রং",
+      titleC: "পার্সোনাল ব্র্যান্ড",
+      subtitle:
+        "আপনি কনসালট্যান্ট, উদ্যোক্তা, টেক এক্সপার্ট বা প্রফেশনাল যাই হোন না কেন — একটি প্রিমিয়াম পোর্টফোলিও ওয়েবসাইট আপনার কাজের সুনাম ও পরিচিতি বহুগুণ বাড়িয়ে দেবে।",
+    },
+    // 1: yourlandingpage.com
+    {
+      badge: "হাই-কনভার্সন ল্যান্ডিং পেজ",
+      titleA: "আপনার ক্যাম্পেইন ও পণ্যের",
+      titleB: "জন্য তৈরি",
+      titleC: "কনভার্টিং ল্যান্ডিং পেজ",
+      subtitle:
+        "ভিজিটরদের কাস্টমারে রূপান্তর করার জন্য অপটিমাইজড সেলস পেজ। দ্রুত স্পিড ও আধুনিক ডিজাইনে আপনার ব্যবসা ও সেলস বাড়িয়ে নিন কয়েক গুণ।",
+    },
+    // 2: yourbusiness.com
+    {
+      badge: "নতুন প্রজেক্ট নেওয়া হচ্ছে",
+      titleA: "আপনার ব্যবসার জন্য",
+      titleB: "সুন্দর ওয়েবসাইট",
+      titleC: "মাত্র কয়েক দিনে",
+      subtitle:
+        "ScriptVillage দ্রুত ও আধুনিক ল্যান্ডিং পেজ, পোর্টফোলিও আর বিজনেস ওয়েবসাইট ডিজাইন করে বানিয়ে দেয়। কাজের পরিধি, দাম আর সময় — সবকিছু শুরুর আগেই ঠিক করে নেওয়া হয়, তাই পরে কোনো ঝামেলা নেই।",
+    },
+  ],
+};
 
-        <div className="space-y-5 p-6">
-          <div className="flex items-center justify-between">
-            <div className="h-3 w-20 rounded-full bg-ink" />
-            <div className="flex gap-2">
-              <div className="h-2 w-8 rounded-full bg-slate-200" />
-              <div className="h-2 w-8 rounded-full bg-slate-200" />
-              <div className="h-2 w-8 rounded-full bg-slate-200" />
-            </div>
-          </div>
-          <div className="grid grid-cols-5 items-center gap-5 pt-2">
-            <div className="col-span-3 space-y-3">
-              <div className="h-4 w-full rounded-full bg-slate-800" />
-              <div className="h-4 w-4/5 rounded-full bg-slate-800" />
-              <div className="h-2 w-full rounded-full bg-slate-200" />
-              <div className="h-2 w-3/4 rounded-full bg-slate-200" />
-              <div className="flex gap-2 pt-2">
-                <div className="h-7 w-20 rounded-full bg-brand-500" />
-                <div className="h-7 w-16 rounded-full border border-slate-300" />
-              </div>
-            </div>
-            <div className="col-span-2 aspect-square rounded-2xl bg-linear-to-br from-brand-400 via-brand-500 to-teal-600 p-3">
-              <div className="h-full w-full rounded-xl border-2 border-white/40 bg-white/10" />
-            </div>
-          </div>
-          <div className="grid grid-cols-3 gap-3 pt-2">
-            {["bg-amber-100", "bg-sky-100", "bg-rose-100"].map((c) => (
-              <div key={c} className="rounded-xl border border-slate-100 p-3">
-                <div className={`mb-2 h-6 w-6 rounded-lg ${c}`} />
-                <div className="h-2 w-full rounded-full bg-slate-200" />
-                <div className="mt-1.5 h-2 w-2/3 rounded-full bg-slate-100" />
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div className="animate-float absolute -left-4 top-24 hidden rounded-2xl border border-slate-200 bg-white p-4 shadow-xl sm:block">
-        <p className="text-xs font-medium text-slate-500">{card.speed}</p>
-        <p className="font-display text-2xl font-extrabold text-brand-600">98</p>
-        <div className="mt-1 h-1.5 w-20 overflow-hidden rounded-full bg-slate-100">
-          <div className="h-full w-[98%] rounded-full bg-brand-500" />
-        </div>
-      </div>
-
-      <div
-        className="animate-float absolute -right-3 bottom-10 hidden items-center gap-3 rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-xl sm:flex"
-        style={{ animationDelay: "1.5s" }}
-      >
-        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-100 text-brand-700">
-          <Icon name="check" className="h-5 w-5" />
-        </span>
-        <div>
-          <p className="text-sm font-bold text-ink">{card.delivered}</p>
-          <p className="text-xs text-slate-500">{card.mobile} · {card.live}</p>
-        </div>
-      </div>
-    </div>
-  );
-}
+// =========================================================================
+// CONFIG TOGGLES: সহজে true / false করে নিয়ন্ত্রণ করতে পারেন
+// =========================================================================
+const DYNAMIC_HERO = true;     // false করলে সম্পূর্ণ Hero সেকশন (Headline, Badge, Subtitle) একবারে স্ট্যাটিক থাকবে
+const DYNAMIC_SUBTITLE = true; // DYNAMIC_HERO true থাকলেও শুধু প্যারাগ্রাফ সাবটাইটেল স্ট্যাটিক রাখতে false দিন
 
 export function Hero() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const h = t.hero;
+
+  const [displayedSlide, setDisplayedSlide] = useState(2); // starts with yourbusiness.com (index 2)
+  const [animPhase, setAnimPhase] = useState("visible"); // "visible" | "exiting" | "idle-bottom"
+  const switchTimerRef = useRef(null);
+
+  const handleSlideChange = useCallback((nextIndex) => {
+    if (!DYNAMIC_HERO) return; // স্ট্যাটিক মোডে থাকলে স্লাইড পরিবর্তনের কোনো দরকার নেই
+    if (switchTimerRef.current) clearTimeout(switchTimerRef.current);
+
+    // Starts animation only when the link is entered into the website
+    setAnimPhase("exiting");
+    switchTimerRef.current = setTimeout(() => {
+      setDisplayedSlide(nextIndex);
+      setAnimPhase("idle-bottom");
+      requestAnimationFrame(() => {
+        setTimeout(() => setAnimPhase("visible"), 20);
+      });
+    }, 280);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (switchTimerRef.current) clearTimeout(switchTimerRef.current);
+    };
+  }, []);
+
+  const langKey = lang === "bn" ? "bn" : "en";
+  const variations = HERO_VARIATIONS[langKey] || HERO_VARIATIONS.en;
+
+  // DYNAMIC_HERO false হলে সম্পূর্ণ স্ট্যাটিক ডিফল্ট টেক্সট দেখাবে
+  const currentHero = DYNAMIC_HERO
+    ? (variations[displayedSlide] || variations[2])
+    : {
+        badge: h.badge,
+        titleA: h.titleA,
+        titleB: h.titleB,
+        titleC: h.titleC,
+        subtitle: h.subtitle,
+      };
+
+  const animClass =
+    !DYNAMIC_HERO
+      ? ""
+      : animPhase === "visible"
+      ? "hero-text-enter"
+      : animPhase === "exiting"
+      ? "hero-text-exit"
+      : "hero-text-idle-bottom";
 
   return (
     <section id="top" className="relative overflow-hidden pt-32 pb-20 sm:pt-40 lg:flex lg:min-h-[calc(100dvh-4.25rem)] lg:items-center lg:pt-20 lg:pb-6">
       <div className="bg-grid absolute inset-0 [mask-image:radial-gradient(ellipse_at_top,black_30%,transparent_75%)]" />
-      <div className="absolute -top-40 right-0 h-[32rem] w-[32rem] rounded-full bg-brand-200/40 blur-3xl" />
-      <div className="absolute top-40 -left-40 h-[24rem] w-[24rem] rounded-full bg-amber-100/60 blur-3xl" />
 
       <div className="relative mx-auto grid w-full max-w-7xl items-center gap-16 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
         <div>
-          <span className="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-4 py-1.5 text-sm font-semibold text-brand-800">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-400 opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-brand-500" />
+          <div className={animClass}>
+            <span className="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-4 py-1.5 text-sm font-medium text-brand-800">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-400 opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-brand-500" />
+              </span>
+              {currentHero.badge}
             </span>
-            {h.badge}
-          </span>
 
-          <h1 className="font-display mt-6 text-4xl font-extrabold tracking-tight text-ink sm:text-5xl lg:text-6xl">
-            {h.titleA}
-            <br />
-            {h.titleB}{" "}
-            <span className="relative whitespace-nowrap text-brand-600">
-              {h.titleC}
-              <svg
-                viewBox="0 0 300 12"
-                className="absolute -bottom-2 left-0 h-3 w-full text-amber-400"
-                preserveAspectRatio="none"
-                aria-hidden
-              >
-                <path d="M2 9C80 3 220 3 298 9" stroke="currentColor" strokeWidth="4" fill="none" strokeLinecap="round" />
-              </svg>
-            </span>
-          </h1>
+            <h1 className="font-display mt-6 min-h-[140px] text-4xl font-light tracking-tight text-ink sm:min-h-[160px] sm:text-5xl lg:min-h-[190px] lg:text-6xl">
+              {currentHero.titleA}
+              <br />
+              {currentHero.titleB}{" "}
+              <span className="relative whitespace-nowrap text-brand-600">
+                {currentHero.titleC}
+                {/* 
+                  ====================================================
+                  HIGHLIGHT OPTIONS (Comment / Uncomment to test)
+                  ====================================================
+                */}
 
-          <p className="mt-8 max-w-xl text-lg text-slate-600">{h.subtitle}</p>
+                {/* OPTION 1: Hand-drawn smile/underline (Amazon style) */}
+                {/* <svg viewBox="0 0 300 12" className="absolute -bottom-2 left-0 h-3 w-full text-amber-400" preserveAspectRatio="none" aria-hidden>
+                  <path d="M2 9C80 3 220 3 298 9" stroke="currentColor" strokeWidth="4" fill="none" strokeLinecap="round" />
+                </svg> */}
+
+                {/* OPTION 2 (Previous Option 3): Full-width Animated Glowing Pulse Line */}
+                {/* 
+                <span className="absolute -bottom-1.5 left-0 block h-[3px] w-full rounded-full bg-gradient-to-r from-brand-500 via-amber-400 to-brand-400 shadow-[0_0_12px_rgba(34,197,94,0.45)] animate-pulse" />
+                */}
+
+                {/* OPTION 3 (Previous Option 4): Sleek Gradient Line (Fade out style) - Currently Active */}
+                <span className="absolute -bottom-1 left-0 h-1.5 w-full rounded-full bg-gradient-to-r from-brand-400 via-amber-400 to-transparent"></span>
+
+                
+              </span>
+            </h1>
+
+            {DYNAMIC_HERO && DYNAMIC_SUBTITLE && (
+              <p className="mt-8 min-h-[5.5rem] max-w-xl text-lg text-slate-600 sm:min-h-[4.5rem]">
+                {currentHero.subtitle}
+              </p>
+            )}
+          </div>
+
+          {(!DYNAMIC_HERO || !DYNAMIC_SUBTITLE) && (
+            <p className="mt-8 max-w-xl text-lg text-slate-600">{h.subtitle}</p>
+          )}
 
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
             <a
               href={whatsappLink(t.contact.form.intro)}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-600 px-7 py-4 font-semibold text-white shadow-lg shadow-brand-600/25 transition hover:-translate-y-0.5 hover:bg-brand-700"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-600 px-7 py-4 font-medium text-white shadow-lg shadow-brand-600/25 transition hover:-translate-y-0.5 hover:bg-brand-700"
             >
               <WhatsAppIcon />
               {h.primary}
             </a>
             <a
               href="#pricing"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-7 py-4 font-semibold text-ink transition hover:-translate-y-0.5 hover:border-ink"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-7 py-4 font-medium text-ink transition hover:-translate-y-0.5 hover:border-ink"
             >
               {h.secondary}
               <Icon name="arrow" className="h-4 w-4" />
@@ -152,7 +212,7 @@ export function Hero() {
           </ul>
         </div>
 
-        <BrowserMockup card={h.card} />
+        <BrowserMockup card={h.card} onSlideChange={handleSlideChange} />
       </div>
     </section>
   );
