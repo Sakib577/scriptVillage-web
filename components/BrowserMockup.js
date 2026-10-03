@@ -485,7 +485,7 @@ export function BrowserMockup({ card }) {
       {/* ============================================================ */}
       {SHOW_RIGHT_BADGE && (
         <div 
-          className="animate-float absolute -right-8 lg:-right-12 bottom-10 hidden sm:flex z-20 pointer-events-none"
+          className="animate-float absolute -right-16 lg:-right-24 bottom-10 hidden sm:flex z-20 pointer-events-none"
           style={{ animationDelay: "1.5s" }}
         >
           <div 
