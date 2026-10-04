@@ -16,7 +16,7 @@ export async function generateMetadata({ params }) {
   const service = getService(slug);
   if (!service) return {};
   return {
-    title: `${service.en.title} — ScriptVillage`,
+    title: `${service.en.title} — Code Molecule`,
     description: `${service.en.tagline} ${service.en.summary}`,
   };
 }

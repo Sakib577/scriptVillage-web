@@ -9,7 +9,7 @@ import { SpotlightCard } from "../SpotlightCard";
 const themes = {
   amber: { bg: "from-amber-400 to-orange-500", soft: "bg-amber-50", dot: "bg-orange-500", layout: "food" },
   violet: { bg: "from-violet-500 to-fuchsia-500", soft: "bg-violet-50", dot: "bg-violet-500", layout: "gallery" },
-  emerald: { bg: "from-brand-500 to-teal-600", soft: "bg-brand-50", dot: "bg-brand-600", layout: "edu" },
+  brand: { bg: "from-brand-500 to-sky-600", soft: "bg-brand-50", dot: "bg-brand-600", layout: "edu" },
   sky: { bg: "from-sky-500 to-blue-600", soft: "bg-sky-50", dot: "bg-sky-600", layout: "clinic" },
 };
 
@@ -39,19 +39,19 @@ function Preview({ theme, title }) {
         ) : (
           <div className={`relative flex flex-1 items-center bg-linear-to-br ${th.bg} px-5`}>
             <div className="w-3/5 space-y-2">
-              <div className="h-3 w-full rounded-full bg-white/90" />
-              <div className="h-3 w-3/4 rounded-full bg-white/90" />
-              <div className="h-1.5 w-full rounded-full bg-white/50" />
-              <div className="h-1.5 w-2/3 rounded-full bg-white/50" />
+              <div className="h-3 w-full rounded-full bg-white" />
+              <div className="h-3 w-3/4 rounded-full bg-white" />
+              <div className="h-1.5 w-full rounded-full bg-white" />
+              <div className="h-1.5 w-2/3 rounded-full bg-white" />
               <div className="mt-3 h-5 w-16 rounded-full bg-white" />
             </div>
             {th.layout === "food" && (
-              <div className="absolute right-5 h-20 w-20 rounded-full border-8 border-white/30 bg-white/20 sm:h-24 sm:w-24" />
+              <div className="absolute right-5 h-20 w-20 rounded-full border-8 border-white/30 bg-white sm:h-24 sm:w-24" />
             )}
             {th.layout === "edu" && (
               <div className="absolute right-5 grid grid-cols-2 gap-1.5">
                 {[0, 1, 2, 3].map((n) => (
-                  <div key={n} className="h-9 w-9 rounded-lg bg-white/25 sm:h-10 sm:w-10" />
+                  <div key={n} className="h-9 w-9 rounded-lg bg-white sm:h-10 sm:w-10" />
                 ))}
               </div>
             )}

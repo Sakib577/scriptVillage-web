@@ -12,7 +12,7 @@ export const serviceAccents = [
   "bg-amber-50 text-amber-700 ring-amber-100",
   "bg-sky-50 text-sky-700 ring-sky-100",
   "bg-rose-50 text-rose-700 ring-rose-100",
-  "bg-teal-50 text-teal-700 ring-teal-100",
+  "bg-teal-50 text-sky-700 ring-teal-100",
 ];
 
 import { useRef, useState } from "react";
@@ -42,7 +42,7 @@ function ServiceCard({ service, item, i, t }) {
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 ease-in-out"
         style={{
           opacity,
-          backgroundImage: `radial-gradient(rgb(22 163 74 / 0.5) 1.5px, transparent 1.5px)`,
+          backgroundImage: `radial-gradient(rgb(59 107 156 / 0.35) 1.5px, transparent 1.5px)`,
           backgroundSize: '22px 22px',
           maskImage: `radial-gradient(260px circle at ${position.x}px ${position.y}px, black 30%, transparent 100%)`,
           WebkitMaskImage: `radial-gradient(260px circle at ${position.x}px ${position.y}px, black 30%, transparent 100%)`,
@@ -54,7 +54,7 @@ function ServiceCard({ service, item, i, t }) {
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 ease-in-out mix-blend-multiply"
         style={{
           opacity,
-          background: `radial-gradient(380px circle at ${position.x}px ${position.y}px, rgba(34, 197, 94, 0.20), transparent 65%)`,
+          background: `radial-gradient(380px circle at ${position.x}px ${position.y}px, rgba(59, 107, 156, 0.20), transparent 65%)`,
         }}
         aria-hidden="true"
       />

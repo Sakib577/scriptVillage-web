@@ -130,7 +130,7 @@ export function ServiceDetail({ slug }) {
             {s.idealFor.map((x) => (
               <li
                 key={x}
-                className="rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-[15px] font-medium text-slate-100"
+                className="rounded-full border border-white/15 bg-white px-5 py-2.5 text-[15px] font-medium text-slate-100"
               >
                 {x}
               </li>

@@ -30,7 +30,7 @@ export function BrowserMockup({ card, onSlideChange }) {
         subtitle: isBn ? "২ সপ্তাহে হায়ার্ড · রেডি" : "Hired in 2 wks · Ready",
       },
       content: (
-        <div className="p-5 h-full flex flex-col justify-between bg-slate-50/80">
+        <div className="p-5 h-full flex flex-col justify-between bg-slate-50">
           {/* Portfolio Nav */}
           <div className="flex items-center justify-between animate-fade-in-up" style={{ animationDelay: "0ms" }}>
             <div className="flex items-center gap-2">
@@ -49,9 +49,9 @@ export function BrowserMockup({ card, onSlideChange }) {
             {/* Left Content */}
             <div className="col-span-3 space-y-2">
               {/* Status Badge */}
-              <div className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2 py-0.5 border border-emerald-200 animate-fade-in-up" style={{ animationDelay: "150ms" }}>
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="h-1.5 w-16 rounded-full bg-emerald-700/60" />
+              <div className="inline-flex items-center gap-1.5 rounded-full bg-brand-50 px-2 py-0.5 border border-brand-200 animate-fade-in-up" style={{ animationDelay: "150ms" }}>
+                <span className="h-1.5 w-1.5 rounded-full bg-brand-500 animate-pulse" />
+                <span className="h-1.5 w-16 rounded-full bg-brand-700/60" />
               </div>
 
               {/* Headline & Bio */}
@@ -98,7 +98,7 @@ export function BrowserMockup({ card, onSlideChange }) {
                 style={{ animationDelay: "850ms" }}
               >
                 <div className="absolute inset-0 bg-linear-to-br from-indigo-500 to-sky-400 opacity-85" />
-                <div className="absolute bottom-1.5 left-2 right-2 h-1.5 rounded-full bg-white/80" />
+                <div className="absolute bottom-1.5 left-2 right-2 h-1.5 rounded-full bg-white" />
               </div>
 
               <div 
@@ -106,15 +106,15 @@ export function BrowserMockup({ card, onSlideChange }) {
                 style={{ animationDelay: "950ms" }}
               >
                 <div className="absolute inset-0 bg-linear-to-br from-purple-500 to-pink-500 opacity-85" />
-                <div className="absolute bottom-1.5 left-2 right-2 h-1.5 rounded-full bg-white/80" />
+                <div className="absolute bottom-1.5 left-2 right-2 h-1.5 rounded-full bg-white" />
               </div>
 
               <div 
-                className="group relative h-14 rounded-xl overflow-hidden shadow-xs border border-emerald-100 animate-fade-in-up" 
+                className="group relative h-14 rounded-xl overflow-hidden shadow-xs border border-brand-100 animate-fade-in-up" 
                 style={{ animationDelay: "1050ms" }}
               >
-                <div className="absolute inset-0 bg-linear-to-br from-emerald-400 to-teal-500 opacity-85" />
-                <div className="absolute bottom-1.5 left-2 right-2 h-1.5 rounded-full bg-white/80" />
+                <div className="absolute inset-0 bg-linear-to-br from-brand-400 to-sky-500 opacity-85" />
+                <div className="absolute bottom-1.5 left-2 right-2 h-1.5 rounded-full bg-white" />
               </div>
             </div>
           </div>
@@ -178,7 +178,7 @@ export function BrowserMockup({ card, onSlideChange }) {
 
           {/* SaaS App Dashboard Preview Card */}
           <div 
-            className="w-full rounded-xl bg-white border border-slate-200/80 p-2.5 shadow-sm shadow-slate-200 relative overflow-hidden animate-fade-in-up" 
+            className="w-full rounded-xl bg-white border border-slate-200 p-2.5 shadow-sm shadow-slate-200 relative overflow-hidden animate-fade-in-up" 
             style={{ animationDelay: "600ms" }}
           >
             {/* Mini Dashboard Header */}
@@ -199,9 +199,9 @@ export function BrowserMockup({ card, onSlideChange }) {
               <div className="col-span-2 space-y-1">
                 <div className="h-1.5 w-12 rounded-full bg-slate-400" />
                 <div className="h-3.5 w-20 rounded-full bg-slate-800" />
-                <div className="inline-flex items-center gap-1 rounded-sm bg-emerald-50 px-1 py-0.5">
-                  <span className="h-1 w-1 rounded-full bg-emerald-500" />
-                  <span className="h-1 w-8 rounded-full bg-emerald-600" />
+                <div className="inline-flex items-center gap-1 rounded-sm bg-brand-50 px-1 py-0.5">
+                  <span className="h-1 w-1 rounded-full bg-brand-500" />
+                  <span className="h-1 w-8 rounded-full bg-brand-600" />
                 </div>
               </div>
 
@@ -240,13 +240,13 @@ export function BrowserMockup({ card, onSlideChange }) {
           {/* Business Header */}
           <div className="flex items-center justify-between animate-fade-in-up" style={{ animationDelay: "0ms" }}>
             <div className="flex items-center gap-2">
-              <div className="h-4 w-4 rounded-md bg-linear-to-br from-emerald-500 to-teal-700 shadow-xs" />
+              <div className="h-4 w-4 rounded-md bg-linear-to-br from-brand-500 to-sky-700 shadow-xs" />
               <div className="h-3 w-20 rounded-full bg-ink" />
             </div>
             <div className="flex items-center gap-2">
               <div className="h-2 w-8 rounded-full bg-slate-200" />
               <div className="h-2 w-8 rounded-full bg-slate-200" />
-              <div className="h-5 w-16 rounded-full bg-emerald-50 border border-emerald-200" />
+              <div className="h-5 w-16 rounded-full bg-brand-50 border border-brand-200" />
             </div>
           </div>
 
@@ -255,7 +255,7 @@ export function BrowserMockup({ card, onSlideChange }) {
             {/* Left Content */}
             <div className="col-span-3 space-y-2">
               <div className="inline-flex items-center gap-1.5 rounded-full bg-slate-100 px-2 py-0.5 animate-fade-in-up" style={{ animationDelay: "150ms" }}>
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                <span className="h-1.5 w-1.5 rounded-full bg-brand-500" />
                 <span className="h-1.5 w-16 rounded-full bg-slate-500" />
               </div>
 
@@ -275,24 +275,24 @@ export function BrowserMockup({ card, onSlideChange }) {
             <div className="col-span-2 relative animate-fade-in-up" style={{ animationDelay: "600ms" }}>
               <div className="aspect-square rounded-2xl bg-linear-to-br from-slate-900 via-slate-800 to-teal-950 p-3 shadow-md shadow-slate-200 flex flex-col justify-between">
                 <div className="flex justify-between items-center">
-                  <div className="h-2 w-8 rounded-full bg-emerald-400" />
-                  <div className="h-2 w-2 rounded-full bg-white/40" />
+                  <div className="h-2 w-8 rounded-full bg-brand-400" />
+                  <div className="h-2 w-2 rounded-full bg-white" />
                 </div>
                 {/* Visual curve/bar */}
                 <div className="space-y-1.5">
                   <div className="flex items-end gap-1 h-8">
-                    <div className="flex-1 h-3 bg-emerald-500/30 rounded-t-xs" />
-                    <div className="flex-1 h-5 bg-emerald-500/50 rounded-t-xs" />
-                    <div className="flex-1 h-7 bg-emerald-400 rounded-t-xs" />
-                    <div className="flex-1 h-4 bg-emerald-500/40 rounded-t-xs" />
+                    <div className="flex-1 h-3 bg-brand-500/30 rounded-t-xs" />
+                    <div className="flex-1 h-5 bg-brand-500/50 rounded-t-xs" />
+                    <div className="flex-1 h-7 bg-brand-400 rounded-t-xs" />
+                    <div className="flex-1 h-4 bg-brand-500/40 rounded-t-xs" />
                   </div>
-                  <div className="h-1.5 w-full bg-white/20 rounded-full" />
+                  <div className="h-1.5 w-full bg-white rounded-full" />
                 </div>
               </div>
 
               {/* Floating mini stat pill */}
               <div className="absolute -bottom-2 -left-2 bg-white rounded-lg shadow-sm border border-slate-100 px-2 py-1 flex items-center gap-1.5">
-                <span className="h-2 w-2 rounded-full bg-emerald-500" />
+                <span className="h-2 w-2 rounded-full bg-brand-500" />
                 <span className="h-1.5 w-10 rounded-full bg-slate-700" />
               </div>
             </div>
@@ -301,18 +301,18 @@ export function BrowserMockup({ card, onSlideChange }) {
           {/* Features Grid */}
           <div className="grid grid-cols-3 gap-2.5 pt-1">
             <div 
-              className="rounded-xl border border-slate-100 p-2.5 bg-slate-50/70 shadow-2xs animate-fade-in-up" 
+              className="rounded-xl border border-slate-100 p-2.5 bg-slate-50 shadow-2xs animate-fade-in-up" 
               style={{ animationDelay: "750ms" }}
             >
-              <div className="mb-1.5 h-4 w-4 rounded-md bg-emerald-100 flex items-center justify-center">
-                <div className="h-1.5 w-1.5 rounded-full bg-emerald-600" />
+              <div className="mb-1.5 h-4 w-4 rounded-md bg-brand-100 flex items-center justify-center">
+                <div className="h-1.5 w-1.5 rounded-full bg-brand-600" />
               </div>
               <div className="h-2 w-full rounded-full bg-slate-300" />
               <div className="mt-1 h-1.5 w-2/3 rounded-full bg-slate-200" />
             </div>
 
             <div 
-              className="rounded-xl border border-slate-100 p-2.5 bg-slate-50/70 shadow-2xs animate-fade-in-up" 
+              className="rounded-xl border border-slate-100 p-2.5 bg-slate-50 shadow-2xs animate-fade-in-up" 
               style={{ animationDelay: "900ms" }}
             >
               <div className="mb-1.5 h-4 w-4 rounded-md bg-sky-100 flex items-center justify-center">
@@ -323,7 +323,7 @@ export function BrowserMockup({ card, onSlideChange }) {
             </div>
 
             <div 
-              className="rounded-xl border border-slate-100 p-2.5 bg-slate-50/70 shadow-2xs animate-fade-in-up" 
+              className="rounded-xl border border-slate-100 p-2.5 bg-slate-50 shadow-2xs animate-fade-in-up" 
               style={{ animationDelay: "1050ms" }}
             >
               <div className="mb-1.5 h-4 w-4 rounded-md bg-amber-100 flex items-center justify-center">
@@ -431,7 +431,7 @@ export function BrowserMockup({ card, onSlideChange }) {
         <div className="flex items-center gap-2 border-b border-slate-100 bg-slate-50 px-4 py-3 relative z-10">
           <span className="h-3 w-3 rounded-full bg-rose-400" />
           <span className="h-3 w-3 rounded-full bg-amber-400" />
-          <span className="h-3 w-3 rounded-full bg-emerald-400" />
+          <span className="h-3 w-3 rounded-full bg-brand-400" />
           <div className="ml-3 flex flex-1 items-center gap-2 rounded-md bg-white px-3 py-1 text-xs text-slate-500 ring-1 ring-slate-200">
             <svg viewBox="0 0 24 24" className="h-3 w-3 text-brand-600" fill="currentColor" aria-hidden>
               <path d="M17 10V8A5 5 0 0 0 7 8v2H5v12h14V10h-2Zm-8 0V8a3 3 0 0 1 6 0v2H9Z" />

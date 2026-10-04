@@ -64,7 +64,7 @@ function PricingCard({ plan, p, t }) {
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setOpacity(1)}
       onMouseLeave={() => setOpacity(0)}
-      className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-white/20 hover:shadow-2xl hover:shadow-black/40"
+      className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-white p-8 backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-white/20 hover:shadow-2xl hover:shadow-black/40"
     >
       {/* 
         [OPTION 1 & 3] Dotted Grid Spotlight Layer:
@@ -96,7 +96,7 @@ function PricingCard({ plan, p, t }) {
           opacity,
           background: `radial-gradient(${
             SPOTLIGHT_OPTION === 2 ? "450px" : "400px"
-          } circle at ${position.x}px ${position.y}px, rgba(34, 197, 94, ${
+          } circle at ${position.x}px ${position.y}px, rgba(59, 107, 156, ${
             SPOTLIGHT_OPTION === 2 ? "0.14" : "0.08"
           }), transparent 60%)`,
           mixBlendMode: "screen",
@@ -132,7 +132,7 @@ function PricingCard({ plan, p, t }) {
         href={whatsappLink(`${t.contact.form.intro}\n${t.contact.form.labels.service}: ${plan.name}`)}
         target="_blank"
         rel="noopener noreferrer"
-        className="relative z-20 mt-10 inline-flex items-center justify-center gap-2 rounded-full bg-white/10 px-6 py-3.5 font-medium text-white ring-1 ring-white/15 transition hover:bg-white/20"
+        className="relative z-20 mt-10 inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 font-medium text-white ring-1 ring-white/15 transition hover:bg-white"
       >
         {p.cta}
         <Icon name="arrow" className="h-4 w-4" />

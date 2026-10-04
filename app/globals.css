@@ -5,20 +5,20 @@
   --font-sans: var(--font-lato), var(--font-noto), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-lato), var(--font-noto), ui-sans-serif, system-ui, sans-serif;
 
-  --color-ink: #0A1118;
+  --color-ink: #0A131A;
   /* Soft sage off-white instead of pure white; -alt is for alternating sections. */
-  --color-canvas: #F6F6F1;
-  --color-canvas-alt: #EBEBE4;
-    --color-brand-50: #F0FDF4;
-  --color-brand-100: #DCFCE7;
-  --color-brand-200: #BBF7D0;
-  --color-brand-300: #86EFAC;
-  --color-brand-400: #4ADE80;
-  --color-brand-500: #22C55E;
-  --color-brand-600: #16A34A;
-  --color-brand-700: #15803D;
-  --color-brand-800: #166534;
-  --color-brand-900: #14532D;
+  --color-canvas: #F4F7F9;
+  --color-canvas-alt: #EBF0F5;
+      --color-brand-50: #EFF4F9;
+  --color-brand-100: #D8E4F0;
+  --color-brand-200: #B6CFE6;
+  --color-brand-300: #90B6D9;
+  --color-brand-400: #869DCC;
+  --color-brand-500: #4B80B5;
+  --color-brand-600: #3B6B9C;
+  --color-brand-700: #2E547A;
+  --color-brand-800: #23415E;
+  --color-brand-900: #1A2F45;
 }
 
 html {
@@ -293,3 +293,5 @@ html[data-font-theme="nunito"] {
 html[data-font-theme="nunito"] .font-light {
   font-weight: 500 !important;
 }
+
+
