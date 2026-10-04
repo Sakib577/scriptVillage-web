@@ -110,7 +110,7 @@ function ServiceCard({ service, item, i, t }) {
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 ease-in-out"
         style={{
           opacity: spotlightOpacity,
-          backgroundImage: `radial-gradient(rgb(57 105 159 / 0.35) 1.5px, transparent 1.5px)`,
+          backgroundImage: `radial-gradient(rgb(34 197 94 / 0.35) 1.5px, transparent 1.5px)`,
           backgroundSize: "22px 22px",
           maskImage: `radial-gradient(260px circle at ${spotlightPos.x}px ${spotlightPos.y}px, black 30%, transparent 100%)`,
           WebkitMaskImage: `radial-gradient(260px circle at ${spotlightPos.x}px ${spotlightPos.y}px, black 30%, transparent 100%)`,
@@ -122,7 +122,7 @@ function ServiceCard({ service, item, i, t }) {
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 ease-in-out mix-blend-multiply"
         style={{
           opacity: spotlightOpacity,
-          background: `radial-gradient(380px circle at ${spotlightPos.x}px ${spotlightPos.y}px, rgba(57, 105, 159, 0.20), transparent 65%)`,
+          background: `radial-gradient(380px circle at ${spotlightPos.x}px ${spotlightPos.y}px, rgba(34, 197, 94, 0.15), transparent 65%)`,
         }}
         aria-hidden="true"
       />

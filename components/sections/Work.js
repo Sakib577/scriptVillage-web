@@ -16,8 +16,8 @@ const themes = {
 function Preview({ theme, title }) {
   const th = themes[theme];
   return (
-    <div className={`aspect-[16/10] overflow-hidden ${th.soft} p-5 sm:p-6`}>
-      <div className="flex h-full flex-col overflow-hidden rounded-xl bg-white shadow-xl shadow-slate-900/10 transition duration-500 group-hover:-translate-y-1 group-hover:scale-[1.02]">
+    <div className={`aspect-[16/10] overflow-hidden ${th.soft} p-5 sm:p-6 transition-colors duration-300`}>
+      <div className="flex h-full flex-col overflow-hidden rounded-xl bg-white shadow-lg shadow-slate-900/10 transition-all duration-500 ease-out group-hover:-translate-y-2 group-hover:scale-[1.025] group-hover:shadow-2xl group-hover:shadow-slate-900/20">
         <div className="flex items-center justify-between border-b border-slate-100 px-4 py-2.5">
           <span className="text-[11px] font-bold tracking-tight text-ink">{title}</span>
           <div className="flex gap-1.5">
@@ -91,14 +91,14 @@ export function Work() {
         <div className="mt-16 grid gap-8 md:grid-cols-2">
           {w.items.map((item, i) => (
             <Reveal key={item.title} delay={(i % 2) * 120}>
-              <SpotlightCard as="article" className="">
+              <SpotlightCard as="article" tilt={true} className="cursor-pointer">
                 <Preview theme={item.theme} title={item.title} />
                 <div className="flex items-center justify-between gap-4 p-6">
                   <div>
-                    <h3 className="font-display text-lg font-bold text-ink">{item.title}</h3>
+                    <h3 className="font-display text-lg font-bold text-ink transition-colors duration-200 group-hover:text-brand-800">{item.title}</h3>
                     <p className="text-[15px] text-slate-600">{item.type}</p>
                   </div>
-                  <span className="shrink-0 rounded-full border border-slate-200 px-3 py-1 text-xs font-medium text-slate-500">
+                  <span className="shrink-0 rounded-full border border-slate-200 px-3 py-1 text-xs font-medium text-slate-500 transition-colors duration-200 group-hover:border-brand-300 group-hover:bg-brand-50/60 group-hover:text-brand-700">
                     {w.label}
                   </span>
                 </div>
