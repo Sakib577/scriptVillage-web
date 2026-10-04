@@ -181,22 +181,22 @@ export function Hero() {
             <p className="mt-8 max-w-xl text-lg text-slate-600">{h.subtitle}</p>
           )}
 
-          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+          <div className="mt-10 flex flex-col gap-3.5 sm:flex-row">
             <a
               href={whatsappLink(t.contact.form.intro)}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-600 px-7 py-4 font-medium text-white shadow-lg shadow-brand-600/25 transition hover:-translate-y-0.5 hover:bg-brand-700"
+              className="group btn-fancy btn-shimmer btn-glow-whatsapp inline-flex items-center justify-center gap-2.5 rounded-full bg-[#25D366] px-7 py-4 font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[#20ba59]"
             >
-              <WhatsAppIcon />
-              {h.primary}
+              <WhatsAppIcon className="h-5 w-5 transition-transform duration-200 group-hover:scale-110" />
+              <span>{h.primary}</span>
             </a>
             <a
               href="#pricing"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-7 py-4 font-medium text-ink transition hover:-translate-y-0.5 hover:border-ink"
+              className="group btn-fancy inline-flex items-center justify-center gap-2 rounded-full border border-brand-200/90 bg-white px-7 py-4 font-semibold text-ink shadow-xs transition hover:-translate-y-0.5 hover:border-brand-500 hover:text-brand-600 hover:shadow-md hover:shadow-brand-500/10"
             >
-              {h.secondary}
-              <Icon name="arrow" className="h-4 w-4" />
+              <span>{h.secondary}</span>
+              <Icon name="arrow" className="h-4 w-4 transition-transform duration-200 ease-out group-hover:translate-x-1" />
             </a>
           </div>
 

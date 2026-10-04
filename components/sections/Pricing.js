@@ -22,14 +22,16 @@ export function Pricing() {
   const p = t.pricing;
 
   return (
-    <section id="pricing" className="relative overflow-hidden bg-ink py-24 text-white sm:py-28">
+    <section id="pricing" className="relative overflow-hidden bg-gradient-to-b from-[#08111D] via-[#0D1C30] to-[#0A1422] py-24 text-white sm:py-28">
       {/* Background Dots: Only visible in Option 2 & Option 3 */}
       {(SPOTLIGHT_OPTION === 2 || SPOTLIGHT_OPTION === 3) && (
         <div aria-hidden className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] bg-size-[28px_28px] opacity-[0.06]" />
       )}
 
-      {/* Ambient background glow blob */}
-      <div aria-hidden className="absolute top-1/2 left-1/2 h-96 w-3xl -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-500/15 blur-3xl" />
+      {/* Ambient background glow blobs */}
+      <div aria-hidden className="absolute top-1/2 left-1/2 h-96 w-3xl -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-500/18 blur-3xl pointer-events-none" />
+      <div aria-hidden className="absolute -top-20 right-1/4 h-72 w-72 rounded-full bg-brand-400/12 blur-3xl pointer-events-none" />
+
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading eyebrow={p.eyebrow} title={p.title} subtitle={p.subtitle} dark />
 
@@ -64,7 +66,7 @@ function PricingCard({ plan, p, t }) {
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setOpacity(1)}
       onMouseLeave={() => setOpacity(0)}
-      className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-white/20 hover:shadow-2xl hover:shadow-black/40"
+      className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] p-8 backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-brand-400/40 hover:bg-white/[0.07] hover:shadow-2xl hover:shadow-brand-950/60"
     >
       {/* 
         [OPTION 1 & 3] Dotted Grid Spotlight Layer:
@@ -77,7 +79,7 @@ function PricingCard({ plan, p, t }) {
           className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 ease-in-out"
           style={{
             opacity,
-            backgroundImage: `radial-gradient(rgb(255 255 255 / 0.15) 1px, transparent 1px)`,
+            backgroundImage: `radial-gradient(rgb(34 197 94 / 0.4) 1px, transparent 1px)`,
             backgroundSize: SPOTLIGHT_OPTION === 3 ? "28px 28px" : "24px 24px",
             maskImage: `radial-gradient(250px circle at ${position.x}px ${position.y}px, black 20%, transparent 100%)`,
             WebkitMaskImage: `radial-gradient(250px circle at ${position.x}px ${position.y}px, black 20%, transparent 100%)`,
@@ -86,19 +88,14 @@ function PricingCard({ plan, p, t }) {
         />
       )}
 
-      {/* 
-        [ALL OPTIONS] Soft Color Glow Spotlight:
-        - In Option 2: Slightly wider radius & opacity for smooth spotlight look
-      */}
+      {/* Soft Color Glow Spotlight */}
       <div
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 ease-in-out"
         style={{
           opacity,
           background: `radial-gradient(${
             SPOTLIGHT_OPTION === 2 ? "450px" : "400px"
-          } circle at ${position.x}px ${position.y}px, rgba(34, 197, 94, ${
-            SPOTLIGHT_OPTION === 2 ? "0.14" : "0.08"
-          }), transparent 60%)`,
+          } circle at ${position.x}px ${position.y}px, rgba(34, 197, 94, 0.15), transparent 60%)`,
           mixBlendMode: "screen",
         }}
         aria-hidden="true"
@@ -112,7 +109,7 @@ function PricingCard({ plan, p, t }) {
           <p className="text-sm text-slate-400">{p.from}</p>
           <div className="flex items-baseline gap-2">
             <span className="font-display text-4xl font-bold tracking-tight text-white">{plan.price}</span>
-            <span className="text-sm text-brand-300">· {plan.time}</span>
+            <span className="text-sm text-brand-300 font-medium">· {plan.time}</span>
           </div>
         </div>
 
@@ -132,10 +129,10 @@ function PricingCard({ plan, p, t }) {
         href={whatsappLink(`${t.contact.form.intro}\n${t.contact.form.labels.service}: ${plan.name}`)}
         target="_blank"
         rel="noopener noreferrer"
-        className="relative z-20 mt-10 inline-flex items-center justify-center gap-2 rounded-full bg-white/10 px-6 py-3.5 font-medium text-white ring-1 ring-white/15 transition hover:bg-white/20"
+        className="relative z-20 mt-10 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 font-medium transition btn-fancy bg-white/10 text-white ring-1 ring-white/15 hover:bg-white/20 hover:ring-white/30 hover:-translate-y-0.5 hover:text-brand-300"
       >
-        {p.cta}
-        <Icon name="arrow" className="h-4 w-4" />
+        <span>{p.cta}</span>
+        <Icon name="arrow" className="h-4 w-4 transition-transform duration-200 ease-out group-hover:translate-x-1" />
       </a>
     </div>
   );

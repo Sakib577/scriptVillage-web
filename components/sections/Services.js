@@ -1,51 +1,119 @@
 "use client";
 
 import Link from "next/link";
+import { useRef, useState } from "react";
 import { useLanguage } from "../LanguageProvider";
 import { Icon } from "../Icons";
 import { Reveal, SectionHeading } from "../Reveal";
 import { services } from "@/lib/services";
 
 export const serviceAccents = [
-  "bg-brand-50 text-brand-700 ring-brand-100",
-  "bg-violet-50 text-violet-700 ring-violet-100",
-  "bg-amber-50 text-amber-700 ring-amber-100",
-  "bg-sky-50 text-sky-700 ring-sky-100",
-  "bg-rose-50 text-rose-700 ring-rose-100",
-  "bg-teal-50 text-teal-700 ring-teal-100",
+  "bg-brand-50 text-brand-700 ring-brand-200/80",
+  "bg-[#EDF3FA] text-[#39699F] ring-[#86A2D4]/40",
+  "bg-sky-50 text-sky-700 ring-sky-200/80",
+  "bg-blue-50 text-blue-700 ring-blue-200/80",
+  "bg-indigo-50 text-indigo-700 ring-indigo-200/80",
+  "bg-slate-100 text-slate-700 ring-slate-200/80",
 ];
 
-import { useRef, useState } from "react";
+/* 3. আইকন টুইস্ট, স্কেল এবং কালার্ড নিয়ন গ্লো থিমস */
+export const serviceIconThemes = [
+  {
+    // 0: Landing Pages -> Cyan to Royal Blue
+    gradient: "from-[#38bdf8] to-[#2563eb]",
+    glow: "shadow-[0_8px_22px_rgba(37,99,235,0.35)]",
+    hoverGlow: "group-hover:shadow-[0_12px_28px_rgba(37,99,235,0.48)]",
+  },
+  {
+    // 1: Portfolio Websites -> Indigo to Purple
+    gradient: "from-[#818cf8] to-[#6366f1]",
+    glow: "shadow-[0_8px_22px_rgba(99,102,241,0.35)]",
+    hoverGlow: "group-hover:shadow-[0_12px_28px_rgba(99,102,241,0.48)]",
+  },
+  {
+    // 2: Business Websites -> Brand / Sapphire Blue
+    gradient: "from-[#39699F] to-[#1e40af]",
+    glow: "shadow-[0_8px_22px_rgba(57,105,159,0.38)]",
+    hoverGlow: "group-hover:shadow-[0_12px_28px_rgba(57,105,159,0.52)]",
+  },
+  {
+    // 3: Web Applications -> Emerald to Teal
+    gradient: "from-[#10b981] to-[#0d9488]",
+    glow: "shadow-[0_8px_22px_rgba(13,148,136,0.35)]",
+    hoverGlow: "group-hover:shadow-[0_12px_28px_rgba(13,148,136,0.48)]",
+  },
+  {
+    // 4: Mobile -> Coral to Rose
+    gradient: "from-[#f43f5e] to-[#ea580c]",
+    glow: "shadow-[0_8px_22px_rgba(244,63,94,0.35)]",
+    hoverGlow: "group-hover:shadow-[0_12px_28px_rgba(244,63,94,0.48)]",
+  },
+  {
+    // 5: Hosting & Maintenance -> Azure / Cyan to Sky
+    gradient: "from-[#06b6d4] to-[#0284c7]",
+    glow: "shadow-[0_8px_22px_rgba(2,132,199,0.35)]",
+    hoverGlow: "group-hover:shadow-[0_12px_28px_rgba(2,132,199,0.48)]",
+  },
+];
 
 function ServiceCard({ service, item, i, t }) {
-  const ref = useRef(null);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [opacity, setOpacity] = useState(0);
+  const cardRef = useRef(null);
+  const [tilt, setTilt] = useState({ rotateX: 0, rotateY: 0, isHovered: false });
+  const [spotlightPos, setSpotlightPos] = useState({ x: 0, y: 0 });
+  const [spotlightOpacity, setSpotlightOpacity] = useState(0);
 
+  // ১. ৩ডি মাউস ট্র্যাকিং টিল্ট লজিক (3D Perspective Tilt on MouseMove)
   const handleMouseMove = (e) => {
-    if (!ref.current) return;
-    const rect = ref.current.getBoundingClientRect();
-    setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+
+    const rotateX = (-y / rect.height) * 8;
+    const rotateY = (x / rect.width) * 8;
+
+    setTilt({ rotateX, rotateY, isHovered: true });
+    setSpotlightPos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
   };
+
+  const handleMouseEnter = () => {
+    setSpotlightOpacity(1);
+  };
+
+  const handleMouseLeave = () => {
+    setTilt({ rotateX: 0, rotateY: 0, isHovered: false });
+    setSpotlightOpacity(0);
+  };
+
+  const theme = serviceIconThemes[i % serviceIconThemes.length];
 
   return (
     <Link
-      ref={ref}
+      ref={cardRef}
       href={`/services/${service.slug}`}
       onMouseMove={handleMouseMove}
-      onMouseEnter={() => setOpacity(1)}
-      onMouseLeave={() => setOpacity(0)}
-      className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-brand-200/80 bg-white p-8 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-brand-400 hover:shadow-xl hover:shadow-brand-900/5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-600"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        transform: tilt.isHovered
+          ? `perspective(1000px) rotateX(${tilt.rotateX}deg) rotateY(${tilt.rotateY}deg) translateY(-8px)`
+          : "perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)",
+        transition: tilt.isHovered
+          ? "transform 0.12s ease-out, box-shadow 0.38s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.38s cubic-bezier(0.16, 1, 0.3, 1)"
+          : "transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.38s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.38s cubic-bezier(0.16, 1, 0.3, 1)",
+      }}
+      // ২. কার্ড লিফট-আপ এবং ডিপ শ্যাডো গ্লো (Card Lift & Dynamic Shadow on Hover)
+      className="group relative flex h-full flex-col overflow-hidden rounded-[22px] border-2 border-transparent bg-white p-8 transition-all duration-[380ms] [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:border-brand-400 hover:shadow-[0_22px_50px_rgba(57,105,159,0.16)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-600"
     >
-      {/* Dotted grid spotlight effect */}
+      {/* Dotted grid spotlight layer */}
       <div
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 ease-in-out"
         style={{
-          opacity,
-          backgroundImage: `radial-gradient(rgb(22 163 74 / 0.5) 1.5px, transparent 1.5px)`,
-          backgroundSize: '22px 22px',
-          maskImage: `radial-gradient(260px circle at ${position.x}px ${position.y}px, black 30%, transparent 100%)`,
-          WebkitMaskImage: `radial-gradient(260px circle at ${position.x}px ${position.y}px, black 30%, transparent 100%)`,
+          opacity: spotlightOpacity,
+          backgroundImage: `radial-gradient(rgb(34 197 94 / 0.35) 1.5px, transparent 1.5px)`,
+          backgroundSize: "22px 22px",
+          maskImage: `radial-gradient(260px circle at ${spotlightPos.x}px ${spotlightPos.y}px, black 30%, transparent 100%)`,
+          WebkitMaskImage: `radial-gradient(260px circle at ${spotlightPos.x}px ${spotlightPos.y}px, black 30%, transparent 100%)`,
         }}
         aria-hidden="true"
       />
@@ -53,21 +121,29 @@ function ServiceCard({ service, item, i, t }) {
       <div
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 ease-in-out mix-blend-multiply"
         style={{
-          opacity,
-          background: `radial-gradient(380px circle at ${position.x}px ${position.y}px, rgba(34, 197, 94, 0.20), transparent 65%)`,
+          opacity: spotlightOpacity,
+          background: `radial-gradient(380px circle at ${spotlightPos.x}px ${spotlightPos.y}px, rgba(34, 197, 94, 0.15), transparent 65%)`,
         }}
         aria-hidden="true"
       />
-      
+
       <div className="relative z-10 flex flex-col h-full pointer-events-none">
-        <span className={`inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white shadow-xs ring-1 ${serviceAccents[i]}`}>
-          <Icon name={service.icon} className="h-7 w-7" />
-        </span>
-        <h3 className="font-display mt-6 text-xl font-bold text-ink group-hover:text-brand-800 transition-colors">{item.title}</h3>
-        <p className="mt-3 flex-1 text-slate-600">{item.summary}</p>
-        <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-brand-700 transition-colors group-hover:text-brand-900">
-          {t.serviceDetail.viewDetails}
-          <Icon name="arrow" className="h-4 w-4 transition group-hover:translate-x-1" />
+        {/* ৩. আইকন টুইস্ট, স্কেল এবং কালার্ড গ্লো (Icon Twist & Scale Animation) */}
+        <div
+          className={`flex h-[62px] w-[62px] items-center justify-center rounded-[18px] bg-gradient-to-br ${theme.gradient} ${theme.glow} ${theme.hoverGlow} text-white transition-all duration-350 ease-out group-hover:scale-110 group-hover:rotate-6`}
+        >
+          <Icon name={service.icon} className="h-7 w-7 text-white" />
+        </div>
+
+        <h3 className="font-display mt-6 text-xl font-bold text-ink group-hover:text-brand-800 transition-colors">
+          {item.title}
+        </h3>
+        <p className="mt-3 flex-1 text-slate-600 leading-relaxed">{item.summary}</p>
+
+        {/* ৪. লিংক অ্যারো এক্সপ্যানশন মাইক্রো-ইন্টারেকশন (Arrow Gap Slide) */}
+        <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-bold text-brand-600 transition-all duration-200 ease-out group-hover:gap-2.5 group-hover:text-brand-800">
+          <span>{t.serviceDetail.viewDetails}</span>
+          <Icon name="arrow" className="h-4 w-4 transition-transform duration-200 ease-out group-hover:translate-x-1" />
         </span>
       </div>
     </Link>
@@ -87,6 +163,7 @@ export function Services() {
           {services.map((service, i) => {
             const item = service[lang];
             return (
+              /* ৫. স্ক্রল-ট্রিগার্ড ফেড-ইন রিভিল (Intersection Observer Scroll Reveal) */
               <Reveal key={service.slug} delay={(i % 3) * 90}>
                 <ServiceCard service={service} item={item} i={i} t={t} />
               </Reveal>
