@@ -78,13 +78,13 @@ html[data-lang="bn"] .eyebrow {
 
 .reveal {
   transition:
-    opacity 0.7s ease,
-    transform 0.7s ease;
+    opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
 }
 /* Only hide once JS is running, so content stays visible without it. */
 html.reveal-ready .reveal:not(.is-visible) {
   opacity: 0;
-  transform: translateY(18px);
+  transform: translateY(32px);
 }
 
 @keyframes float {
