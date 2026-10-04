@@ -96,10 +96,10 @@ export function Contact() {
               </label>
               <button
                 type="submit"
-                className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-4 font-medium text-white shadow-lg shadow-green-600/20 transition hover:-translate-y-0.5 hover:bg-[#1fb857]"
+                className="mt-6 group btn-fancy btn-shimmer btn-glow-whatsapp inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-[#25D366] px-6 py-4 font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[#20ba59]"
               >
-                <WhatsAppIcon />
-                {f.submit}
+                <WhatsAppIcon className="h-5 w-5 transition-transform duration-200 group-hover:scale-110" />
+                <span>{f.submit}</span>
               </button>
               <p className="mt-3 text-center text-sm text-slate-500">{f.hint}</p>
             </form>

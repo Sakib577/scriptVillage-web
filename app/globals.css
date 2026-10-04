@@ -262,6 +262,63 @@ html.reveal-ready .reveal:not(.is-visible) {
   animation: run-beam-100 3.5s linear infinite;
 }
 
+/* =========================================================
+   FANCY BUTTON INTERACTIONS
+   - Shimmer light beam swipe on hover
+   - Tactile 3D press response on click (:active)
+   - Luminous aura glow expansion
+   ========================================================= */
+.btn-fancy {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateZ(0);
+}
+
+.btn-fancy:active {
+  transform: scale(0.95) translateY(1.5px) !important;
+  transition: transform 0.08s ease-in !important;
+}
+
+.btn-shimmer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -130%;
+  width: 70%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.32) 50%,
+    transparent 100%
+  );
+  transform: skewX(-25deg);
+  pointer-events: none;
+  transition: left 0.75s ease;
+  z-index: 10;
+}
+
+.btn-shimmer:hover::before {
+  left: 180%;
+}
+
+/* Luminous shadow glow for primary brand buttons */
+.btn-glow-brand {
+  box-shadow: 0 4px 16px rgba(57, 105, 159, 0.28);
+}
+.btn-glow-brand:hover {
+  box-shadow: 0 8px 28px rgba(57, 105, 159, 0.45), 0 0 18px rgba(134, 162, 212, 0.35);
+}
+
+/* Luminous shadow glow for WhatsApp buttons */
+.btn-glow-whatsapp {
+  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.28);
+}
+.btn-glow-whatsapp:hover {
+  box-shadow: 0 8px 28px rgba(37, 211, 102, 0.48), 0 0 18px rgba(37, 211, 102, 0.3);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

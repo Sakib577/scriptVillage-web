@@ -117,14 +117,14 @@ export function Header() {
           <LanguageToggle className="hidden sm:inline-flex" />
           <Link
             href="/#contact"
-            className="hidden items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-medium text-white shadow-lg shadow-slate-900/10 transition hover:bg-brand-700 md:inline-flex"
+            className="group btn-fancy btn-shimmer btn-glow-brand hidden items-center gap-2 rounded-full bg-brand-600 px-5 py-2.5 text-sm font-medium text-white shadow-md transition hover:-translate-y-0.5 hover:bg-brand-700 md:inline-flex"
           >
-            {t.nav.cta}
-            <Icon name="arrow" className="h-4 w-4" />
+            <span>{t.nav.cta}</span>
+            <Icon name="arrow" className="h-4 w-4 transition-transform duration-200 ease-out group-hover:translate-x-1" />
           </Link>
           <button
             type="button"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-ink lg:hidden"
+            className="btn-fancy inline-flex h-11 w-11 items-center justify-center rounded-full border border-brand-200/90 bg-white text-ink transition hover:border-brand-400 lg:hidden"
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-controls="mobile-menu"
@@ -154,7 +154,7 @@ export function Header() {
                 href={whatsappLink(t.contact.form.intro)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-600 px-6 py-3.5 font-medium text-white"
+                className="group btn-fancy btn-shimmer btn-glow-brand inline-flex items-center justify-center gap-2 rounded-full bg-brand-600 px-6 py-3.5 font-medium text-white transition hover:bg-brand-700"
               >
                 {t.hero.primary}
               </a>

@@ -78,16 +78,17 @@ export function ServiceDetail({ slug }) {
                 href={quoteLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-600 px-6 py-4 font-medium text-white shadow-lg shadow-brand-600/25 transition hover:bg-brand-700"
+                className="mt-8 group btn-fancy btn-shimmer btn-glow-brand inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-600 px-6 py-4 font-semibold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-brand-700"
               >
-                <WhatsAppIcon />
-                {d.ctaPrimary}
+                <WhatsAppIcon className="h-5 w-5 transition-transform duration-200 group-hover:scale-110" />
+                <span>{d.ctaPrimary}</span>
               </a>
               <Link
                 href="/#pricing"
-                className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-300 px-6 py-3.5 font-medium text-ink transition hover:border-ink"
+                className="mt-3 group btn-fancy inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-300 px-6 py-3.5 font-semibold text-ink transition hover:border-brand-500 hover:text-brand-600 hover:-translate-y-0.5"
               >
-                {d.ctaSecondary}
+                <span>{d.ctaSecondary}</span>
+                <Icon name="arrow" className="h-4 w-4 transition-transform duration-200 ease-out group-hover:translate-x-1" />
               </Link>
             </SpotlightCard>
           </div>
@@ -199,10 +200,10 @@ export function ServiceDetail({ slug }) {
               href={quoteLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-4 font-medium text-ink transition hover:-translate-y-0.5"
+              className="mt-8 group btn-fancy btn-shimmer inline-flex items-center justify-center gap-2.5 rounded-full bg-white px-7 py-4 font-bold text-brand-950 shadow-xl transition hover:-translate-y-0.5 hover:bg-brand-50 hover:shadow-2xl"
             >
-              <WhatsAppIcon className="h-5 w-5 text-[#25D366]" />
-              {d.ctaPrimary}
+              <WhatsAppIcon className="h-5 w-5 text-[#25D366] transition-transform duration-200 group-hover:scale-110" />
+              <span>{d.ctaPrimary}</span>
             </a>
           </div>
         </Reveal>

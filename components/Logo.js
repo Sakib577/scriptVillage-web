@@ -20,7 +20,7 @@ export function LogoMark({ className = "h-14 w-14" }) {
 export function Logo({ className = "", onDark = false }) {
   return (
     <span className={`inline-flex items-center gap-3 ${className}`}>
-      <LogoMark className="h-18 w-18 shrink-0 drop-shadow-sm" />
+      <LogoMark className="h-14 w-14 shrink-0 drop-shadow-sm" />
       
       <span className={`font-display text-[26px] font-bold tracking-tight ${onDark ? "text-slate-100" : "text-ink"}`}>
         Code Molecule
