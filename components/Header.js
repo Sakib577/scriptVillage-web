@@ -136,7 +136,7 @@ export function Header() {
       </div>
 
       {open && (
-        <div id="mobile-menu" className="h-[calc(100dvh-4.5rem)] overflow-y-auto border-t border-slate-200 bg-canvas lg:hidden">
+        <div id="mobile-menu" className="h-[calc(100dvh-4.5rem)] overflow-y-auto border-t border-slate-200/70 bg-canvas lg:hidden">
           <nav className="mx-auto flex max-w-7xl flex-col px-4 py-6 sm:px-6" aria-label="Mobile">
             {sections.map((id) => (
               <Link

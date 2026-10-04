@@ -49,7 +49,7 @@ export function Contact() {
                     href={ch.href}
                     target={ch.href.startsWith("mailto:") ? undefined : "_blank"}
                     rel="noopener noreferrer"
-                    className="group flex items-center gap-4 rounded-2xl border border-white/10 bg-white p-4 transition hover:bg-white"
+                    className="group flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-4 transition hover:bg-white/10"
                   >
                     <span className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-white ${ch.tone}`}>
                       {ch.icon}
