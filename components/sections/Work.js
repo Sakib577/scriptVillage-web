@@ -9,7 +9,7 @@ import { SpotlightCard } from "../SpotlightCard";
 const themes = {
   amber: { bg: "from-amber-400 to-orange-500", soft: "bg-amber-50", dot: "bg-orange-500", layout: "food" },
   violet: { bg: "from-violet-500 to-fuchsia-500", soft: "bg-violet-50", dot: "bg-violet-500", layout: "gallery" },
-  emerald: { bg: "from-brand-500 to-sky-600", soft: "bg-brand-50", dot: "bg-brand-600", layout: "edu" },
+  brand: { bg: "from-brand-500 to-sky-600", soft: "bg-brand-50", dot: "bg-brand-600", layout: "edu" },
   sky: { bg: "from-sky-500 to-blue-600", soft: "bg-sky-50", dot: "bg-sky-600", layout: "clinic" },
 };
 
