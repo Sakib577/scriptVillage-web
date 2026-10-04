@@ -93,50 +93,7 @@ export function LogoMark({ className = "h-14 w-14" }) {
     };
 
     function frameAt(p) {
-      let s = S0, sx = 1, sy = 1, amp = 0, u, a;
-
-      if (p < 0.06) {
-        // rest
-      } else if (p < 0.115) {
-        // wobble + curl into a ball
-        u = (p - 0.06) / 0.055;
-        s = mix(S0, BALL, backOut(easeInOut(u), 1.0));
-        const b = Math.sin(Math.PI * u);
-        sx = 1 - 0.07 * b;
-        sy = 1 + 0.07 * b;
-        amp = 70 * b;
-      } else if (p < 0.17) {
-        // jelly jiggle: squash and stretch, slowly settling
-        u = (p - 0.115) / 0.055;
-        s = BALL;
-        a = 0.17 * Math.exp(-3 * u) * Math.sin(u * Math.PI * 5);
-        sx = 1 + a;
-        sy = 1 / (1 + a);
-        amp = 38 * (1 - u);
-      } else if (p < 0.235) {
-        // wind back, then stretch and get sucked into server
-        u = (p - 0.17) / 0.065;
-        const k = easeIn(u);
-        s = mix(BALL, HUB, k);
-        if (u < 0.35) s = { ...s, cx: s.cx - 26 * Math.sin((Math.PI * u) / 0.35) };
-        sx = 1 + 0.7 * k;
-        sy = 1 / sx;
-        amp = 30 * Math.sin(Math.PI * u);
-      } else if (p < 0.72) {
-        s = null; // inside the server
-      } else if (p < 0.81) {
-        // pours back out
-        u = (p - 0.72) / 0.09;
-        s = mix(HUB, S0, backOut(u, 1.1));
-        amp = 55 * Math.sin(Math.PI * u);
-      } else if (p < 0.9) {
-        // one last small jelly jiggle
-        u = (p - 0.81) / 0.09;
-        a = 0.05 * Math.exp(-3 * u) * Math.sin(u * Math.PI * 4);
-        sx = 1 + a;
-        sy = 1 / (1 + a);
-      }
-      return { s, sx, sy, amp };
+      return { s: S0, sx: 1, sy: 1, amp: 0 };
     }
 
     const A1 = (22 * Math.PI) / 180;

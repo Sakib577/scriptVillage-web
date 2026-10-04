@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useLanguage } from "./LanguageProvider";
 import { Icon, WhatsAppIcon } from "./Icons";
 import { Reveal } from "./Reveal";
-import { serviceAccents } from "./sections/Services";
+import { serviceIconThemes } from "./sections/Services";
 import { getService, services } from "@/lib/services";
 import { whatsappLink } from "@/lib/site.config";
 import { toBanglaDigits } from "@/lib/format";
@@ -22,6 +22,7 @@ export function ServiceDetail({ slug }) {
   const d = t.serviceDetail;
   const quoteLink = whatsappLink(`${t.contact.form.intro}\n${t.contact.form.labels.service}: ${s.title}`);
   const others = services.filter((x) => x.slug !== slug);
+  const theme = serviceIconThemes[index % serviceIconThemes.length];
 
   return (
     <>
@@ -40,11 +41,13 @@ export function ServiceDetail({ slug }) {
           </Link>
 
           <div className="mt-8 grid items-start gap-12 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
-            <div>
-              <span className={`inline-flex h-16 w-16 items-center justify-center rounded-2xl ring-1 ${serviceAccents[index]}`}>
-                <Icon name={service.icon} className="h-8 w-8" />
-              </span>
-              <h1 className="font-display mt-6 text-4xl font-light tracking-tight text-ink sm:text-5xl lg:text-6xl">
+            <div className="group">
+              <div
+                className={`flex h-20 w-20 items-center justify-center rounded-[22px] bg-gradient-to-br ${theme.gradient} ${theme.glow} text-white transition-all duration-350 ease-out group-hover:scale-105 group-hover:rotate-6 group-hover:shadow-[0_12px_28px_rgba(37,99,235,0.25)]`}
+              >
+                <Icon name={service.icon} className="h-10 w-10 text-white" />
+              </div>
+              <h1 className="font-display mt-8 text-4xl font-light tracking-tight text-ink sm:text-5xl lg:text-6xl">
                 {s.title}
               </h1>
               <p className="font-display mt-4 text-xl font-medium text-brand-700 sm:text-2xl">{s.tagline}</p>
@@ -214,21 +217,23 @@ export function ServiceDetail({ slug }) {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 className="font-display text-2xl font-light tracking-tight text-ink">{d.others}</h2>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-            {others.map((o) => (
+            {others.map((o) => {
+              const oTheme = serviceIconThemes[services.indexOf(o) % serviceIconThemes.length];
+              return (
               <SpotlightCard
                 as={Link}
                 key={o.slug}
                 href={`/services/${o.slug}`}
                 className="group flex items-center gap-3 p-4"
               >
-                <span
-                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ring-1 ${serviceAccents[services.indexOf(o)]}`}
+                <div
+                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${oTheme.gradient} text-white shadow-sm transition-transform duration-300 ease-out group-hover:scale-110 group-hover:rotate-6 group-hover:shadow-md`}
                 >
-                  <Icon name={o.icon} className="h-5 w-5" />
-                </span>
+                  <Icon name={o.icon} className="h-5 w-5 text-white" />
+                </div>
                 <span className="font-medium text-ink group-hover:text-brand-800 transition-colors">{o[lang].title}</span>
               </SpotlightCard>
-            ))}
+            )})}
           </div>
         </div>
       </section>
