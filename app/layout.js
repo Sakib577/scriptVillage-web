@@ -51,15 +51,15 @@ const baloo = Baloo_Da_2({
 });
 
 export const metadata = {
-  metadataBase: new URL("https://scriptvillage.com"),
-  title: "ScriptVillage — Beautiful websites for your business",
+  metadataBase: new URL("https://codemolecule.com"),
+  title: "Code Molecule — Beautiful websites for your business",
   description:
-    "ScriptVillage designs and builds fast, modern landing pages, portfolios and business websites in Bangladesh. Fixed prices, fast delivery, you own everything.",
+    "Code Molecule designs and builds fast, modern landing pages, portfolios and business websites in Bangladesh. Fixed prices, fast delivery, you own everything.",
   openGraph: {
-    title: "ScriptVillage — Beautiful websites for your business",
+    title: "Code Molecule — Beautiful websites for your business",
     description: "Landing pages, portfolios and business websites — delivered in days.",
-    url: "https://scriptvillage.com",
-    siteName: "ScriptVillage",
+    url: "https://codemolecule.com",
+    siteName: "Code Molecule",
     type: "website",
   },
 };

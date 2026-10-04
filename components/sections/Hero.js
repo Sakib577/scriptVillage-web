@@ -34,7 +34,7 @@ const HERO_VARIATIONS = {
       titleB: "for your business",
       titleC: "delivered in days",
       subtitle:
-        "ScriptVillage designs and builds fast, modern landing pages, portfolios and business websites. Everything is agreed upfront — scope, price and timeline — so there are no surprises.",
+        "Code Molecule designs and builds fast, modern landing pages, portfolios and business websites. Everything is agreed upfront — scope, price and timeline — so there are no surprises.",
     },
   ],
   bn: [
@@ -63,7 +63,7 @@ const HERO_VARIATIONS = {
       titleB: "সুন্দর ওয়েবসাইট",
       titleC: "মাত্র কয়েক দিনে",
       subtitle:
-        "ScriptVillage দ্রুত ও আধুনিক ল্যান্ডিং পেজ, পোর্টফোলিও আর বিজনেস ওয়েবসাইট ডিজাইন করে বানিয়ে দেয়। কাজের পরিধি, দাম আর সময় — সবকিছু শুরুর আগেই ঠিক করে নেওয়া হয়, তাই পরে কোনো ঝামেলা নেই।",
+        "Code Molecule দ্রুত ও আধুনিক ল্যান্ডিং পেজ, পোর্টফোলিও আর বিজনেস ওয়েবসাইট ডিজাইন করে বানিয়ে দেয়। কাজের পরিধি, দাম আর সময় — সবকিছু শুরুর আগেই ঠিক করে নেওয়া হয়, তাই পরে কোনো ঝামেলা নেই।",
     },
   ],
 };

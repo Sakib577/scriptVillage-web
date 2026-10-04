@@ -75,7 +75,7 @@ export function Header() {
       <div className="mx-auto flex h-18 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
         <Link 
           href="/" 
-          aria-label="ScriptVillage home" 
+          aria-label="Code Molecule home" 
           onClick={(e) => {
             setOpen(false);
             if (window.location.pathname === "/") {
