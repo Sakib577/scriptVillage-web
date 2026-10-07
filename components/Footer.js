@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useLanguage } from "./LanguageProvider";
 import { Logo } from "./Logo";
-import { FacebookIcon, InstagramIcon, WhatsAppIcon } from "./Icons";
+import { FacebookIcon, InstagramIcon, LinkedInIcon, WhatsAppIcon } from "./Icons";
 import { site, whatsappLink } from "@/lib/site.config";
 
 export function Footer() {
@@ -11,6 +11,7 @@ export function Footer() {
   const year = new Date().getFullYear();
   const socials = [
     { label: "Facebook", href: site.facebook, icon: <FacebookIcon /> },
+    { label: "LinkedIn", href: site.linkedin, icon: <LinkedInIcon /> },
     { label: "Instagram", href: site.instagram, icon: <InstagramIcon /> },
     { label: "WhatsApp", href: whatsappLink(), icon: <WhatsAppIcon /> },
   ];

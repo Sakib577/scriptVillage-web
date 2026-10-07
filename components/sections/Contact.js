@@ -1,7 +1,7 @@
 "use client";
 
 import { useLanguage } from "../LanguageProvider";
-import { FacebookIcon, Icon, WhatsAppIcon } from "../Icons";
+import { FacebookIcon, Icon, LinkedInIcon, WhatsAppIcon } from "../Icons";
 import { Reveal } from "../Reveal";
 import { site, whatsappLink } from "@/lib/site.config";
 
@@ -27,6 +27,7 @@ export function Contact() {
   const channels = [
     { label: c.whatsapp, value: site.whatsappDisplay || `+${site.whatsapp}`, href: whatsappLink(f.intro), icon: <WhatsAppIcon className="h-6 w-6" />, tone: "bg-[#25D366]" },
     { label: c.facebook, value: "fb.com/codemolecule", href: site.facebook, icon: <FacebookIcon className="h-6 w-6" />, tone: "bg-[#1877F2]" },
+    { label: c.linkedin, value: "linkedin.com/company/codemolecule", href: site.linkedin, icon: <LinkedInIcon className="h-6 w-6" />, tone: "bg-[#0A66C2]" },
     { label: c.email, value: site.email, href: `mailto:${site.email}`, icon: <Icon name="mail" className="h-6 w-6" />, tone: "bg-ink" },
   ];
 
