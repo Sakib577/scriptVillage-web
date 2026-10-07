@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Code Molecule - Live Logo Animation</title>
+  <style>
+    :root {
+      /* Animation timing & theme colors */
+      --t: 7s;
+      --c-dark: #1aa04a;
+      --c-light: #70d494;
+      --icon-white: #ffffff;
+      --icon-grey: #a2a3a5;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #0f172a;
+      color: #e2e8f0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      padding: 24px;
+      transition: background 0.3s ease;
+    }
+
+    /* Container for the logo */
+    .logo-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      border-radius: 24px;
+      background: transparent;
+    }
+
+    /* Logo SVG dimensions */
+    .logo {
+      width: 320px;
+      height: 320px;
+      display: block;
+      user-select: none;
+    }
+
+    /* Droplets */
+    .logo .drops circle {
+      fill: var(--c-dark);
+    }
+
+    /* ---------- Hub / Server Animation ---------- */
+    .logo .hub {
+      transform-origin: 958px 968px;
+      animation: hub var(--t) infinite ease-out;
+    }
+
+    @keyframes hub {
+      0%, 20%  { transform: scale(1); }
+      25%      { transform: scale(1.08); }
+      29%      { transform: scale(1.16); }
+      34%      { transform: scale(0.98); }
+      38%, 70% { transform: scale(1); }
+      74%      { transform: scale(0.95); }
+      80%, 100%{ transform: scale(1); }
+    }
+
+    .logo .tint {
+      fill: var(--c-dark);
+      transform-box: fill-box;
+      transform-origin: center;
+      transform: scale(0.001);
+      animation: tint var(--t) infinite ease-in-out;
+    }
+
+    @keyframes tint {
+      0%, 22%   { transform: scale(0.001); }
+      30%, 36%  { transform: scale(1); }
+      58%, 100% { transform: scale(0.001); }
+    }
+
+    .logo .glow {
+      fill: #ffffff;
+      opacity: 0;
+      animation: glow var(--t) infinite ease-out;
+    }
+
+    @keyframes glow {
+      0%, 25%  { opacity: 0; }
+      30%      { opacity: 0.5; }
+      41%, 100%{ opacity: 0; }
+    }
+
+    /* ---------- Connector Liquid Lines ---------- */
+    .logo .fill-line {
+      stroke-dasharray: 100 100;
+      stroke-dashoffset: 100;
+      animation: fill-line var(--t) infinite ease-in-out;
+    }
+
+    @keyframes fill-line {
+      0%, 31%      { stroke-dashoffset: 100; opacity: 1; }
+      60%, 66%     { stroke-dashoffset: 0;   opacity: 1; }
+      72%          { stroke-dashoffset: 0;   opacity: 0; }
+      72.01%, 100% { stroke-dashoffset: 100; opacity: 1; }
+    }
+
+    /* ---------- Devices: Laptop & Phone Pop ---------- */
+    .logo .pop {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: pop var(--t) infinite;
+    }
+
+    @keyframes pop {
+      0%, 60%  { transform: scale(1);    animation-timing-function: ease-out; }
+      62.5%    { transform: scale(1.3);  animation-timing-function: ease-in-out; }
+      65.5%    { transform: scale(0.94);  animation-timing-function: ease-out; }
+      68%      { transform: scale(1.03); animation-timing-function: ease-out; }
+      70%, 100%{ transform: scale(1); }
+    }
+
+    .logo .flash {
+      fill: var(--c-light);
+      animation: flash var(--t) infinite ease-in-out;
+    }
+
+    @keyframes flash {
+      0%, 60%    { fill: var(--c-light); }
+      62.5%, 65% { fill: var(--c-dark); }
+      72%, 100%  { fill: var(--c-light); }
+    }
+
+    .logo .burst {
+      fill: none;
+      stroke: var(--c-dark);
+      stroke-width: 12;
+      opacity: 0;
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: burst var(--t) infinite ease-out;
+    }
+
+    @keyframes burst {
+      0%, 60%  { transform: scale(1);    opacity: 0; }
+      61%      { transform: scale(1);    opacity: 0.9; }
+      69%, 100%{ transform: scale(1.55); opacity: 0; }
+    }
+
+    /* ---------- Server LEDs Blinking ---------- */
+    .logo .led {
+      animation: blink 1.2s steps(2, jump-none) infinite;
+    }
+    .logo .led.l2 { animation-delay: -0.4s; }
+    .logo .led.l3 { animation-delay: -0.8s; }
+
+    @keyframes blink {
+      0%   { opacity: 1; }
+      100% { opacity: 0.2; }
+    }
+
+    /* Accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      .logo * { animation: none !important; }
+      .logo .fill-line, .logo .burst, .logo .glow, .logo .tint { opacity: 0; }
+    }
+
+    /* Controls Panel for Testing / Viewing */
+    .controls {
+      margin-top: 32px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 12px 20px;
+      border-radius: 9999px;
+      backdrop-filter: blur(10px);
+    }
+
+    .controls button {
+      background: rgba(255, 255, 255, 0.1);
+      color: inherit;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 13px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .controls button:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-1px);
+    }
+
+    .controls button.active {
+      background: #1aa04a;
+      border-color: #1aa04a;
+      color: #fff;
+    }
+
+    .controls span {
+      font-size: 13px;
+      opacity: 0.7;
+      margin-left: 8px;
+    }
+
+    .controls input[type="range"] {
+      cursor: pointer;
+      accent-color: #1aa04a;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Logo Container -->
+  <div class="logo-container" id="logoContainer">
+    <svg class="logo" id="logoSvg" viewBox="0 0 1932 1932" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Code Molecule Live Logo">
+      <defs>
+        <!-- Liquid stream gooey blend filter -->
+        <filter id="goo" filterUnits="userSpaceOnUse" x="0" y="0" width="1932" height="1932" color-interpolation-filters="sRGB">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="26"/>
+          <feColorMatrix mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 24 -12"/>
+        </filter>
+      </defs>
+
+      <!-- The 'C' Shape (Static as configured on the website) -->
+      <g id="c-group">
+        <path
+          id="c-path"
+          d="M1153 478 A520 520 0 1 0 1153 1442"
+          fill="none"
+          stroke="var(--c-dark)"
+          stroke-width="210"
+          stroke-linecap="round"
+        />
+      </g>
+
+      <!-- Connector Lines Base -->
+      <g stroke="var(--c-light)" stroke-width="70" stroke-linecap="round" fill="none">
+        <path d="M1110 880 L1400 670"/>
+        <path d="M1110 1060 L1390 1270"/>
+      </g>
+
+      <!-- Liquid Droplets & Connector Line Fill Flow -->
+      <g filter="url(#goo)">
+        <g stroke="var(--c-dark)" stroke-width="70" stroke-linecap="round" fill="none">
+          <path class="fill-line" pathLength="100" d="M1110 880 L1400 670"/>
+          <path class="fill-line" pathLength="100" d="M1110 1060 L1390 1270"/>
+        </g>
+        <g id="stream" class="drops"></g>
+      </g>
+
+      <!-- Hub (Central Server) -->
+      <g class="hub">
+        <circle cx="958" cy="968" r="212" fill="var(--c-light)"/>
+        <circle class="tint" cx="958" cy="968" r="212"/>
+        <circle class="glow" cx="958" cy="968" r="212"/>
+        <g fill="var(--icon-white)">
+          <rect x="830" y="872" width="254" height="55" rx="22"/>
+          <rect x="830" y="941" width="254" height="53"/>
+          <rect x="830" y="1008" width="254" height="55" rx="22"/>
+        </g>
+        <g fill="var(--icon-grey)">
+          <circle cx="1014" cy="899" r="9"/><circle cx="1047" cy="899" r="12"/>
+          <circle cx="1014" cy="967" r="9"/><circle cx="1047" cy="967" r="12"/>
+          <circle cx="1014" cy="1036" r="9"/><circle cx="1047" cy="1036" r="12"/>
+          <circle class="led l1" cx="867" cy="967" r="7"/>
+          <circle class="led l2" cx="889" cy="967" r="7"/>
+          <circle class="led l3" cx="912" cy="967" r="7"/>
+          <circle class="led l3" cx="867" cy="1036" r="7"/>
+          <circle class="led l1" cx="889" cy="1036" r="7"/>
+          <circle class="led l2" cx="912" cy="1036" r="7"/>
+        </g>
+      </g>
+
+      <!-- Top Node (Laptop) -->
+      <g class="pop">
+        <circle className="burst" class="burst" cx="1471" cy="583" r="174"/>
+        <circle className="flash" class="flash" cx="1471" cy="583" r="174"/>
+        <rect x="1373" y="500" width="196" height="136" rx="14" fill="var(--icon-white)"/>
+        <rect x="1393" y="520" width="156" height="99" fill="var(--icon-grey)"/>
+        <path d="M1357 641 H1583 Q1580 660 1560 660 H1380 Q1360 660 1357 641 Z" fill="var(--icon-white)"/>
+      </g>
+
+      <!-- Bottom Node (Mobile Device) -->
+      <g class="pop">
+        <circle className="burst" class="burst" cx="1467" cy="1335" r="174"/>
+        <circle className="flash" class="flash" cx="1467" cy="1335" r="174"/>
+        <rect x="1397" y="1220" width="140" height="228" rx="22" fill="var(--icon-white)"/>
+        <rect x="1415" y="1246" width="105" height="156" fill="var(--icon-grey)"/>
+        <circle cx="1467" cy="1423" r="10" fill="var(--icon-grey)"/>
+      </g>
+    </svg>
+  </div>
+
+  <!-- Interactive Viewer Controls (to test on dark/light backgrounds and resize) -->
+  <div class="controls">
+    <button class="active" onclick="setBg('#0f172a', this)">Dark</button>
+    <button onclick="setBg('#ffffff', this)">Light</button>
+    <button onclick="setBg('#f0fdf4', this)">Green Tint</button>
+    <button onclick="setBg('transparent', this)">Transparent</button>
+    <span>Size:</span>
+    <input type="range" min="100" max="600" value="320" oninput="resizeLogo(this.value)">
+    <span id="sizeLabel">320px</span>
+  </div>
+
+  <script>
+    (function () {
+      const NS = 'http://www.w3.org/2000/svg';
+      const T = 7000; // 7s cycle matching CSS --t
+      const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce) return;
+
+      const rnd = i => {
+        const x = Math.sin(i * 127.1 + 311.7) * 43758.5453;
+        return x - Math.floor(x);
+      };
+
+      // Droplets streaming along the 2 paths into the devices
+      const sLayer = document.getElementById('stream');
+      const paths = ['M1110 880 L1400 670', 'M1110 1060 L1390 1270'];
+
+      paths.forEach((d, k) => {
+        for (let j = 0; j < 7; j++) {
+          const c = document.createElementNS(NS, 'circle');
+          c.setAttribute('r', (34 + rnd(j + k * 9) * 12).toFixed(1));
+          c.style.offsetPath = `path('${d}')`;
+          c.style.offsetRotate = '0deg';
+          sLayer.appendChild(c);
+
+          const b = 0.31 + j * 0.03;
+          const e = b + 0.10;
+
+          if (typeof c.animate === 'function') {
+            c.animate([
+              { offsetDistance: '0%',   opacity: 0, offset: 0 },
+              { offsetDistance: '0%',   opacity: 0, offset: Math.max(0, b - 0.001) },
+              { offsetDistance: '0%',   opacity: 1, offset: b, easing: 'ease-in-out' },
+              { offsetDistance: '100%', opacity: 1, offset: e },
+              { offsetDistance: '100%', opacity: 0, offset: Math.min(1, e + 0.001) },
+              { offsetDistance: '100%', opacity: 0, offset: 1 }
+            ], {
+              duration: T,
+              iterations: Infinity
+            });
+          }
+        }
+      });
+
+      // Synchronize CSS and Web Animations API timelines
+      const t0 = document.timeline ? document.timeline.currentTime : performance.now();
+      if (document.getAnimations) {
+        document.getAnimations().forEach(a => {
+          try { a.startTime = t0; } catch (e) {}
+        });
+      }
+    })();
+
+    // Helper functions for controls panel
+    function setBg(color, btn) {
+      document.body.style.background = color === 'transparent' ? '#1e293b' : color;
+      if (color === '#ffffff') {
+        document.body.style.color = '#0f172a';
+      } else {
+        document.body.style.color = '#e2e8f0';
+      }
+      document.querySelectorAll('.controls button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    function resizeLogo(size) {
+      const logo = document.getElementById('logoSvg');
+      logo.style.width = size + 'px';
+      logo.style.height = size + 'px';
+      document.getElementById('sizeLabel').textContent = size + 'px';
+    }
+  </script>
+</body>
+</html>
+
