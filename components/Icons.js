@@ -123,3 +123,13 @@ export function InstagramIcon({ className = "h-5 w-5" }) {
     </svg>
   );
 }
+
+export function LinkedInIcon({ className = "h-5 w-5" }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden>
+      <circle cx="4.98" cy="4.98" r="2.5" />
+      <rect x="2.5" y="9.5" width="5" height="12" rx="0.5" />
+      <path d="M16.5 9.5c-2.3 0-3.5 1.2-4 2.1V9.5H8v12h4.5v-6.3c0-1.8 1-3.2 2.7-3.2 1.6 0 2.3 1.2 2.3 3.2v6.3H22v-6.8c0-3.4-1.8-5.2-5.5-5.2Z" />
+    </svg>
+  );
+}
