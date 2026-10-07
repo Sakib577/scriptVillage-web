@@ -131,85 +131,140 @@ export function Contact() {
             </ul>
           </Reveal>
 
-          {/* Right Column: Modern Glass-White Form */}
+          {/* Right Column: High-End Frosted Glass Form */}
           <Reveal delay={120}>
-            <div className="relative rounded-[28px] bg-white p-7 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.4)] ring-1 ring-black/5 sm:p-9">
+            <div className="relative overflow-hidden rounded-[2rem] border border-emerald-500/25 bg-slate-950/60 p-7 sm:p-9 shadow-[0_25px_60px_rgba(0,0,0,0.6)] backdrop-blur-2xl ring-1 ring-white/10 before:absolute before:inset-x-0 before:top-0 before:h-[2px] before:bg-gradient-to-r before:from-transparent before:via-emerald-400 before:to-transparent">
+              {/* Inner Ambient Glow */}
+              <div aria-hidden className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-emerald-500/15 blur-3xl" />
+
               {/* Form Card Header */}
-              <div className="mb-6 flex items-center justify-between border-b border-slate-100 pb-4">
-                <div>
-                  <h3 className="font-display text-xl font-bold text-ink">
-                    {lang === "bn" ? "সরাসরি বার্তা পাঠান" : "Send us a message"}
-                  </h3>
-                  <p className="mt-0.5 text-xs text-slate-500">
-                    {lang === "bn" ? "WhatsApp-এ সরাসরি কথা বলুন" : "Connect straight to our team"}
-                  </p>
+              <div className="relative mb-6 border-b border-white/10 pb-5">
+                <div className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-0.5 text-[11px] font-semibold text-emerald-300 mb-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  {lang === "bn" ? "ইনস্ট্যান্ট রেসপন্স" : "Instant Response"}
                 </div>
-                <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600 ring-1 ring-emerald-100 shadow-sm">
-                  <WhatsAppIcon className="h-5 w-5" />
-                </span>
+                <h3 className="font-display text-2xl font-bold tracking-tight text-white">
+                  {lang === "bn" ? "সরাসরি বার্তা পাঠান" : "Send us a message"}
+                </h3>
+                <p className="mt-1 text-xs sm:text-sm text-emerald-100/70">
+                  {lang === "bn" ? "ফর্মটি পূরণ করে সরাসরি WhatsApp-এ কথা বলুন" : "Connect straight to our WhatsApp team"}
+                </p>
               </div>
 
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit} className="relative space-y-4">
                 <div className="grid gap-4 sm:grid-cols-2">
+                  {/* Name input */}
                   <label className="block">
-                    <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-600">
-                      {f.name} *
+                    <span className="mb-2 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-300/90">
+                      {f.name} <span className="text-emerald-400">*</span>
                     </span>
-                    <input name="name" required autoComplete="name" className={inputClass} />
+                    <div className="relative flex items-center rounded-xl border border-white/15 bg-white/[0.05] transition-all duration-200 focus-within:border-emerald-400 focus-within:bg-white/[0.09] focus-within:ring-4 focus-within:ring-emerald-400/20 hover:border-white/25">
+                      <span className="pointer-events-none pl-3.5 pr-2 text-emerald-400/80">
+                        <svg className="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                      </span>
+                      <input
+                        name="name"
+                        required
+                        autoComplete="name"
+                        placeholder={lang === "bn" ? "আপনার নাম" : "Your full name"}
+                        className="w-full bg-transparent py-3 pr-4 text-[15px] text-white placeholder:text-white/30 outline-none"
+                      />
+                    </div>
                   </label>
+
+                  {/* Email input */}
                   <label className="block">
-                    <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-600">
+                    <span className="mb-2 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-300/90">
                       {f.email}
                     </span>
-                    <input
-                      type="email"
-                      name="email"
-                      autoComplete="email"
-                      className={inputClass}
-                      placeholder="you@example.com"
-                    />
+                    <div className="relative flex items-center rounded-xl border border-white/15 bg-white/[0.05] transition-all duration-200 focus-within:border-emerald-400 focus-within:bg-white/[0.09] focus-within:ring-4 focus-within:ring-emerald-400/20 hover:border-white/25">
+                      <span className="pointer-events-none pl-3.5 pr-2 text-emerald-400/80">
+                        <Icon name="mail" className="h-4.5 w-4.5" />
+                      </span>
+                      <input
+                        type="email"
+                        name="email"
+                        autoComplete="email"
+                        placeholder="you@example.com"
+                        className="w-full bg-transparent py-3 pr-4 text-[15px] text-white placeholder:text-white/30 outline-none"
+                      />
+                    </div>
                   </label>
                 </div>
 
-                <label className="mt-4 block">
-                  <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-600">
-                    {f.service} *
+                {/* Service select */}
+                <label className="block">
+                  <span className="mb-2 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-300/90">
+                    {f.service} <span className="text-emerald-400">*</span>
                   </span>
-                  <select name="service" required defaultValue="" className={inputClass}>
-                    <option value="" disabled>
-                      —
-                    </option>
-                    {f.options.map((o) => (
-                      <option key={o} value={o}>
-                        {o}
+                  <div className="relative flex items-center rounded-xl border border-white/15 bg-white/[0.05] transition-all duration-200 focus-within:border-emerald-400 focus-within:bg-white/[0.09] focus-within:ring-4 focus-within:ring-emerald-400/20 hover:border-white/25">
+                    <span className="pointer-events-none pl-3.5 pr-2 text-emerald-400/80">
+                      <Icon name="bolt" className="h-4.5 w-4.5" />
+                    </span>
+                    <select
+                      name="service"
+                      required
+                      defaultValue=""
+                      className="w-full appearance-none bg-transparent py-3 pr-10 text-[15px] text-white outline-none cursor-pointer"
+                    >
+                      <option value="" disabled className="bg-[#072417] text-white/50">
+                        — {lang === "bn" ? "সার্ভিস নির্বাচন করুন" : "Select a service"} —
                       </option>
-                    ))}
-                  </select>
+                      {f.options.map((o) => (
+                        <option key={o} value={o} className="bg-[#072417] text-white py-2">
+                          {o}
+                        </option>
+                      ))}
+                    </select>
+                    <span className="pointer-events-none absolute right-4 text-emerald-300/70">
+                      <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.2">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </span>
+                  </div>
                 </label>
 
-                <label className="mt-4 block">
-                  <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-600">
+                {/* Message textarea */}
+                <label className="block">
+                  <span className="mb-2 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-300/90">
                     {f.message}
                   </span>
-                  <textarea
-                    name="message"
-                    rows={4}
-                    placeholder={lang === "bn" ? "আপনার প্রজেক্ট বা বাজেট সম্পর্কে জানান..." : "Tell us about your requirements or budget..."}
-                    className={`${inputClass} resize-none`}
-                  />
+                  <div className="relative rounded-xl border border-white/15 bg-white/[0.05] p-3.5 transition-all duration-200 focus-within:border-emerald-400 focus-within:bg-white/[0.09] focus-within:ring-4 focus-within:ring-emerald-400/20 hover:border-white/25">
+                    <textarea
+                      name="message"
+                      rows={4}
+                      placeholder={
+                        lang === "bn"
+                          ? "আপনার প্রজেক্ট, বাজেট বা সময়সীমা সম্পর্কে লিখুন..."
+                          : "Tell us about your requirements, timeline or budget..."
+                      }
+                      className="w-full bg-transparent text-[15px] text-white placeholder:text-white/30 outline-none resize-none"
+                    />
+                  </div>
                 </label>
 
+                {/* Submit Button */}
                 <button
                   type="submit"
-                  className="mt-6 group btn-fancy btn-shimmer btn-glow-whatsapp relative inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-[#25D366] to-[#16a34a] px-6 py-4 font-semibold text-white shadow-[0_10px_25px_rgba(37,211,102,0.35)] transition-all duration-300 hover:-translate-y-0.5 hover:from-[#1ebc57] hover:to-[#15803d] hover:shadow-[0_14px_32px_rgba(37,211,102,0.45)]"
+                  className="mt-6 group btn-fancy btn-shimmer btn-glow-whatsapp relative flex w-full items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#25D366] via-[#22c55e] to-[#16a34a] px-6 py-4 text-base font-bold text-white shadow-[0_12px_28px_rgba(37,211,102,0.4)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_36px_rgba(37,211,102,0.55)] active:translate-y-0"
                 >
-                  <WhatsAppIcon className="h-5 w-5 transition-transform duration-200 group-hover:scale-110" />
+                  <WhatsAppIcon className="h-5.5 w-5.5 transition-transform duration-200 group-hover:scale-110" />
                   <span>{f.submit}</span>
+                  <Icon name="arrow" className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
                 </button>
 
-                <div className="mt-3.5 flex items-center justify-center gap-1.5 text-center text-xs text-slate-500">
-                  <Icon name="check" className="h-3.5 w-3.5 text-emerald-600 shrink-0" />
-                  <span>{f.hint}</span>
+                {/* Trust & Guarantee Pill Footer */}
+                <div className="mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5 text-center text-xs text-emerald-200/75">
+                  <span className="inline-flex items-center gap-1">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                    {lang === "bn" ? "১৫ মিনিটে রিপ্লাই" : "15-min avg reply"}
+                  </span>
+                  <span className="inline-flex items-center gap-1">
+                    <Icon name="check" className="h-3.5 w-3.5 text-emerald-400" />
+                    {lang === "bn" ? "কোনো স্প্যাম নেই" : "No spam guaranteed"}
+                  </span>
                 </div>
               </form>
             </div>
