@@ -1,9 +1,9 @@
 "use client";
 
 import { useLanguage } from "../LanguageProvider";
-import { Icon, MessengerIcon, WhatsAppIcon } from "../Icons";
+import { FacebookIcon, Icon, WhatsAppIcon } from "../Icons";
 import { Reveal } from "../Reveal";
-import { messengerLink, site, whatsappLink } from "@/lib/site.config";
+import { site, whatsappLink } from "@/lib/site.config";
 
 const inputClass =
   "w-full rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-ink placeholder:text-slate-400 outline-none transition focus:border-brand-500 focus:ring-4 focus:ring-brand-500/15";
@@ -17,7 +17,7 @@ export function Contact() {
   function handleSubmit(e) {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
-    const fields = ["name", "business", "service", "message"]
+    const fields = ["name", "email", "service", "message"]
       .filter((key) => data.get(key)?.trim())
       .map((key) => `${f.labels[key]}: ${data.get(key).trim()}`);
     const text = [f.intro, "", ...fields].join("\n");
@@ -25,8 +25,8 @@ export function Contact() {
   }
 
   const channels = [
-    { label: c.whatsapp, value: `+${site.whatsapp}`, href: whatsappLink(f.intro), icon: <WhatsAppIcon className="h-6 w-6" />, tone: "bg-[#25D366]" },
-    { label: c.messenger, value: `m.me/${site.messenger}`, href: messengerLink, icon: <MessengerIcon className="h-6 w-6" />, tone: "bg-[#0866FF]" },
+    { label: c.whatsapp, value: site.whatsappDisplay || `+${site.whatsapp}`, href: whatsappLink(f.intro), icon: <WhatsAppIcon className="h-6 w-6" />, tone: "bg-[#25D366]" },
+    { label: c.facebook, value: "fb.com/codemolecule", href: site.facebook, icon: <FacebookIcon className="h-6 w-6" />, tone: "bg-[#1877F2]" },
     { label: c.email, value: site.email, href: `mailto:${site.email}`, icon: <Icon name="mail" className="h-6 w-6" />, tone: "bg-ink" },
   ];
 
@@ -73,8 +73,8 @@ export function Contact() {
                   <input name="name" required autoComplete="name" className={inputClass} />
                 </label>
                 <label className="block">
-                  <span className="mb-1.5 block text-sm font-medium text-slate-700">{f.business}</span>
-                  <input name="business" autoComplete="organization" className={inputClass} />
+                  <span className="mb-1.5 block text-sm font-medium text-slate-700">{f.email}</span>
+                  <input type="email" name="email" autoComplete="email" className={inputClass} placeholder="you@example.com" />
                 </label>
               </div>
               <label className="mt-4 block">

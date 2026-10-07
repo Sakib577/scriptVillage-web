@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { useLanguage } from "./LanguageProvider";
 import { Logo } from "./Logo";
-import { FacebookIcon, InstagramIcon, MessengerIcon, WhatsAppIcon } from "./Icons";
-import { messengerLink, site, whatsappLink } from "@/lib/site.config";
+import { FacebookIcon, InstagramIcon, WhatsAppIcon } from "./Icons";
+import { site, whatsappLink } from "@/lib/site.config";
 
 export function Footer() {
   const { t } = useLanguage();
@@ -13,7 +13,6 @@ export function Footer() {
     { label: "Facebook", href: site.facebook, icon: <FacebookIcon /> },
     { label: "Instagram", href: site.instagram, icon: <InstagramIcon /> },
     { label: "WhatsApp", href: whatsappLink(), icon: <WhatsAppIcon /> },
-    { label: "Messenger", href: messengerLink, icon: <MessengerIcon /> },
   ];
 
   return (
@@ -56,7 +55,7 @@ export function Footer() {
           <ul className="mt-4 space-y-2.5 text-slate-400">
             <li>
               <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="transition hover:text-brand-300">
-                +{site.whatsapp}
+                {site.whatsappDisplay || `+${site.whatsapp}`}
               </a>
             </li>
             <li>
