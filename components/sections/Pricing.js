@@ -107,9 +107,9 @@ function PricingCard({ plan, p, t }) {
 
         <div className="mt-6">
           <p className="text-sm text-slate-400">{p.from}</p>
-          <div className="flex items-baseline gap-2">
-            <span className="font-display text-4xl font-bold tracking-tight text-white">{plan.price}</span>
-            <span className="text-sm text-brand-300 font-medium">· {plan.time}</span>
+          <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+            <span className="font-display text-2xl sm:text-3xl xl:text-[32px] font-bold tracking-tight text-white">{plan.price}</span>
+            <span className="text-sm text-brand-300 font-medium whitespace-nowrap">· {plan.time}</span>
           </div>
         </div>
 
