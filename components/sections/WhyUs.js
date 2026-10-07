@@ -23,7 +23,7 @@ export function WhyUs() {
   const w = t.why;
 
   return (
-    <section className="relative overflow-hidden bg-ink py-24 text-white sm:py-28">
+    <section className="relative overflow-hidden bg-ink py-16 sm:py-24 lg:py-28">
       {/* Background Dots: Only visible in Option 2 & Option 3 */}
       {(SPOTLIGHT_OPTION === 2 || SPOTLIGHT_OPTION === 3) && (
         <div className="absolute inset-0 opacity-[0.07] bg-[radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] bg-size-[28px_28px]" />
@@ -35,7 +35,7 @@ export function WhyUs() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal className="mx-auto max-w-2xl text-center">
           <p className="eyebrow text-sm font-medium uppercase tracking-[0.18em] text-brand-400">{w.eyebrow}</p>
-          <h2 className="font-display mt-3 text-3xl font-light tracking-tight sm:text-4xl">{w.title}</h2>
+          <h2 className="font-display mt-3 text-3xl font-light tracking-tight text-white sm:text-4xl">{w.title}</h2>
         </Reveal>
 
         <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -111,7 +111,7 @@ function WhyUsCard({ item, i }) {
         <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-500/15 text-brand-300">
           <Icon name={icons[i]} className="h-6 w-6" />
         </span>
-        <h3 className="font-display mt-6 text-lg font-bold">{item.title}</h3>
+        <h3 className="font-display mt-6 text-lg font-bold text-white group-hover:text-brand-300 transition-colors">{item.title}</h3>
         <p className="mt-3 text-[15px] text-slate-300">{item.desc}</p>
       </div>
     </div>

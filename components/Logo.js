@@ -20,7 +20,8 @@ export function LogoMark({ className = "h-14 w-14" }) {
   useEffect(() => {
     if (typeof window === "undefined") return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) return;
+    const isMobile = window.innerWidth < 768;
+    if (reduce || isMobile) return;
 
     const NS = "http://www.w3.org/2000/svg";
     const T = 7000; // 7s loop, synced with CSS --t
@@ -274,7 +275,13 @@ export function Logo({ className = "", onDark = false }) {
     <span className={`inline-flex items-center gap-3 ${className}`}>
       <LogoMark className="h-[72px] w-[72px] shrink-0 drop-shadow-sm" />
 
-      <span className={`font-display text-[24px] font-bold tracking-tight ${onDark ? "text-slate-100" : "text-ink"}`}>
+      <span
+        lang="en"
+        translate="no"
+        className={`logo-text text-[24px] font-bold tracking-tight select-none ${
+          onDark ? "text-slate-100" : "text-ink"
+        }`}
+      >
         Code Molecule
       </span>
     </span>
