@@ -127,7 +127,7 @@ export function Hero() {
       : "hero-text-idle-bottom";
 
   return (
-    <section id="top" className="relative overflow-hidden pt-32 pb-20 sm:pt-40 lg:flex lg:min-h-[calc(100dvh-4.25rem)] lg:items-center lg:pt-20 lg:pb-6">
+    <section id="top" className="relative overflow-hidden pt-24 pb-12 sm:pt-40 lg:flex lg:min-h-[calc(100dvh-4.25rem)] lg:items-center lg:pt-20 lg:pb-6">
       <div className="bg-grid absolute inset-0 [mask-image:radial-gradient(ellipse_at_top,black_30%,transparent_75%)]" />
 
       <div className="relative mx-auto grid w-full max-w-7xl items-center gap-16 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">

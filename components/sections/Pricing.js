@@ -22,7 +22,7 @@ export function Pricing() {
   const p = t.pricing;
 
   return (
-    <section id="pricing" className="relative overflow-hidden bg-gradient-to-b from-[#08111D] via-[#0D1C30] to-[#0A1422] py-24 text-white sm:py-28">
+    <section id="pricing" className="relative overflow-hidden bg-gradient-to-b from-[#08111D] via-[#0D1C30] to-[#0A1422] py-16 sm:py-24 lg:py-28">
       {/* Background Dots: Only visible in Option 2 & Option 3 */}
       {(SPOTLIGHT_OPTION === 2 || SPOTLIGHT_OPTION === 3) && (
         <div aria-hidden className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] bg-size-[28px_28px] opacity-[0.06]" />

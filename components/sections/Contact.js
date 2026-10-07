@@ -61,9 +61,9 @@ export function Contact() {
   ];
 
   return (
-    <section id="contact" className="relative px-4 pb-24 sm:px-6 sm:pb-32 lg:px-8">
+    <section id="contact" className="relative px-3 sm:px-6 pb-16 sm:pb-24 lg:px-8 lg:pb-32">
       {/* Main Glass / Luminous Card */}
-      <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] border border-emerald-500/20 bg-gradient-to-br from-[#072417] via-[#051810] to-[#030e0a] px-6 py-14 shadow-[0_30px_90px_-20px_rgba(5,24,16,0.7)] sm:px-12 sm:py-20 lg:p-16">
+      <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2rem] sm:rounded-[2.5rem] border border-emerald-500/20 bg-gradient-to-br from-[#072417] via-[#051810] to-[#030e0a] px-4 sm:px-12 py-10 sm:py-20 lg:p-16 shadow-[0_30px_90px_-20px_rgba(5,24,16,0.7)]">
         {/* Ambient Glowing Orbs */}
         <div aria-hidden className="pointer-events-none absolute -top-32 -left-32 h-96 w-96 rounded-full bg-emerald-500/20 blur-[100px]" />
         <div aria-hidden className="pointer-events-none absolute top-1/2 -right-32 h-96 w-96 rounded-full bg-teal-400/15 blur-[120px]" />
@@ -93,37 +93,37 @@ export function Contact() {
               {c.subtitle}
             </p>
 
-            <ul className="mt-10 space-y-3.5">
+            <ul className="mt-10 space-y-3.5 w-full">
               {channels.map((ch) => (
                 <li key={ch.label}>
                   <a
                     href={ch.href}
                     target={ch.href.startsWith("mailto:") ? undefined : "_blank"}
                     rel="noopener noreferrer"
-                    className={`group relative flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.04] p-3.5 sm:p-4 backdrop-blur-md transition-all duration-300 ease-out hover:-translate-y-1 hover:border-emerald-400/30 hover:bg-white/[0.09] hover:shadow-xl ${ch.glow}`}
+                    className={`group relative flex w-full items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.04] p-3 sm:gap-4 sm:p-4 backdrop-blur-md transition-all duration-300 ease-out hover:-translate-y-1 hover:border-emerald-400/30 hover:bg-white/[0.09] hover:shadow-xl ${ch.glow}`}
                   >
                     <div
-                      className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${ch.gradient} text-white shadow-md transition-transform duration-300 ease-out group-hover:scale-110 group-hover:rotate-6`}
+                      className={`flex h-10 w-10 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${ch.gradient} text-white shadow-md transition-transform duration-300 ease-out group-hover:scale-110 group-hover:rotate-6`}
                     >
                       {ch.icon}
                     </div>
-                    <div className="min-w-0 flex-1">
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs font-semibold uppercase tracking-wider text-emerald-300/80">
+                    <div className="min-w-0 flex-1 overflow-hidden">
+                      <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+                        <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-emerald-300/80">
                           {ch.label}
                         </span>
                         {ch.badge && (
-                          <span className="rounded-full bg-emerald-400/20 px-2 py-0.5 text-[10px] font-semibold text-emerald-300">
+                          <span className="rounded-full bg-emerald-400/20 px-1.5 py-0.5 text-[9px] sm:text-[10px] font-semibold text-emerald-300 whitespace-nowrap">
                             {ch.badge}
                           </span>
                         )}
                       </div>
-                      <span className="block truncate text-sm sm:text-[15px] font-medium text-white/95 transition-colors group-hover:text-emerald-200">
+                      <span className="block truncate text-[13px] sm:text-[15px] font-medium text-white/95 transition-colors group-hover:text-emerald-200">
                         {ch.value}
                       </span>
                     </div>
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/5 text-white/40 transition-all duration-300 group-hover:bg-emerald-500/20 group-hover:text-emerald-200 group-hover:translate-x-1">
-                      <Icon name="arrow" className="h-4 w-4" />
+                    <span className="hidden xs:flex flex h-6 w-6 sm:h-8 sm:w-8 shrink-0 items-center justify-center rounded-full bg-white/5 text-white/40 transition-all duration-300 group-hover:bg-emerald-500/20 group-hover:text-emerald-200 group-hover:translate-x-1">
+                      <Icon name="arrow" className="h-3 w-3 sm:h-4 sm:w-4" />
                     </span>
                   </a>
                 </li>
@@ -133,20 +133,20 @@ export function Contact() {
 
           {/* Right Column: High-End Frosted Glass Form */}
           <Reveal delay={120}>
-            <div className="relative overflow-hidden rounded-[2rem] border border-emerald-500/25 bg-slate-950/60 p-7 sm:p-9 shadow-[0_25px_60px_rgba(0,0,0,0.6)] backdrop-blur-2xl ring-1 ring-white/10 before:absolute before:inset-x-0 before:top-0 before:h-[2px] before:bg-gradient-to-r before:from-transparent before:via-emerald-400 before:to-transparent">
+            <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950/60 p-7 sm:p-9 shadow-[0_25px_60px_rgba(0,0,0,0.6)] backdrop-blur-2xl ring-1 ring-white/5 before:absolute before:inset-x-0 before:top-0 before:h-[2px] before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent">
               {/* Inner Ambient Glow */}
-              <div aria-hidden className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-emerald-500/15 blur-3xl" />
+              <div aria-hidden className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-white/5 blur-3xl" />
 
               {/* Form Card Header */}
               <div className="relative mb-6 border-b border-white/10 pb-5">
-                <div className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-0.5 text-[11px] font-semibold text-emerald-300 mb-2">
+                <div className="inline-flex items-center gap-1.5 rounded-full bg-white/5 border border-white/10 px-2.5 py-0.5 text-[11px] font-semibold text-slate-300 mb-2">
                   <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
                   {lang === "bn" ? "ইনস্ট্যান্ট রেসপন্স" : "Instant Response"}
                 </div>
                 <h3 className="font-display text-2xl font-bold tracking-tight text-white">
                   {lang === "bn" ? "সরাসরি বার্তা পাঠান" : "Send us a message"}
                 </h3>
-                <p className="mt-1 text-xs sm:text-sm text-emerald-100/70">
+                <p className="mt-1 text-xs sm:text-sm text-slate-400">
                   {lang === "bn" ? "ফর্মটি পূরণ করে সরাসরি WhatsApp-এ কথা বলুন" : "Connect straight to our WhatsApp team"}
                 </p>
               </div>
@@ -155,11 +155,11 @@ export function Contact() {
                 <div className="grid gap-4 sm:grid-cols-2">
                   {/* Name input */}
                   <label className="block">
-                    <span className="mb-2 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-300/90">
-                      {f.name} <span className="text-emerald-400">*</span>
+                    <span className="mb-2 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-slate-300">
+                      {f.name} <span className="text-slate-500">*</span>
                     </span>
-                    <div className="relative flex items-center rounded-xl border border-white/15 bg-white/[0.05] transition-all duration-200 focus-within:border-emerald-400 focus-within:bg-white/[0.09] focus-within:ring-4 focus-within:ring-emerald-400/20 hover:border-white/25">
-                      <span className="pointer-events-none pl-3.5 pr-2 text-emerald-400/80">
+                    <div className="relative flex items-center rounded-xl border border-white/10 bg-white/[0.03] transition-all duration-200 focus-within:border-white/30 focus-within:bg-white/[0.06] focus-within:ring-4 focus-within:ring-white/10 hover:border-white/20">
+                      <span className="pointer-events-none pl-3.5 pr-2 text-slate-400">
                         <svg className="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                         </svg>
@@ -176,11 +176,11 @@ export function Contact() {
 
                   {/* Email input */}
                   <label className="block">
-                    <span className="mb-2 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-300/90">
+                    <span className="mb-2 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-slate-300">
                       {f.email}
                     </span>
-                    <div className="relative flex items-center rounded-xl border border-white/15 bg-white/[0.05] transition-all duration-200 focus-within:border-emerald-400 focus-within:bg-white/[0.09] focus-within:ring-4 focus-within:ring-emerald-400/20 hover:border-white/25">
-                      <span className="pointer-events-none pl-3.5 pr-2 text-emerald-400/80">
+                    <div className="relative flex items-center rounded-xl border border-white/10 bg-white/[0.03] transition-all duration-200 focus-within:border-white/30 focus-within:bg-white/[0.06] focus-within:ring-4 focus-within:ring-white/10 hover:border-white/20">
+                      <span className="pointer-events-none pl-3.5 pr-2 text-slate-400">
                         <Icon name="mail" className="h-4.5 w-4.5" />
                       </span>
                       <input
@@ -196,11 +196,11 @@ export function Contact() {
 
                 {/* Service select */}
                 <label className="block">
-                  <span className="mb-2 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-300/90">
-                    {f.service} <span className="text-emerald-400">*</span>
+                  <span className="mb-2 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-slate-300">
+                    {f.service} <span className="text-slate-500">*</span>
                   </span>
-                  <div className="relative flex items-center rounded-xl border border-white/15 bg-white/[0.05] transition-all duration-200 focus-within:border-emerald-400 focus-within:bg-white/[0.09] focus-within:ring-4 focus-within:ring-emerald-400/20 hover:border-white/25">
-                    <span className="pointer-events-none pl-3.5 pr-2 text-emerald-400/80">
+                  <div className="relative flex items-center rounded-xl border border-white/10 bg-white/[0.03] transition-all duration-200 focus-within:border-white/30 focus-within:bg-white/[0.06] focus-within:ring-4 focus-within:ring-white/10 hover:border-white/20">
+                    <span className="pointer-events-none pl-3.5 pr-2 text-slate-400">
                       <Icon name="bolt" className="h-4.5 w-4.5" />
                     </span>
                     <select
@@ -209,16 +209,16 @@ export function Contact() {
                       defaultValue=""
                       className="w-full appearance-none bg-transparent py-3 pr-10 text-[15px] text-white outline-none cursor-pointer"
                     >
-                      <option value="" disabled className="bg-[#072417] text-white/50">
+                      <option value="" disabled className="bg-slate-900 text-white/50">
                         — {lang === "bn" ? "সার্ভিস নির্বাচন করুন" : "Select a service"} —
                       </option>
                       {f.options.map((o) => (
-                        <option key={o} value={o} className="bg-[#072417] text-white py-2">
+                        <option key={o} value={o} className="bg-slate-900 text-white py-2">
                           {o}
                         </option>
                       ))}
                     </select>
-                    <span className="pointer-events-none absolute right-4 text-emerald-300/70">
+                    <span className="pointer-events-none absolute right-4 text-slate-500">
                       <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.2">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                       </svg>
@@ -228,10 +228,10 @@ export function Contact() {
 
                 {/* Message textarea */}
                 <label className="block">
-                  <span className="mb-2 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-300/90">
+                  <span className="mb-2 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-slate-300">
                     {f.message}
                   </span>
-                  <div className="relative rounded-xl border border-white/15 bg-white/[0.05] p-3.5 transition-all duration-200 focus-within:border-emerald-400 focus-within:bg-white/[0.09] focus-within:ring-4 focus-within:ring-emerald-400/20 hover:border-white/25">
+                  <div className="relative rounded-xl border border-white/10 bg-white/[0.03] p-3.5 transition-all duration-200 focus-within:border-white/30 focus-within:bg-white/[0.06] focus-within:ring-4 focus-within:ring-white/10 hover:border-white/20">
                     <textarea
                       name="message"
                       rows={4}
@@ -256,7 +256,7 @@ export function Contact() {
                 </button>
 
                 {/* Trust & Guarantee Pill Footer */}
-                <div className="mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5 text-center text-xs text-emerald-200/75">
+                <div className="mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5 text-center text-xs text-slate-400">
                   <span className="inline-flex items-center gap-1">
                     <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
                     {lang === "bn" ? "১৫ মিনিটে রিপ্লাই" : "15-min avg reply"}

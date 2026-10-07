@@ -20,7 +20,8 @@ export function LogoMark({ className = "h-14 w-14" }) {
   useEffect(() => {
     if (typeof window === "undefined") return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) return;
+    const isMobile = window.innerWidth < 768;
+    if (reduce || isMobile) return;
 
     const NS = "http://www.w3.org/2000/svg";
     const T = 7000; // 7s loop, synced with CSS --t

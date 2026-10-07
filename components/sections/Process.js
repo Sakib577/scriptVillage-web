@@ -9,7 +9,7 @@ export function Process() {
   const p = t.process;
 
   return (
-    <section id="process" className="bg-canvas-alt py-24 sm:py-28">
+    <section id="process" className="bg-canvas-alt py-16 sm:py-24 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading eyebrow={p.eyebrow} title={p.title} />
 
