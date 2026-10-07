@@ -274,7 +274,13 @@ export function Logo({ className = "", onDark = false }) {
     <span className={`inline-flex items-center gap-3 ${className}`}>
       <LogoMark className="h-[72px] w-[72px] shrink-0 drop-shadow-sm" />
 
-      <span className={`font-display text-[24px] font-bold tracking-tight ${onDark ? "text-slate-100" : "text-ink"}`}>
+      <span
+        lang="en"
+        translate="no"
+        className={`logo-text text-[24px] font-bold tracking-tight select-none ${
+          onDark ? "text-slate-100" : "text-ink"
+        }`}
+      >
         Code Molecule
       </span>
     </span>

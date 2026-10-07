@@ -69,6 +69,16 @@ html[data-lang="bn"] .eyebrow {
   letter-spacing: 0;
 }
 
+/* Ensure Code Molecule brand name / logo always keeps its fixed English font & bold weight across all languages */
+.logo-text,
+html[data-lang="bn"] .logo-text,
+html[data-lang="en"] .logo-text {
+  font-family: var(--font-nunito), var(--font-manrope), var(--font-lato), ui-sans-serif, system-ui, sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.025em !important;
+  line-height: 1.25 !important;
+}
+
 .bg-grid {
   background-image:
     linear-gradient(to right, rgb(15 23 42 / 0.05) 1px, transparent 1px),
