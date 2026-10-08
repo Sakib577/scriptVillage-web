@@ -165,6 +165,7 @@ export function Contact() {
                         </svg>
                       </span>
                       <input
+                        id="contact-name"
                         name="name"
                         required
                         autoComplete="name"
@@ -204,6 +205,7 @@ export function Contact() {
                       <Icon name="bolt" className="h-4.5 w-4.5" />
                     </span>
                     <select
+                      id="contact-service"
                       name="service"
                       required
                       defaultValue=""
