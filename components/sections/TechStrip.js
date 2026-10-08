@@ -106,7 +106,7 @@ export function TechStrip() {
   }, []);
 
   return (
-    <section aria-label={t.techStrip.label} className="relative h-17 border-y border-brand-100 bg-brand-50 lg:sticky lg:top-[calc(100dvh-4.25rem)]">
+    <section aria-label={t.techStrip.label} className="relative h-17 border-y border-brand-100 bg-brand-50 hidden lg:block lg:sticky lg:top-[calc(100dvh-4.25rem)]">
       <p className="sr-only">
         {t.techStrip.label}: {mixedTechLogos.map((i) => i.title).join(", ")}
       </p>
