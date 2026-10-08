@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { useLanguage } from "../LanguageProvider";
 import { Icon } from "../Icons";
 import { Reveal, SectionHeading } from "../Reveal";
-import { whatsappLink } from "@/lib/site.config";
+import { MobileCarousel } from "../MobileCarousel";
 
 /* ==========================================================================
    SPOTLIGHT EFFECT OPTIONS (Uncomment one option below to use it):
@@ -35,13 +35,20 @@ export function Pricing() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading eyebrow={p.eyebrow} title={p.title} subtitle={p.subtitle} dark />
 
-        <div className="mx-auto mt-16 grid max-w-6xl items-stretch gap-6 lg:grid-cols-3">
-          {p.plans.map((plan, i) => (
-            <Reveal key={plan.name} delay={i * 100}>
-              <PricingCard plan={plan} p={p} t={t} />
-            </Reveal>
-          ))}
-        </div>
+        <Reveal className="mt-12 sm:mt-16">
+          <MobileCarousel
+            dark
+            gridClass="lg:grid-cols-3"
+          >
+            {p.plans.map((plan, i) => (
+              <div key={plan.name} className="flex w-full h-full">
+                <div className="w-full flex-1 transition-transform duration-300 lg:hover:-translate-y-2">
+                  <PricingCard plan={plan} p={p} t={t} />
+                </div>
+              </div>
+            ))}
+          </MobileCarousel>
+        </Reveal>
 
         <Reveal className="mx-auto mt-12 max-w-2xl text-center text-[15px] text-slate-400">{p.note}</Reveal>
       </div>
@@ -66,7 +73,7 @@ function PricingCard({ plan, p, t }) {
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setOpacity(1)}
       onMouseLeave={() => setOpacity(0)}
-      className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] p-8 backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-brand-400/40 hover:bg-white/[0.07] hover:shadow-2xl hover:shadow-brand-950/60"
+      className="group relative flex h-full flex-col overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.04] p-6 sm:p-8 backdrop-blur transition-colors duration-300 hover:shadow-2xl hover:shadow-brand-950/60 hover:border-brand-400/40 hover:bg-white/[0.07]"
     >
       {/* 
         [OPTION 1 & 3] Dotted Grid Spotlight Layer:
@@ -103,21 +110,24 @@ function PricingCard({ plan, p, t }) {
 
       <div className="relative z-10 flex flex-col h-full pointer-events-none">
         <h3 className="font-display text-xl font-bold text-white">{plan.name}</h3>
-        <p className="mt-2 text-[15px] text-slate-300">{plan.desc}</p>
+        <p className="mt-2 text-sm text-slate-300/80">{plan.desc}</p>
 
-        <div className="mt-6">
-          <p className="text-sm text-slate-400">{p.from}</p>
+        <div className="mt-6 mb-8 relative">
+          {/* Subtle separator */}
+          <div className="absolute -bottom-4 left-0 right-0 h-px bg-white/10" />
+          
+          <p className="text-xs font-medium uppercase tracking-wider text-slate-400 mb-1">{p.from}</p>
           <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
-            <span className="font-display text-2xl sm:text-3xl xl:text-[32px] font-bold tracking-tight text-white">{plan.price}</span>
-            <span className="text-sm text-brand-300 font-medium whitespace-nowrap">· {plan.time}</span>
+            <span className="font-display text-3xl sm:text-4xl font-bold tracking-tight text-white">{plan.price}</span>
+            <span className="text-sm text-brand-300/80 font-medium whitespace-nowrap">· {plan.time}</span>
           </div>
         </div>
 
-        <ul className="mt-8 flex-1 space-y-3.5">
-          {plan.features.map((f) => (
-            <li key={f} className="flex items-start gap-3 text-[15px]">
-              <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-500/20 text-brand-300">
-                <Icon name="check" className="h-3.5 w-3.5" />
+        <ul className="flex-1 space-y-4">
+          {plan.features.map((f, idx) => (
+            <li key={idx} className="flex items-start gap-3 text-sm">
+              <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-500/10 text-brand-400 border border-brand-500/20">
+                <Icon name="check" className="h-3 w-3" />
               </span>
               <span className="text-slate-200">{f}</span>
             </li>
@@ -126,10 +136,40 @@ function PricingCard({ plan, p, t }) {
       </div>
 
       <a
-        href={whatsappLink(`${t.contact.form.intro}\n${t.contact.form.labels.service}: ${plan.name}`)}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="relative z-20 mt-10 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 font-medium transition btn-fancy bg-white/10 text-white ring-1 ring-white/15 hover:bg-white/20 hover:ring-white/30 hover:-translate-y-0.5 hover:text-brand-300"
+        href="#contact"
+        onClick={(e) => {
+          if (window.location.pathname !== "/") {
+            return; // Let the browser navigate to /#contact normally
+          }
+          e.preventDefault();
+          
+          const serviceSelect = document.getElementById("contact-service");
+          if (serviceSelect) {
+            const optionExists = Array.from(serviceSelect.options).some(opt => opt.value === plan.name);
+            if (optionExists) {
+              serviceSelect.value = plan.name;
+            }
+          }
+
+          const formContainer = document.getElementById("contact-form-container");
+          if (formContainer) {
+            const y = formContainer.getBoundingClientRect().top + window.scrollY - 80;
+            window.scrollTo({ top: y, behavior: "smooth" });
+          } else {
+            const el = document.getElementById("contact");
+            if (el) {
+              const y = el.getBoundingClientRect().top + window.scrollY - 80;
+              window.scrollTo({ top: y, behavior: "smooth" });
+            }
+          }
+          
+          const nameInput = document.getElementById("contact-name");
+          if (nameInput) {
+            // Focus it without disrupting the smooth scroll
+            nameInput.focus({ preventScroll: true });
+          }
+        }}
+        className="relative z-20 mt-10 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 font-medium transition-all duration-200 btn-fancy bg-brand-500 text-white shadow-lg shadow-brand-500/25 hover:bg-brand-400 hover:shadow-brand-500/40 hover:-translate-y-0.5"
       >
         <span>{p.cta}</span>
         <Icon name="arrow" className="h-4 w-4 transition-transform duration-200 ease-out group-hover:translate-x-1" />

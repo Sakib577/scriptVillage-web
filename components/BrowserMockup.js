@@ -417,7 +417,7 @@ export function BrowserMockup({ card, onSlideChange }) {
       active = false;
       clearTimeout(timer);
     };
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const currentMockup = MOCKUPS[currentIndex];
 
@@ -455,7 +455,7 @@ export function BrowserMockup({ card, onSlideChange }) {
       {/* বন্ধ করতে SHOW_LEFT_BADGE = false করুন অথবা এই ব্লকটি কমেন্ট করুন */}
       {/* ============================================================ */}
       {SHOW_LEFT_BADGE && (
-        <div className="animate-float absolute -left-12 lg:-left-16 top-24 hidden sm:block z-20 pointer-events-none">
+        <div className="animate-float absolute -left-12 lg:-left-16 top-24 hidden lg:block z-20 pointer-events-none">
           <div 
             className="rounded-2xl border border-slate-200 bg-white p-4 shadow-xl min-w-[136px] pointer-events-auto"
             style={{
@@ -490,7 +490,7 @@ export function BrowserMockup({ card, onSlideChange }) {
       {/* ============================================================ */}
       {SHOW_RIGHT_BADGE && (
         <div 
-          className="animate-float absolute -right-16 lg:-right-24 bottom-10 hidden sm:flex z-20 pointer-events-none"
+          className="animate-float absolute -right-16 lg:-right-24 bottom-10 hidden lg:flex z-20 pointer-events-none"
           style={{ animationDelay: "1.5s" }}
         >
           <div 

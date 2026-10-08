@@ -127,84 +127,78 @@ export function Hero() {
       : "hero-text-idle-bottom";
 
   return (
-    <section id="top" className="relative overflow-hidden pt-24 pb-12 sm:pt-40 lg:flex lg:min-h-[calc(100dvh-4.25rem)] lg:items-center lg:pt-20 lg:pb-6">
+    <section id="top" className="relative overflow-hidden pt-20 pb-10 sm:pt-32 sm:pb-16 lg:flex lg:min-h-[calc(100dvh-4.25rem)] lg:items-center lg:pt-20 lg:pb-6">
       <div className="bg-grid absolute inset-0 [mask-image:radial-gradient(ellipse_at_top,black_30%,transparent_75%)]" />
 
-      <div className="relative mx-auto grid w-full max-w-7xl items-center gap-16 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
-        <div>
+      <div className="relative mx-auto grid w-full max-w-7xl grid-cols-12 gap-x-2 gap-y-4 px-4 sm:gap-x-6 sm:px-6 lg:gap-x-16 lg:px-8">
+
+        {/* ── Top-Left: Text Content ── */}
+        <div className="col-span-7 lg:col-span-6 lg:row-start-1 lg:row-span-1">
           <div className={animClass}>
-            <span className="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-4 py-1.5 text-sm font-medium text-brand-800">
-              <span className="relative flex h-2 w-2">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-brand-200 bg-brand-50 px-2 py-1 text-[9px] font-medium text-brand-800 sm:px-4 sm:py-1.5 sm:text-sm">
+              <span className="relative flex h-1.5 w-1.5 sm:h-2 sm:w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-400 opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-brand-500" />
+                <span className="relative inline-flex h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-brand-500" />
               </span>
               {currentHero.badge}
             </span>
 
-            <h1 className="font-display mt-6 min-h-[140px] text-4xl font-light tracking-tight text-ink sm:min-h-[160px] sm:text-5xl lg:min-h-[190px] lg:text-6xl">
+            <h1 className="font-display mt-3 sm:mt-6 text-[26px] sm:text-4xl md:text-5xl lg:min-h-[190px] lg:text-6xl font-light tracking-tight text-ink leading-[1.18]">
               {currentHero.titleA}
               <br />
               {currentHero.titleB}{" "}
               <span className="relative whitespace-nowrap text-brand-600">
                 {currentHero.titleC}
-                {/* 
-                  ====================================================
-                  HIGHLIGHT OPTIONS (Comment / Uncomment to test)
-                  ====================================================
-                */}
-
-                {/* OPTION 1: Hand-drawn smile/underline (Amazon style) */}
-                {/* <svg viewBox="0 0 300 12" className="absolute -bottom-2 left-0 h-3 w-full text-amber-400" preserveAspectRatio="none" aria-hidden>
-                  <path d="M2 9C80 3 220 3 298 9" stroke="currentColor" strokeWidth="4" fill="none" strokeLinecap="round" />
-                </svg> */}
-
-                {/* OPTION 2 (Previous Option 3): Full-width Animated Glowing Pulse Line */}
-                {/* 
-                <span className="absolute -bottom-1.5 left-0 block h-[3px] w-full rounded-full bg-gradient-to-r from-brand-500 via-amber-400 to-brand-400 shadow-[0_0_12px_rgba(34,197,94,0.45)] animate-pulse" />
-                */}
-
-                {/* OPTION 3 (Previous Option 4): Sleek Gradient Line (Fade out style) - Currently Active */}
-                <span className="absolute -bottom-1 left-0 h-1.5 w-full rounded-full bg-gradient-to-r from-brand-400 via-amber-400 to-transparent"></span>
-
-                
+                <span className="absolute -bottom-0.5 left-0 h-[2px] sm:h-1.5 w-full rounded-full bg-gradient-to-r from-brand-400 via-amber-400 to-transparent" />
               </span>
             </h1>
 
             {DYNAMIC_HERO && DYNAMIC_SUBTITLE && (
-              <p className="mt-8 min-h-[5.5rem] max-w-xl text-lg text-slate-600 sm:min-h-[4.5rem]">
+              <p className="mt-3 text-[12.5px] leading-relaxed text-slate-600 sm:mt-6 sm:min-h-[4.5rem] sm:text-base lg:mt-8 lg:max-w-xl lg:text-lg">
                 {currentHero.subtitle}
               </p>
             )}
           </div>
 
           {(!DYNAMIC_HERO || !DYNAMIC_SUBTITLE) && (
-            <p className="mt-8 max-w-xl text-lg text-slate-600">{h.subtitle}</p>
+            <p className="mt-3 text-[12.5px] leading-relaxed text-slate-600 sm:mt-6 sm:text-base lg:mt-8 lg:max-w-xl lg:text-lg">{h.subtitle}</p>
           )}
+        </div>
 
-          <div className="mt-10 flex flex-col gap-3.5 sm:flex-row">
+        {/* ── Top-Right: BrowserMockup ── */}
+        <div className="col-span-5 flex items-start justify-end lg:items-center lg:justify-center lg:col-span-6 lg:row-start-1 lg:row-span-2">
+          {/* Enforce a fixed w-[512px] so that zoom scales it proportionally without squishing */}
+          <div className="w-[512px] [zoom:0.3] sm:[zoom:0.48] md:[zoom:0.58] lg:[zoom:1] origin-top-right lg:origin-center">
+            <BrowserMockup card={h.card} onSlideChange={handleSlideChange} />
+          </div>
+        </div>
+
+        {/* ── Bottom (Mobile) / Left-Bottom (Desktop): CTA Buttons & Points ── */}
+        <div className="col-span-12 mt-2 sm:mt-4 lg:col-span-6 lg:row-start-2 lg:row-span-1 lg:-mt-4">
+          <div className="flex flex-col gap-2.5 sm:flex-row sm:gap-3.5">
             <a
               href={whatsappLink(t.contact.form.intro)}
               target="_blank"
               rel="noopener noreferrer"
-              className="group btn-fancy btn-shimmer btn-glow-whatsapp inline-flex items-center justify-center gap-2.5 rounded-full bg-[#25D366] px-7 py-4 font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[#20ba59]"
+              className="group btn-fancy btn-shimmer btn-glow-whatsapp inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-4 py-3 text-[12px] font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[#20ba59] sm:gap-2.5 sm:px-7 sm:py-4 sm:text-base"
             >
-              <WhatsAppIcon className="h-5 w-5 transition-transform duration-200 group-hover:scale-110" />
+              <WhatsAppIcon className="h-4 w-4 transition-transform duration-200 group-hover:scale-110 sm:h-5 sm:w-5" />
               <span>{h.primary}</span>
             </a>
             <a
               href="#pricing"
-              className="group btn-fancy inline-flex items-center justify-center gap-2 rounded-full border border-brand-200/90 bg-white px-7 py-4 font-semibold text-ink shadow-xs transition hover:-translate-y-0.5 hover:border-brand-500 hover:text-brand-600 hover:shadow-md hover:shadow-brand-500/10"
+              className="group btn-fancy inline-flex items-center justify-center gap-1.5 rounded-full border border-brand-200/90 bg-white px-4 py-3 text-[12px] font-semibold text-ink shadow-xs transition hover:-translate-y-0.5 hover:border-brand-500 hover:text-brand-600 sm:gap-2 sm:px-7 sm:py-4 sm:text-base"
             >
               <span>{h.secondary}</span>
-              <Icon name="arrow" className="h-4 w-4 transition-transform duration-200 ease-out group-hover:translate-x-1" />
+              <Icon name="arrow" className="h-3.5 w-3.5 transition-transform duration-200 ease-out group-hover:translate-x-1 sm:h-4 sm:w-4" />
             </a>
           </div>
 
-          <ul className="mt-10 flex flex-col gap-3 text-sm font-medium text-slate-700 sm:flex-row sm:flex-wrap sm:gap-x-6">
+          <ul className="mt-4 flex flex-col gap-2 text-[10px] font-medium text-slate-700 sm:mt-8 sm:flex-row sm:flex-wrap sm:gap-x-6 sm:text-sm">
             {h.points.map((p) => (
-              <li key={p} className="flex items-center gap-2">
-                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-brand-100 text-brand-700">
-                  <Icon name="check" className="h-3.5 w-3.5" />
+              <li key={p} className="flex items-center gap-1.5">
+                <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-brand-100 text-brand-700 sm:h-5 sm:w-5">
+                  <Icon name="check" className="h-2.5 w-2.5 sm:h-3.5 sm:w-3.5" />
                 </span>
                 {p}
               </li>
@@ -212,7 +206,6 @@ export function Hero() {
           </ul>
         </div>
 
-        <BrowserMockup card={h.card} onSlideChange={handleSlideChange} />
       </div>
     </section>
   );

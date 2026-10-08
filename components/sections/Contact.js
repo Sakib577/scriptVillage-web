@@ -133,7 +133,7 @@ export function Contact() {
 
           {/* Right Column: High-End Frosted Glass Form */}
           <Reveal delay={120}>
-            <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950/60 p-7 sm:p-9 shadow-[0_25px_60px_rgba(0,0,0,0.6)] backdrop-blur-2xl ring-1 ring-white/5 before:absolute before:inset-x-0 before:top-0 before:h-[2px] before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent">
+            <div id="contact-form-container" className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950/60 p-7 sm:p-9 shadow-[0_25px_60px_rgba(0,0,0,0.6)] backdrop-blur-2xl ring-1 ring-white/5 before:absolute before:inset-x-0 before:top-0 before:h-[2px] before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent">
               {/* Inner Ambient Glow */}
               <div aria-hidden className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-white/5 blur-3xl" />
 
@@ -165,6 +165,7 @@ export function Contact() {
                         </svg>
                       </span>
                       <input
+                        id="contact-name"
                         name="name"
                         required
                         autoComplete="name"
@@ -204,6 +205,7 @@ export function Contact() {
                       <Icon name="bolt" className="h-4.5 w-4.5" />
                     </span>
                     <select
+                      id="contact-service"
                       name="service"
                       required
                       defaultValue=""

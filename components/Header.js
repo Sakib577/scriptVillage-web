@@ -117,6 +117,27 @@ export function Header() {
           <LanguageToggle className="hidden sm:inline-flex" />
           <Link
             href="/#contact"
+            onClick={(e) => {
+              if (window.location.pathname === "/") {
+                e.preventDefault();
+                const formContainer = document.getElementById("contact-form-container");
+                if (formContainer) {
+                  const y = formContainer.getBoundingClientRect().top + window.scrollY - 80;
+                  window.scrollTo({ top: y, behavior: "smooth" });
+                } else {
+                  const el = document.getElementById("contact");
+                  if (el) {
+                    const y = el.getBoundingClientRect().top + window.scrollY - 80;
+                    window.scrollTo({ top: y, behavior: "smooth" });
+                  }
+                }
+                const nameInput = document.getElementById("contact-name");
+                if (nameInput) {
+                  // Small delay ensures scroll finishes or starts before focus lock
+                  setTimeout(() => nameInput.focus({ preventScroll: true }), 50);
+                }
+              }
+            }}
             className="group btn-fancy btn-shimmer btn-glow-brand hidden items-center gap-2 rounded-full bg-brand-600 px-5 py-2.5 text-sm font-medium text-white shadow-md transition hover:-translate-y-0.5 hover:bg-brand-700 md:inline-flex"
           >
             <span>{t.nav.cta}</span>
