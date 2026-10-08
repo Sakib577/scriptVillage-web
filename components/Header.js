@@ -76,7 +76,7 @@ export function Header() {
         <Link 
           href="/" 
           aria-label="Code Molecule home" 
-          className="shrink min-w-0"
+          className="flex items-center shrink min-w-0 translate-y-[2px]"
           onClick={(e) => {
             setOpen(false);
             if (window.location.pathname === "/") {
