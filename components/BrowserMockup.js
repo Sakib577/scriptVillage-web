@@ -534,9 +534,9 @@ export function BrowserMockup({ card, onSlideChange }) {
       {SHOW_LEFT_BADGE && (
         <div className={`animate-float absolute top-12 sm:top-24 z-40 pointer-events-none transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${currentIndex === 3 ? "left-[22px] sm:left-[30px] lg:left-12" : "-left-4 sm:-left-8 lg:-left-16"}`}>
           <div 
-            className="rounded-lg lg:rounded-2xl border border-slate-200 bg-white p-1.5 lg:p-4 shadow-xl min-w-[80px] lg:min-w-[136px] pointer-events-auto origin-left"
+            className="rounded-lg lg:rounded-2xl border border-slate-200 bg-white p-1.5 lg:p-4 shadow-xl min-w-[80px] lg:min-w-[136px] pointer-events-auto origin-left [--badge-scale:0.75] sm:[--badge-scale:0.85] lg:[--badge-scale:1]"
             style={{
-              transform: badgeVisible ? `translateX(0) scale(${currentIndex === 3 ? "0.65" : "1"})` : "translateX(-50px) scale(0.5)",
+              transform: badgeVisible ? `translateX(0) scale(var(--badge-scale))` : "translateX(-50px) scale(0.5)",
               opacity: badgeVisible ? 1 : 0,
               transition: badgeVisible
                 ? "transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease-out"
@@ -571,9 +571,9 @@ export function BrowserMockup({ card, onSlideChange }) {
           style={{ animationDelay: "1.5s" }}
         >
           <div 
-            className="flex items-center gap-1.5 lg:gap-3 rounded-lg lg:rounded-2xl border border-slate-200 bg-white px-2 py-1.5 lg:px-4 lg:py-3 shadow-xl pointer-events-auto origin-right"
+            className="flex items-center gap-1.5 lg:gap-3 rounded-lg lg:rounded-2xl border border-slate-200 bg-white px-2 py-1.5 lg:px-4 lg:py-3 shadow-xl pointer-events-auto origin-right [--badge-scale:0.75] sm:[--badge-scale:0.85] lg:[--badge-scale:1]"
             style={{
-              transform: badgeVisible ? `translateX(0) scale(${currentIndex === 3 ? "0.65" : "1"})` : "translateX(50px) scale(0.5)",
+              transform: badgeVisible ? `translateX(0) scale(var(--badge-scale))` : "translateX(50px) scale(0.5)",
               opacity: badgeVisible ? 1 : 0,
               transition: badgeVisible
                 ? "transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) 150ms, opacity 0.4s ease-out 150ms"
