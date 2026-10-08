@@ -335,6 +335,67 @@ export function BrowserMockup({ card, onSlideChange }) {
           </div>
         </div>
       ),
+    },
+    {
+      url: "yourmobileapp.com",
+      badgeLeft: {
+        label: isBn ? "অ্যাপ স্টোর রেটিং" : "App store rating",
+        value: "4.9",
+        unit: "★",
+        textColor: "text-violet-600",
+        barColor: "bg-violet-500",
+        barWidth: "w-[96%]",
+      },
+      badgeRight: {
+        icon: "bolt",
+        iconBg: "bg-violet-100 text-violet-700",
+        title: isBn ? "স্মুথ পারফরম্যান্স" : "Smooth performance",
+        subtitle: isBn ? "আইওএস ও অ্যান্ড্রয়েড" : "iOS & Android",
+      },
+      content: (
+        <div className="p-5 sm:p-8 h-full flex flex-col justify-center bg-linear-to-r from-violet-50/80 to-fuchsia-50/30 relative overflow-hidden">
+          {/* Decorative background blobs for the landing page */}
+          <div className="absolute top-0 right-0 h-40 w-40 rounded-full bg-violet-200/40 blur-3xl" />
+          <div className="absolute bottom-0 left-10 h-32 w-32 rounded-full bg-fuchsia-200/30 blur-2xl" />
+
+          <div className="max-w-[70%] sm:max-w-[60%] space-y-3 relative z-10">
+             {/* App Logo/Icon */}
+             <div className="h-8 w-8 sm:h-10 sm:w-10 rounded-xl bg-gradient-to-tr from-violet-600 to-fuchsia-500 shadow-md shadow-violet-300 flex items-center justify-center animate-fade-in-up" style={{ animationDelay: "100ms" }}>
+                <div className="h-3 w-3 sm:h-4 sm:w-4 rounded-full bg-white/90" />
+             </div>
+             
+             {/* Landing Page Headline */}
+             <div className="space-y-2 pt-1 animate-fade-in-up" style={{ animationDelay: "250ms" }}>
+               <div className="h-4 sm:h-5 w-full rounded-full bg-slate-800" />
+               <div className="h-4 sm:h-5 w-4/5 rounded-full bg-slate-800" />
+             </div>
+             
+             {/* Landing Page Subtitle */}
+             <div className="space-y-1.5 animate-fade-in-up" style={{ animationDelay: "400ms" }}>
+               <div className="h-2 sm:h-2.5 w-full rounded-full bg-slate-500" />
+               <div className="h-2 sm:h-2.5 w-5/6 rounded-full bg-slate-500" />
+             </div>
+             
+             {/* Download Buttons (App Store / Play Store style) */}
+             <div className="flex flex-col sm:flex-row gap-2 pt-3 animate-fade-in-up" style={{ animationDelay: "550ms" }}>
+               <div className="h-8 sm:h-9 w-28 sm:w-32 rounded-lg bg-slate-900 flex items-center px-2 gap-2 shadow-sm hover:scale-105 transition-transform">
+                  <div className="h-4 w-4 rounded-full bg-white/20" />
+                  <div className="space-y-0.5">
+                    <div className="h-1 w-8 bg-slate-400 rounded-full" />
+                    <div className="h-1.5 w-12 bg-white rounded-full" />
+                  </div>
+               </div>
+               <div className="h-8 sm:h-9 w-28 sm:w-32 rounded-lg bg-slate-900 flex items-center px-2 gap-2 shadow-sm hover:scale-105 transition-transform">
+                  <div className="h-4 w-4 rounded-full bg-white/20" />
+                  <div className="space-y-0.5">
+                    <div className="h-1 w-8 bg-slate-400 rounded-full" />
+                    <div className="h-1.5 w-12 bg-white rounded-full" />
+                  </div>
+               </div>
+             </div>
+          </div>
+        </div>
+      ),
     }
   ];
 
@@ -426,7 +487,14 @@ export function BrowserMockup({ card, onSlideChange }) {
       <div className="absolute -inset-6 rounded-[2.5rem] bg-linear-to-tr from-brand-200/60 via-amber-100/60 to-sky-100/60 blur-2xl transition-all duration-700" />
 
       {/* Browser Window */}
-      <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl shadow-slate-900/10">
+      <div 
+        className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl shadow-slate-900/10 transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)]"
+        style={{
+          transform: (currentIndex === 3 && !isTyping) ? "scale(0.95) translateY(10px)" : "scale(1) translateY(0)",
+          opacity: (currentIndex === 3 && !isTyping) ? 0 : 1,
+          pointerEvents: (currentIndex === 3 && !isTyping) ? "none" : "auto",
+        }}
+      >
         {/* Top Browser Bar */}
         <div className="flex items-center gap-2 border-b border-slate-100 bg-slate-50 px-4 py-3 relative z-10">
           <span className="h-3 w-3 rounded-full bg-rose-400" />
@@ -513,7 +581,63 @@ export function BrowserMockup({ card, onSlideChange }) {
           </div>
         </div>
       )}
+      {/* ============================================================ */}
+      {/* 3. MOBILE APP PHONE MOCKUP (Only visible on slide 3) */}
+      {/* ============================================================ */}
+      <div 
+        className="absolute inset-0 z-30 pointer-events-none flex items-center justify-center"
+        style={{
+          transform: (currentIndex === 3 && !isTyping) ? "translateY(0) scale(1)" : "translateY(60px) scale(0.8)",
+          opacity: (currentIndex === 3 && !isTyping) ? 1 : 0,
+          transition: (currentIndex === 3 && !isTyping)
+            ? "transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 100ms, opacity 0.5s ease-out 100ms"
+            : "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease-in",
+        }}
+      >
+        {/* Phone Frame */}
+        <div className="relative h-[280px] w-[140px] sm:h-[340px] sm:w-[170px] rounded-[28px] sm:rounded-[34px] border-[6px] sm:border-[8px] border-slate-900 bg-white shadow-2xl shadow-violet-900/40 overflow-hidden flex flex-col pointer-events-auto">
+          {/* Top Notch/Dynamic Island */}
+          <div className="absolute top-1 sm:top-1.5 left-1/2 -translate-x-1/2 h-3.5 sm:h-4 w-12 sm:w-14 bg-slate-900 rounded-full z-20" />
+          
+          {/* App Header */}
+          <div className="pt-7 sm:pt-8 pb-2.5 px-3 bg-violet-600 text-white flex items-center justify-between z-10">
+             <div className="h-2 w-12 rounded-full bg-violet-300" />
+             <div className="h-4 w-4 rounded-full bg-violet-400" />
+          </div>
+
+          {/* App Body */}
+          <div className="flex-1 p-2 sm:p-3 space-y-2.5 sm:space-y-3 bg-slate-50 overflow-hidden">
+             {/* Hero Banner inside App */}
+             <div className="h-16 w-full rounded-xl bg-gradient-to-tr from-violet-500 to-fuchsia-400 p-2 relative overflow-hidden shadow-xs">
+                <div className="absolute top-2 left-2 h-2 w-10 rounded-full bg-white/40" />
+                <div className="absolute bottom-2 left-2 h-1.5 w-16 rounded-full bg-white/60" />
+             </div>
+             
+             {/* Grid items */}
+             <div className="grid grid-cols-2 gap-2">
+                <div className="h-10 sm:h-12 rounded-lg bg-white shadow-xs border border-slate-100 flex items-center justify-center">
+                   <div className="h-4 w-4 rounded-full bg-sky-200" />
+                </div>
+                <div className="h-10 sm:h-12 rounded-lg bg-white shadow-xs border border-slate-100 flex items-center justify-center">
+                   <div className="h-4 w-4 rounded-full bg-emerald-200" />
+                </div>
+             </div>
+
+             {/* List item */}
+             <div className="h-8 w-full rounded-lg bg-white shadow-xs border border-slate-100 flex items-center px-2 gap-2">
+                <div className="h-3 w-3 rounded-full bg-amber-200" />
+                <div className="h-1.5 w-12 rounded-full bg-slate-200" />
+             </div>
+          </div>
+
+          {/* App Bottom Nav */}
+          <div className="h-10 bg-white border-t border-slate-100 flex justify-around items-center px-3">
+             <div className="h-3.5 w-3.5 rounded-full bg-violet-500 shadow-sm shadow-violet-200" />
+             <div className="h-3 w-3 rounded-full bg-slate-200" />
+             <div className="h-3 w-3 rounded-full bg-slate-200" />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
-
