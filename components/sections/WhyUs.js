@@ -16,6 +16,8 @@ const SPOTLIGHT_OPTION = 1; // <-- Option 1 ACTIVE
 // const SPOTLIGHT_OPTION = 2; // <-- Option 2 ACTIVE
 // const SPOTLIGHT_OPTION = 3; // <-- Option 3 ACTIVE
 
+import { MobileCarousel } from "../MobileCarousel";
+
 const icons = ["clipboard", "bolt", "mobile", "key"];
 
 export function WhyUs() {
@@ -38,13 +40,18 @@ export function WhyUs() {
           <h2 className="font-display mt-3 text-3xl font-light tracking-tight text-white sm:text-4xl">{w.title}</h2>
         </Reveal>
 
-        <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {w.items.map((item, i) => (
-            <Reveal key={item.title} delay={i * 90}>
-              <WhyUsCard item={item} i={i} />
-            </Reveal>
-          ))}
-        </div>
+        <Reveal className="mt-12 sm:mt-16">
+          <MobileCarousel
+            dark
+            gridClass="lg:grid-cols-4"
+          >
+            {w.items.map((item, i) => (
+              <div key={item.title} className="flex w-full h-full">
+                <WhyUsCard item={item} i={i} />
+              </div>
+            ))}
+          </MobileCarousel>
+        </Reveal>
       </div>
     </section>
   );

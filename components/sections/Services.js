@@ -6,6 +6,7 @@ import { useLanguage } from "../LanguageProvider";
 import { Icon } from "../Icons";
 import { Reveal, SectionHeading } from "../Reveal";
 import { services } from "@/lib/services";
+import { MobileCarousel } from "../MobileCarousel";
 
 export const serviceAccents = [
   "bg-brand-50 text-brand-700 ring-brand-200/80",
@@ -159,17 +160,20 @@ export function Services() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading eyebrow={s.eyebrow} title={s.title} subtitle={s.subtitle} />
 
-        <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((service, i) => {
-            const item = service[lang];
-            return (
-              /* ৫. স্ক্রল-ট্রিগার্ড ফেড-ইন রিভিল (Intersection Observer Scroll Reveal) */
-              <Reveal key={service.slug} delay={(i % 3) * 90}>
-                <ServiceCard service={service} item={item} i={i} t={t} />
-              </Reveal>
-            );
-          })}
-        </div>
+        <Reveal className="mt-12 sm:mt-16">
+          <MobileCarousel
+            gridClass="lg:grid-cols-3"
+          >
+            {services.map((service, i) => {
+              const item = service[lang];
+              return (
+                <div key={service.slug} className="flex w-full h-full">
+                  <ServiceCard service={service} item={item} i={i} t={t} />
+                </div>
+              );
+            })}
+          </MobileCarousel>
+        </Reveal>
       </div>
     </section>
   );

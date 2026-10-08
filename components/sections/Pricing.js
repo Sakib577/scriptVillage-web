@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { useLanguage } from "../LanguageProvider";
 import { Icon } from "../Icons";
 import { Reveal, SectionHeading } from "../Reveal";
+import { MobileCarousel } from "../MobileCarousel";
 
 /* ==========================================================================
    SPOTLIGHT EFFECT OPTIONS (Uncomment one option below to use it):
@@ -34,19 +35,20 @@ export function Pricing() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading eyebrow={p.eyebrow} title={p.title} subtitle={p.subtitle} dark />
 
-        <div className="mt-12 sm:mt-16 -mx-4 px-4 flex overflow-x-auto snap-x snap-mandatory gap-4 pb-8 sm:mx-0 sm:px-0 sm:gap-6 lg:grid lg:grid-cols-3 lg:overflow-visible lg:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-          {p.plans.map((plan, i) => (
-            <Reveal 
-              key={plan.name} 
-              delay={i * 100}
-              className="w-[85vw] shrink-0 snap-center sm:w-[380px] lg:w-auto flex"
-            >
-              <div className="w-full flex-1 transition-transform duration-300 lg:hover:-translate-y-2">
-                <PricingCard plan={plan} p={p} t={t} />
+        <Reveal className="mt-12 sm:mt-16">
+          <MobileCarousel
+            dark
+            gridClass="lg:grid-cols-3"
+          >
+            {p.plans.map((plan, i) => (
+              <div key={plan.name} className="flex w-full h-full">
+                <div className="w-full flex-1 transition-transform duration-300 lg:hover:-translate-y-2">
+                  <PricingCard plan={plan} p={p} t={t} />
+                </div>
               </div>
-            </Reveal>
-          ))}
-        </div>
+            ))}
+          </MobileCarousel>
+        </Reveal>
 
         <Reveal className="mx-auto mt-12 max-w-2xl text-center text-[15px] text-slate-400">{p.note}</Reveal>
       </div>
@@ -136,6 +138,9 @@ function PricingCard({ plan, p, t }) {
       <a
         href="#contact"
         onClick={(e) => {
+          if (window.location.pathname !== "/") {
+            return; // Let the browser navigate to /#contact normally
+          }
           e.preventDefault();
           
           const serviceSelect = document.getElementById("contact-service");
@@ -146,19 +151,22 @@ function PricingCard({ plan, p, t }) {
             }
           }
 
-          const nameInput = document.getElementById("contact-name");
-          if (nameInput) {
-            // Scroll the input into the center of the screen
-            nameInput.scrollIntoView({ behavior: "smooth", block: "center" });
-            // Focus it without disrupting the smooth scroll
-            nameInput.focus({ preventScroll: true });
+          const formContainer = document.getElementById("contact-form-container");
+          if (formContainer) {
+            const y = formContainer.getBoundingClientRect().top + window.scrollY - 80;
+            window.scrollTo({ top: y, behavior: "smooth" });
           } else {
-            // Fallback if input is somehow not found
             const el = document.getElementById("contact");
             if (el) {
               const y = el.getBoundingClientRect().top + window.scrollY - 80;
               window.scrollTo({ top: y, behavior: "smooth" });
             }
+          }
+          
+          const nameInput = document.getElementById("contact-name");
+          if (nameInput) {
+            // Focus it without disrupting the smooth scroll
+            nameInput.focus({ preventScroll: true });
           }
         }}
         className="relative z-20 mt-10 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 font-medium transition-all duration-200 btn-fancy bg-brand-500 text-white shadow-lg shadow-brand-500/25 hover:bg-brand-400 hover:shadow-brand-500/40 hover:-translate-y-0.5"
