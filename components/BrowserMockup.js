@@ -435,24 +435,20 @@ export function BrowserMockup({ card, onSlideChange }) {
 
         if (nextIndex === 3) {
           // Going to Mobile App slide:
-          // 1. Fade browser window out first (browser is already opacity:0 when showPhone=true)
-          //    We hide the phone cleanly before switching slide
-          setShowPhone(false);
-          await sleep(150); // let any existing phone fade out
+          // 1. Hide browser and show phone
+          setShowPhone(true);
+          
+          // 2. Wait for browser to fade out a bit before switching its content
+          await sleep(350);
           if (!active) break;
 
-          // 2. Switch to slide 3 (browser will fade out via its own opacity logic)
+          // 3. Switch index (updates Hero text and internal content silently)
           index = nextIndex;
           setCurrentIndex(nextIndex);
           onSlideChange?.(nextIndex);
 
-          // 3. Wait for browser to fully fade out, then reveal phone
-          await sleep(600);
-          if (!active) break;
-          setShowPhone(true);
-
-          // 4. Wait for page layout elements to cascade into place
-          await sleep(800);
+          // 4. Wait for phone to fully settle
+          await sleep(650);
           if (!active) break;
 
           // 5. Spring badges in
