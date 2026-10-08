@@ -532,7 +532,7 @@ export function BrowserMockup({ card, onSlideChange }) {
       {/* বন্ধ করতে SHOW_LEFT_BADGE = false করুন অথবা এই ব্লকটি কমেন্ট করুন */}
       {/* ============================================================ */}
       {SHOW_LEFT_BADGE && (
-        <div className={`animate-float absolute top-12 sm:top-24 z-40 pointer-events-none transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${currentIndex === 3 ? "left-0 sm:left-2 lg:left-6" : "-left-4 sm:-left-8 lg:-left-16"}`}>
+        <div className={`animate-float absolute top-12 sm:top-24 z-40 pointer-events-none transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${currentIndex === 3 ? "left-4 sm:left-6 lg:left-10" : "-left-4 sm:-left-8 lg:-left-16"}`}>
           <div className="scale-[0.65] sm:scale-100 origin-left">
             <div 
               className="rounded-lg lg:rounded-2xl border border-slate-200 bg-white p-1.5 lg:p-4 shadow-xl min-w-[80px] lg:min-w-[136px] pointer-events-auto"
