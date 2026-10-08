@@ -180,14 +180,14 @@ export function Hero() {
             </h1>
 
             {DYNAMIC_HERO && DYNAMIC_SUBTITLE && (
-              <p className="mt-3 text-[14px] leading-relaxed text-slate-600 sm:mt-6 min-h-[85px] sm:min-h-[4.5rem] sm:text-base lg:mt-8 lg:max-w-xl lg:text-lg">
+              <p className="mt-2 text-[14px] leading-relaxed text-slate-600 sm:mt-3 min-h-[85px] sm:min-h-[4.5rem] sm:text-base lg:mt-5 lg:max-w-xl lg:text-lg">
                 {currentHero.subtitle}
               </p>
             )}
           </div>
 
           {(!DYNAMIC_HERO || !DYNAMIC_SUBTITLE) && (
-            <p className="mt-3 text-[14px] leading-relaxed text-slate-600 sm:mt-6 min-h-[85px] sm:min-h-[4.5rem] sm:text-base lg:mt-8 lg:max-w-xl lg:text-lg">{h.subtitle}</p>
+            <p className="mt-2 text-[14px] leading-relaxed text-slate-600 sm:mt-3 min-h-[85px] sm:min-h-[4.5rem] sm:text-base lg:mt-5 lg:max-w-xl lg:text-lg">{h.subtitle}</p>
           )}
         </div>
 
