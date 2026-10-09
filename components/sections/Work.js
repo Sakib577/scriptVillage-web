@@ -91,7 +91,7 @@ export function Work() {
         <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {w.items.map((item, i) => (
             <Reveal key={item.title} delay={(i % 3) * 120}>
-              <SpotlightCard as="a" href={item.url} target="_blank" rel="noopener noreferrer" tilt={true} className="cursor-pointer block">
+              <SpotlightCard as="a" href={item.backupUrl ? `/api/redirect?primary=${encodeURIComponent(item.url)}&backup=${encodeURIComponent(item.backupUrl)}` : item.url} target="_blank" rel="noopener noreferrer" tilt={true} className="cursor-pointer block">
                 {item.image ? (
                   <div className="aspect-[16/10] overflow-hidden bg-slate-100 p-5 sm:p-6">
                     <img src={item.image} alt={item.title} className="h-full w-full object-cover object-top rounded-xl shadow-lg transition-transform duration-500 group-hover:-translate-y-2 group-hover:scale-[1.025]" />
